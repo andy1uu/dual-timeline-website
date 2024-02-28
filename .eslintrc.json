@@ -1,0 +1,43 @@
+{
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["tailwindcss"],
+  "extends": ["next/babel", "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "error",
+    "tailwindcss/no-contradicting-classname": "error",
+    "tailwindcss/migration-from-tailwind-2": "error",
+    "tailwindcss/enforces-shorthand": "error",
+    "tailwindcss/enforces-negative-arbitrary-values": "error",
+    "arrow-body-style": ["error", "as-needed"],
+    "react/self-closing-comp": ["error", { "component": true, "html": true }],
+    "prettier/prettier": "error"
+  },
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "ignorePatterns": [
+    "/public",
+    "/build",
+    "/tailwind.config.js",
+    "/node_modules"
+  ]
+}
