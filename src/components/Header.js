@@ -7,7 +7,7 @@ const Header = () => {
       <h1 className="Header-title text-2xl font-semibold text-dark dark:text-light">
         Dual-Timeline
       </h1>
-      {/* <ThemeSwitcher /> */}
+      <ThemeSwitcher />
     </header>
   );
 };
