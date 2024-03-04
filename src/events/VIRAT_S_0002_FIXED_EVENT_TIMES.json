@@ -1,0 +1,858 @@
+[
+  {
+    "currentEventEndFrame": 833,
+    "currentEventEndFrameSeconds": 27.766666666666666,
+    "currentEventStartFrame": 637,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 21.233333333333334,
+    "currentEventDuration": 196
+  },
+  {
+    "currentEventEndFrame": 2919,
+    "currentEventEndFrameSeconds": 97.3,
+    "currentEventStartFrame": 2788,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 92.93333333333334,
+    "currentEventDuration": 131
+  },
+  {
+    "currentEventEndFrame": 15170,
+    "currentEventEndFrameSeconds": 505.6666666666667,
+    "currentEventStartFrame": 14643,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 488.1,
+    "currentEventDuration": 527
+  },
+  {
+    "currentEventEndFrame": 16273,
+    "currentEventEndFrameSeconds": 542.4333333333333,
+    "currentEventStartFrame": 16124,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 537.4666666666667,
+    "currentEventDuration": 149
+  },
+  {
+    "currentEventEndFrame": 20908,
+    "currentEventEndFrameSeconds": 696.9333333333333,
+    "currentEventStartFrame": 20673,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 689.1,
+    "currentEventDuration": 235
+  },
+  {
+    "currentEventEndFrame": 22956,
+    "currentEventEndFrameSeconds": 765.2,
+    "currentEventStartFrame": 22656,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 755.2,
+    "currentEventDuration": 300
+  },
+  {
+    "currentEventEndFrame": 27615,
+    "currentEventEndFrameSeconds": 920.5,
+    "currentEventStartFrame": 26552,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 885.0666666666667,
+    "currentEventDuration": 1063
+  },
+  {
+    "currentEventEndFrame": 26968,
+    "currentEventEndFrameSeconds": 898.9333333333333,
+    "currentEventStartFrame": 26559,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 885.3,
+    "currentEventDuration": 409
+  },
+  {
+    "currentEventEndFrame": 26907,
+    "currentEventEndFrameSeconds": 896.9,
+    "currentEventStartFrame": 26577,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 885.9,
+    "currentEventDuration": 330
+  },
+  {
+    "currentEventEndFrame": 27777,
+    "currentEventEndFrameSeconds": 925.9,
+    "currentEventStartFrame": 27642,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 921.4,
+    "currentEventDuration": 135
+  },
+  {
+    "currentEventEndFrame": 29632,
+    "currentEventEndFrameSeconds": 987.7333333333333,
+    "currentEventStartFrame": 28239,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 941.3,
+    "currentEventDuration": 1393
+  },
+  {
+    "currentEventEndFrame": 29917,
+    "currentEventEndFrameSeconds": 997.2333333333333,
+    "currentEventStartFrame": 29486,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 982.8666666666667,
+    "currentEventDuration": 431
+  },
+  {
+    "currentEventEndFrame": 17665,
+    "currentEventEndFrameSeconds": 588.8333333333334,
+    "currentEventStartFrame": 16779,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 559.3,
+    "currentEventDuration": 886
+  },
+  {
+    "currentEventEndFrame": 34240,
+    "currentEventEndFrameSeconds": 1141.3333333333333,
+    "currentEventStartFrame": 33267,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1108.9,
+    "currentEventDuration": 973
+  },
+  {
+    "currentEventEndFrame": 34532,
+    "currentEventEndFrameSeconds": 1151.0666666666666,
+    "currentEventStartFrame": 34472,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 1149.0666666666666,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 34615,
+    "currentEventEndFrameSeconds": 1153.8333333333333,
+    "currentEventStartFrame": 34555,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 1151.8333333333333,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 36336,
+    "currentEventEndFrameSeconds": 1211.2,
+    "currentEventStartFrame": 35828,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1194.2666666666667,
+    "currentEventDuration": 508
+  },
+  {
+    "currentEventEndFrame": 37173,
+    "currentEventEndFrameSeconds": 1239.1,
+    "currentEventStartFrame": 36762,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1225.4,
+    "currentEventDuration": 411
+  },
+  {
+    "currentEventEndFrame": 36216,
+    "currentEventEndFrameSeconds": 1207.2,
+    "currentEventStartFrame": 36025,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1200.8333333333333,
+    "currentEventDuration": 191
+  },
+  {
+    "currentEventEndFrame": 40246,
+    "currentEventEndFrameSeconds": 1341.5333333333333,
+    "currentEventStartFrame": 39010,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1300.3333333333333,
+    "currentEventDuration": 1236
+  },
+  {
+    "currentEventEndFrame": 40267,
+    "currentEventEndFrameSeconds": 1342.2333333333333,
+    "currentEventStartFrame": 39010,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1300.3333333333333,
+    "currentEventDuration": 1257
+  },
+  {
+    "currentEventEndFrame": 39513,
+    "currentEventEndFrameSeconds": 1317.1,
+    "currentEventStartFrame": 39321,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1310.7,
+    "currentEventDuration": 192
+  },
+  {
+    "currentEventEndFrame": 39564,
+    "currentEventEndFrameSeconds": 1318.8,
+    "currentEventStartFrame": 39533,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1317.7666666666667,
+    "currentEventDuration": 31
+  },
+  {
+    "currentEventEndFrame": 41382,
+    "currentEventEndFrameSeconds": 1379.4,
+    "currentEventStartFrame": 41232,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1374.4,
+    "currentEventDuration": 150
+  },
+  {
+    "currentEventEndFrame": 41790,
+    "currentEventEndFrameSeconds": 1393.0,
+    "currentEventStartFrame": 41729,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1390.9666666666667,
+    "currentEventDuration": 61
+  },
+  {
+    "currentEventEndFrame": 42750,
+    "currentEventEndFrameSeconds": 1425.0,
+    "currentEventStartFrame": 42500,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1416.6666666666667,
+    "currentEventDuration": 250
+  },
+  {
+    "currentEventEndFrame": 45010,
+    "currentEventEndFrameSeconds": 1500.3333333333333,
+    "currentEventStartFrame": 43242,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1441.4,
+    "currentEventDuration": 1768
+  },
+  {
+    "currentEventEndFrame": 45058,
+    "currentEventEndFrameSeconds": 1501.9333333333334,
+    "currentEventStartFrame": 43914,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1463.8,
+    "currentEventDuration": 1144
+  },
+  {
+    "currentEventEndFrame": 43807,
+    "currentEventEndFrameSeconds": 1460.2333333333333,
+    "currentEventStartFrame": 43434,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1447.8,
+    "currentEventDuration": 373
+  },
+  {
+    "currentEventEndFrame": 44649,
+    "currentEventEndFrameSeconds": 1488.3,
+    "currentEventStartFrame": 44372,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 1479.0666666666666,
+    "currentEventDuration": 277
+  },
+  {
+    "currentEventEndFrame": 44869,
+    "currentEventEndFrameSeconds": 1495.6333333333334,
+    "currentEventStartFrame": 44756,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1491.8666666666666,
+    "currentEventDuration": 113
+  },
+  {
+    "currentEventEndFrame": 45102,
+    "currentEventEndFrameSeconds": 1503.4,
+    "currentEventStartFrame": 44984,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 1499.4666666666667,
+    "currentEventDuration": 118
+  },
+  {
+    "currentEventEndFrame": 45588,
+    "currentEventEndFrameSeconds": 1519.6,
+    "currentEventStartFrame": 45498,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 1516.6,
+    "currentEventDuration": 90
+  },
+  {
+    "currentEventEndFrame": 45748,
+    "currentEventEndFrameSeconds": 1524.9333333333334,
+    "currentEventStartFrame": 45599,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 1519.9666666666667,
+    "currentEventDuration": 149
+  },
+  {
+    "currentEventEndFrame": 45750,
+    "currentEventEndFrameSeconds": 1525.0,
+    "currentEventStartFrame": 45713,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1523.7666666666667,
+    "currentEventDuration": 37
+  },
+  {
+    "currentEventEndFrame": 46389,
+    "currentEventEndFrameSeconds": 1546.3,
+    "currentEventStartFrame": 46241,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1541.3666666666666,
+    "currentEventDuration": 148
+  },
+  {
+    "currentEventEndFrame": 46661,
+    "currentEventEndFrameSeconds": 1555.3666666666666,
+    "currentEventStartFrame": 46169,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1538.9666666666667,
+    "currentEventDuration": 492
+  },
+  {
+    "currentEventEndFrame": 46050,
+    "currentEventEndFrameSeconds": 1535.0,
+    "currentEventStartFrame": 45728,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1524.2666666666667,
+    "currentEventDuration": 322
+  },
+  {
+    "currentEventEndFrame": 46661,
+    "currentEventEndFrameSeconds": 1555.3666666666666,
+    "currentEventStartFrame": 46028,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1534.2666666666667,
+    "currentEventDuration": 633
+  },
+  {
+    "currentEventEndFrame": 47685,
+    "currentEventEndFrameSeconds": 1589.5,
+    "currentEventStartFrame": 47293,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1576.4333333333334,
+    "currentEventDuration": 392
+  },
+  {
+    "currentEventEndFrame": 50144,
+    "currentEventEndFrameSeconds": 1671.4666666666667,
+    "currentEventStartFrame": 50084,
+    "currentEventName": "2: Person Unloading an Object from a Car/Vehicle",
+    "currentEventStartFrameSeconds": 1669.4666666666667,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 50383,
+    "currentEventEndFrameSeconds": 1679.4333333333334,
+    "currentEventStartFrame": 50323,
+    "currentEventName": "2: Person Unloading an Object from a Car/Vehicle",
+    "currentEventStartFrameSeconds": 1677.4333333333334,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 52822,
+    "currentEventEndFrameSeconds": 1760.7333333333333,
+    "currentEventStartFrame": 52805,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1760.1666666666667,
+    "currentEventDuration": 17
+  },
+  {
+    "currentEventEndFrame": 52917,
+    "currentEventEndFrameSeconds": 1763.9,
+    "currentEventStartFrame": 52805,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1760.1666666666667,
+    "currentEventDuration": 112
+  },
+  {
+    "currentEventEndFrame": 53498,
+    "currentEventEndFrameSeconds": 1783.2666666666667,
+    "currentEventStartFrame": 53284,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 1776.1333333333334,
+    "currentEventDuration": 214
+  },
+  {
+    "currentEventEndFrame": 54545,
+    "currentEventEndFrameSeconds": 1818.1666666666667,
+    "currentEventStartFrame": 54358,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1811.9333333333334,
+    "currentEventDuration": 187
+  },
+  {
+    "currentEventEndFrame": 59604,
+    "currentEventEndFrameSeconds": 1986.8,
+    "currentEventStartFrame": 59457,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 1981.9,
+    "currentEventDuration": 147
+  },
+  {
+    "currentEventEndFrame": 61761,
+    "currentEventEndFrameSeconds": 2058.7,
+    "currentEventStartFrame": 61534,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2051.133333333333,
+    "currentEventDuration": 227
+  },
+  {
+    "currentEventEndFrame": 61233,
+    "currentEventEndFrameSeconds": 2041.1,
+    "currentEventStartFrame": 60453,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2015.1,
+    "currentEventDuration": 780
+  },
+  {
+    "currentEventEndFrame": 63608,
+    "currentEventEndFrameSeconds": 2120.266666666667,
+    "currentEventStartFrame": 63355,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2111.8333333333335,
+    "currentEventDuration": 253
+  },
+  {
+    "currentEventEndFrame": 64919,
+    "currentEventEndFrameSeconds": 2163.9666666666667,
+    "currentEventStartFrame": 64791,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2159.7,
+    "currentEventDuration": 128
+  },
+  {
+    "currentEventEndFrame": 65830,
+    "currentEventEndFrameSeconds": 2194.3333333333335,
+    "currentEventStartFrame": 65770,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 2192.3333333333335,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 65982,
+    "currentEventEndFrameSeconds": 2199.4,
+    "currentEventStartFrame": 65922,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 2197.4,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 67799,
+    "currentEventEndFrameSeconds": 2259.9666666666667,
+    "currentEventStartFrame": 67615,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2253.8333333333335,
+    "currentEventDuration": 184
+  },
+  {
+    "currentEventEndFrame": 70709,
+    "currentEventEndFrameSeconds": 2356.9666666666667,
+    "currentEventStartFrame": 70238,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2341.266666666667,
+    "currentEventDuration": 471
+  },
+  {
+    "currentEventEndFrame": 72434,
+    "currentEventEndFrameSeconds": 2414.4666666666667,
+    "currentEventStartFrame": 72257,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2408.5666666666666,
+    "currentEventDuration": 177
+  },
+  {
+    "currentEventEndFrame": 70881,
+    "currentEventEndFrameSeconds": 2362.7,
+    "currentEventStartFrame": 70772,
+    "currentEventName": "2: Person Unloading an Object from a Car/Vehicle",
+    "currentEventStartFrameSeconds": 2359.0666666666666,
+    "currentEventDuration": 109
+  },
+  {
+    "currentEventEndFrame": 72964,
+    "currentEventEndFrameSeconds": 2432.133333333333,
+    "currentEventStartFrame": 72881,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2429.366666666667,
+    "currentEventDuration": 83
+  },
+  {
+    "currentEventEndFrame": 73159,
+    "currentEventEndFrameSeconds": 2438.633333333333,
+    "currentEventStartFrame": 73090,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 2436.3333333333335,
+    "currentEventDuration": 69
+  },
+  {
+    "currentEventEndFrame": 73335,
+    "currentEventEndFrameSeconds": 2444.5,
+    "currentEventStartFrame": 73275,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 2442.5,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 74593,
+    "currentEventEndFrameSeconds": 2486.4333333333334,
+    "currentEventStartFrame": 74423,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2480.766666666667,
+    "currentEventDuration": 170
+  },
+  {
+    "currentEventEndFrame": 76934,
+    "currentEventEndFrameSeconds": 2564.4666666666667,
+    "currentEventStartFrame": 76798,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2559.9333333333334,
+    "currentEventDuration": 136
+  },
+  {
+    "currentEventEndFrame": 77490,
+    "currentEventEndFrameSeconds": 2583.0,
+    "currentEventStartFrame": 77325,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2577.5,
+    "currentEventDuration": 165
+  },
+  {
+    "currentEventEndFrame": 77639,
+    "currentEventEndFrameSeconds": 2587.9666666666667,
+    "currentEventStartFrame": 77579,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 2585.9666666666667,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 77842,
+    "currentEventEndFrameSeconds": 2594.733333333333,
+    "currentEventStartFrame": 77782,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 2592.733333333333,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 83211,
+    "currentEventEndFrameSeconds": 2773.7,
+    "currentEventStartFrame": 83044,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2768.133333333333,
+    "currentEventDuration": 167
+  },
+  {
+    "currentEventEndFrame": 86544,
+    "currentEventEndFrameSeconds": 2884.8,
+    "currentEventStartFrame": 86335,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2877.8333333333335,
+    "currentEventDuration": 209
+  },
+  {
+    "currentEventEndFrame": 86536,
+    "currentEventEndFrameSeconds": 2884.5333333333333,
+    "currentEventStartFrame": 86315,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2877.1666666666665,
+    "currentEventDuration": 221
+  },
+  {
+    "currentEventEndFrame": 87566,
+    "currentEventEndFrameSeconds": 2918.866666666667,
+    "currentEventStartFrame": 87302,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2910.0666666666666,
+    "currentEventDuration": 264
+  },
+  {
+    "currentEventEndFrame": 88594,
+    "currentEventEndFrameSeconds": 2953.133333333333,
+    "currentEventStartFrame": 88534,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 2951.133333333333,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 88992,
+    "currentEventEndFrameSeconds": 2966.4,
+    "currentEventStartFrame": 88932,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 2964.4,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 87874,
+    "currentEventEndFrameSeconds": 2929.133333333333,
+    "currentEventStartFrame": 87735,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 2924.5,
+    "currentEventDuration": 139
+  },
+  {
+    "currentEventEndFrame": 95966,
+    "currentEventEndFrameSeconds": 3198.866666666667,
+    "currentEventStartFrame": 95835,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 3194.5,
+    "currentEventDuration": 131
+  },
+  {
+    "currentEventEndFrame": 98347,
+    "currentEventEndFrameSeconds": 3278.233333333333,
+    "currentEventStartFrame": 98196,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 3273.2,
+    "currentEventDuration": 151
+  },
+  {
+    "currentEventEndFrame": 98583,
+    "currentEventEndFrameSeconds": 3286.1,
+    "currentEventStartFrame": 98504,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 3283.4666666666667,
+    "currentEventDuration": 79
+  },
+  {
+    "currentEventEndFrame": 98774,
+    "currentEventEndFrameSeconds": 3292.4666666666667,
+    "currentEventStartFrame": 98714,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 3290.4666666666667,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 102614,
+    "currentEventEndFrameSeconds": 3420.4666666666667,
+    "currentEventStartFrame": 102514,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 3417.133333333333,
+    "currentEventDuration": 100
+  },
+  {
+    "currentEventEndFrame": 102764,
+    "currentEventEndFrameSeconds": 3425.4666666666667,
+    "currentEventStartFrame": 102627,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 3420.9,
+    "currentEventDuration": 137
+  },
+  {
+    "currentEventEndFrame": 104136,
+    "currentEventEndFrameSeconds": 3471.2,
+    "currentEventStartFrame": 103971,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 3465.7,
+    "currentEventDuration": 165
+  },
+  {
+    "currentEventEndFrame": 104244,
+    "currentEventEndFrameSeconds": 3474.8,
+    "currentEventStartFrame": 104099,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 3469.9666666666667,
+    "currentEventDuration": 145
+  },
+  {
+    "currentEventEndFrame": 110741,
+    "currentEventEndFrameSeconds": 3691.366666666667,
+    "currentEventStartFrame": 110626,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 3687.5333333333333,
+    "currentEventDuration": 115
+  },
+  {
+    "currentEventEndFrame": 113075,
+    "currentEventEndFrameSeconds": 3769.1666666666665,
+    "currentEventStartFrame": 112958,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 3765.266666666667,
+    "currentEventDuration": 117
+  },
+  {
+    "currentEventEndFrame": 113190,
+    "currentEventEndFrameSeconds": 3773.0,
+    "currentEventStartFrame": 113110,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 3770.3333333333335,
+    "currentEventDuration": 80
+  },
+  {
+    "currentEventEndFrame": 113570,
+    "currentEventEndFrameSeconds": 3785.6666666666665,
+    "currentEventStartFrame": 113510,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 3783.6666666666665,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 115909,
+    "currentEventEndFrameSeconds": 3863.633333333333,
+    "currentEventStartFrame": 115815,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 3860.5,
+    "currentEventDuration": 94
+  },
+  {
+    "currentEventEndFrame": 119905,
+    "currentEventEndFrameSeconds": 3996.8333333333335,
+    "currentEventStartFrame": 119811,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 3993.7,
+    "currentEventDuration": 94
+  },
+  {
+    "currentEventEndFrame": 122698,
+    "currentEventEndFrameSeconds": 4089.9333333333334,
+    "currentEventStartFrame": 122589,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4086.3,
+    "currentEventDuration": 109
+  },
+  {
+    "currentEventEndFrame": 122768,
+    "currentEventEndFrameSeconds": 4092.266666666667,
+    "currentEventStartFrame": 122677,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4089.233333333333,
+    "currentEventDuration": 91
+  },
+  {
+    "currentEventEndFrame": 124279,
+    "currentEventEndFrameSeconds": 4142.633333333333,
+    "currentEventStartFrame": 124085,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4136.166666666667,
+    "currentEventDuration": 194
+  },
+  {
+    "currentEventEndFrame": 128912,
+    "currentEventEndFrameSeconds": 4297.066666666667,
+    "currentEventStartFrame": 128804,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4293.466666666666,
+    "currentEventDuration": 108
+  },
+  {
+    "currentEventEndFrame": 134581,
+    "currentEventEndFrameSeconds": 4486.033333333334,
+    "currentEventStartFrame": 134452,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4481.733333333334,
+    "currentEventDuration": 129
+  },
+  {
+    "currentEventEndFrame": 132846,
+    "currentEventEndFrameSeconds": 4428.2,
+    "currentEventStartFrame": 132534,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4417.8,
+    "currentEventDuration": 312
+  },
+  {
+    "currentEventEndFrame": 133507,
+    "currentEventEndFrameSeconds": 4450.233333333334,
+    "currentEventStartFrame": 133447,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 4448.233333333334,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 134353,
+    "currentEventEndFrameSeconds": 4478.433333333333,
+    "currentEventStartFrame": 134206,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4473.533333333334,
+    "currentEventDuration": 147
+  },
+  {
+    "currentEventEndFrame": 137602,
+    "currentEventEndFrameSeconds": 4586.733333333334,
+    "currentEventStartFrame": 137542,
+    "currentEventName": "3: Person Opening a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 4584.733333333334,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 137667,
+    "currentEventEndFrameSeconds": 4588.9,
+    "currentEventStartFrame": 137593,
+    "currentEventName": "1: Person loading an Object to a Vehicle",
+    "currentEventStartFrameSeconds": 4586.433333333333,
+    "currentEventDuration": 74
+  },
+  {
+    "currentEventEndFrame": 137734,
+    "currentEventEndFrameSeconds": 4591.133333333333,
+    "currentEventStartFrame": 137674,
+    "currentEventName": "4: Person Closing a Vehicle/Car Trunk",
+    "currentEventStartFrameSeconds": 4589.133333333333,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 141154,
+    "currentEventEndFrameSeconds": 4705.133333333333,
+    "currentEventStartFrame": 141009,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4700.3,
+    "currentEventDuration": 145
+  },
+  {
+    "currentEventEndFrame": 139257,
+    "currentEventEndFrameSeconds": 4641.9,
+    "currentEventStartFrame": 139080,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 4636.0,
+    "currentEventDuration": 177
+  },
+  {
+    "currentEventEndFrame": 142104,
+    "currentEventEndFrameSeconds": 4736.8,
+    "currentEventStartFrame": 141948,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4731.6,
+    "currentEventDuration": 156
+  },
+  {
+    "currentEventEndFrame": 144396,
+    "currentEventEndFrameSeconds": 4813.2,
+    "currentEventStartFrame": 144229,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 4807.633333333333,
+    "currentEventDuration": 167
+  },
+  {
+    "currentEventEndFrame": 145601,
+    "currentEventEndFrameSeconds": 4853.366666666667,
+    "currentEventStartFrame": 145510,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 4850.333333333333,
+    "currentEventDuration": 91
+  },
+  {
+    "currentEventEndFrame": 145783,
+    "currentEventEndFrameSeconds": 4859.433333333333,
+    "currentEventStartFrame": 145723,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4857.433333333333,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 147351,
+    "currentEventEndFrameSeconds": 4911.7,
+    "currentEventStartFrame": 147134,
+    "currentEventName": "6: Person getting out of a Vehicle",
+    "currentEventStartFrameSeconds": 4904.466666666666,
+    "currentEventDuration": 217
+  },
+  {
+    "currentEventEndFrame": 149057,
+    "currentEventEndFrameSeconds": 4968.566666666667,
+    "currentEventStartFrame": 148997,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4966.566666666667,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 150049,
+    "currentEventEndFrameSeconds": 5001.633333333333,
+    "currentEventStartFrame": 149978,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 4999.266666666666,
+    "currentEventDuration": 71
+  },
+  {
+    "currentEventEndFrame": 151087,
+    "currentEventEndFrameSeconds": 5036.233333333334,
+    "currentEventStartFrame": 150958,
+    "currentEventName": "5: Person getting into a Vehicle",
+    "currentEventStartFrameSeconds": 5031.933333333333,
+    "currentEventDuration": 129
+  }
+]

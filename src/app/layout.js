@@ -9,7 +9,7 @@ const rubik = Rubik({ subsets: ["latin"], display: "swap" });
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body className={rubik.className}>
+      <body className={rubik.className + " bg-light dark:bg-dark"}>
         <Providers>
           <Header />
           {children}

@@ -1,0 +1,2922 @@
+[
+  {
+    "currentEventEndFrame": 251,
+    "currentEventEndFrameSeconds": 10.468802135468803,
+    "currentEventStartFrame": 192,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 8.008008008008009,
+    "currentEventDuration": 59
+  },
+  {
+    "currentEventEndFrame": 322,
+    "currentEventEndFrameSeconds": 13.430096763430097,
+    "currentEventStartFrame": 227,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 9.467801134467802,
+    "currentEventDuration": 95
+  },
+  {
+    "currentEventEndFrame": 478,
+    "currentEventEndFrameSeconds": 19.936603269936604,
+    "currentEventStartFrame": 300,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 12.512512512512513,
+    "currentEventDuration": 178
+  },
+  {
+    "currentEventEndFrame": 534,
+    "currentEventEndFrameSeconds": 22.27227227227227,
+    "currentEventStartFrame": 446,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 18.601935268601935,
+    "currentEventDuration": 88
+  },
+  {
+    "currentEventEndFrame": 534,
+    "currentEventEndFrameSeconds": 22.27227227227227,
+    "currentEventStartFrame": 446,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 18.601935268601935,
+    "currentEventDuration": 88
+  },
+  {
+    "currentEventEndFrame": 534,
+    "currentEventEndFrameSeconds": 22.27227227227227,
+    "currentEventStartFrame": 300,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 12.512512512512513,
+    "currentEventDuration": 234
+  },
+  {
+    "currentEventEndFrame": 3250,
+    "currentEventEndFrameSeconds": 135.55221888555224,
+    "currentEventStartFrame": 1947,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 81.2062062062062,
+    "currentEventDuration": 1303
+  },
+  {
+    "currentEventEndFrame": 2656,
+    "currentEventEndFrameSeconds": 110.77744411077745,
+    "currentEventStartFrame": 2345,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 97.80613947280614,
+    "currentEventDuration": 311
+  },
+  {
+    "currentEventEndFrame": 2512,
+    "currentEventEndFrameSeconds": 104.77143810477145,
+    "currentEventStartFrame": 2410,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 100.51718385051718,
+    "currentEventDuration": 102
+  },
+  {
+    "currentEventEndFrame": 2823,
+    "currentEventEndFrameSeconds": 117.74274274274275,
+    "currentEventStartFrame": 2335,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 97.38905572238906,
+    "currentEventDuration": 488
+  },
+  {
+    "currentEventEndFrame": 2827,
+    "currentEventEndFrameSeconds": 117.90957624290958,
+    "currentEventStartFrame": 2235,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 93.21821821821823,
+    "currentEventDuration": 592
+  },
+  {
+    "currentEventEndFrame": 2984,
+    "currentEventEndFrameSeconds": 124.4577911244578,
+    "currentEventStartFrame": 2936,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 122.4557891224558,
+    "currentEventDuration": 48
+  },
+  {
+    "currentEventEndFrame": 3012,
+    "currentEventEndFrameSeconds": 125.62562562562563,
+    "currentEventStartFrame": 2965,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 123.66533199866534,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 3340,
+    "currentEventEndFrameSeconds": 139.305972639306,
+    "currentEventStartFrame": 3267,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 136.26126126126127,
+    "currentEventDuration": 73
+  },
+  {
+    "currentEventEndFrame": 1240,
+    "currentEventEndFrameSeconds": 51.718385051718386,
+    "currentEventStartFrame": 726,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 30.28028028028028,
+    "currentEventDuration": 514
+  },
+  {
+    "currentEventEndFrame": 1235,
+    "currentEventEndFrameSeconds": 51.50984317650985,
+    "currentEventStartFrame": 764,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 31.8651985318652,
+    "currentEventDuration": 471
+  },
+  {
+    "currentEventEndFrame": 3538,
+    "currentEventEndFrameSeconds": 147.56423089756424,
+    "currentEventStartFrame": 3466,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 144.56122789456123,
+    "currentEventDuration": 72
+  },
+  {
+    "currentEventEndFrame": 3527,
+    "currentEventEndFrameSeconds": 147.10543877210546,
+    "currentEventStartFrame": 3466,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 144.56122789456123,
+    "currentEventDuration": 61
+  },
+  {
+    "currentEventEndFrame": 3550,
+    "currentEventEndFrameSeconds": 148.06473139806474,
+    "currentEventStartFrame": 3486,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 145.3953953953954,
+    "currentEventDuration": 64
+  },
+  {
+    "currentEventEndFrame": 3720,
+    "currentEventEndFrameSeconds": 155.15515515515517,
+    "currentEventStartFrame": 3655,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 152.4441107774441,
+    "currentEventDuration": 65
+  },
+  {
+    "currentEventEndFrame": 2624,
+    "currentEventEndFrameSeconds": 109.44277610944278,
+    "currentEventStartFrame": 2502,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 104.35435435435436,
+    "currentEventDuration": 122
+  },
+  {
+    "currentEventEndFrame": 1534,
+    "currentEventEndFrameSeconds": 63.98064731398065,
+    "currentEventStartFrame": 1254,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 52.3023023023023,
+    "currentEventDuration": 280
+  },
+  {
+    "currentEventEndFrame": 6114,
+    "currentEventEndFrameSeconds": 255.00500500500502,
+    "currentEventStartFrame": 4639,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 193.48515181848515,
+    "currentEventDuration": 1475
+  },
+  {
+    "currentEventEndFrame": 6226,
+    "currentEventEndFrameSeconds": 259.6763430096764,
+    "currentEventStartFrame": 6162,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 257.007007007007,
+    "currentEventDuration": 64
+  },
+  {
+    "currentEventEndFrame": 6830,
+    "currentEventEndFrameSeconds": 284.8682015348682,
+    "currentEventStartFrame": 6576,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 274.27427427427426,
+    "currentEventDuration": 254
+  },
+  {
+    "currentEventEndFrame": 6841,
+    "currentEventEndFrameSeconds": 285.326993660327,
+    "currentEventStartFrame": 6758,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 281.8651985318652,
+    "currentEventDuration": 83
+  },
+  {
+    "currentEventEndFrame": 4822,
+    "currentEventEndFrameSeconds": 201.11778445111779,
+    "currentEventStartFrame": 4775,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 199.1574908241575,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 4922,
+    "currentEventEndFrameSeconds": 205.28862195528862,
+    "currentEventStartFrame": 4850,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 202.28561895228563,
+    "currentEventDuration": 72
+  },
+  {
+    "currentEventEndFrame": 5189,
+    "currentEventEndFrameSeconds": 216.42475809142476,
+    "currentEventStartFrame": 4881,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 203.5785785785786,
+    "currentEventDuration": 308
+  },
+  {
+    "currentEventEndFrame": 5038,
+    "currentEventEndFrameSeconds": 210.1267934601268,
+    "currentEventStartFrame": 4919,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 205.1634968301635,
+    "currentEventDuration": 119
+  },
+  {
+    "currentEventEndFrame": 5348,
+    "currentEventEndFrameSeconds": 223.0563897230564,
+    "currentEventStartFrame": 5280,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 220.22022022022023,
+    "currentEventDuration": 68
+  },
+  {
+    "currentEventEndFrame": 5350,
+    "currentEventEndFrameSeconds": 223.13980647313983,
+    "currentEventStartFrame": 5299,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 221.01267934601267,
+    "currentEventDuration": 51
+  },
+  {
+    "currentEventEndFrame": 7212,
+    "currentEventEndFrameSeconds": 300.8008008008008,
+    "currentEventStartFrame": 6269,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 261.4698031364698,
+    "currentEventDuration": 943
+  },
+  {
+    "currentEventEndFrame": 6815,
+    "currentEventEndFrameSeconds": 284.2425759092426,
+    "currentEventStartFrame": 6768,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 282.28228228228227,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 9482,
+    "currentEventEndFrameSeconds": 395.47881214547886,
+    "currentEventStartFrame": 9022,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 376.292959626293,
+    "currentEventDuration": 460
+  },
+  {
+    "currentEventEndFrame": 9142,
+    "currentEventEndFrameSeconds": 381.297964631298,
+    "currentEventStartFrame": 8349,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 348.2232232232232,
+    "currentEventDuration": 793
+  },
+  {
+    "currentEventEndFrame": 9235,
+    "currentEventEndFrameSeconds": 385.17684351017687,
+    "currentEventStartFrame": 9135,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 381.00600600600603,
+    "currentEventDuration": 100
+  },
+  {
+    "currentEventEndFrame": 9596,
+    "currentEventEndFrameSeconds": 400.2335669002336,
+    "currentEventStartFrame": 9549,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 398.2732732732733,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 10566,
+    "currentEventEndFrameSeconds": 440.6906906906907,
+    "currentEventStartFrame": 10486,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 437.354020687354,
+    "currentEventDuration": 80
+  },
+  {
+    "currentEventEndFrame": 10569,
+    "currentEventEndFrameSeconds": 440.8158158158158,
+    "currentEventStartFrame": 10503,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 438.06306306306305,
+    "currentEventDuration": 66
+  },
+  {
+    "currentEventEndFrame": 11564,
+    "currentEventEndFrameSeconds": 482.3156489823157,
+    "currentEventStartFrame": 11481,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 478.8538538538539,
+    "currentEventDuration": 83
+  },
+  {
+    "currentEventEndFrame": 11560,
+    "currentEventEndFrameSeconds": 482.14881548214885,
+    "currentEventStartFrame": 11484,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 478.978978978979,
+    "currentEventDuration": 76
+  },
+  {
+    "currentEventEndFrame": 11714,
+    "currentEventEndFrameSeconds": 488.5719052385719,
+    "currentEventStartFrame": 11649,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 485.8608608608609,
+    "currentEventDuration": 65
+  },
+  {
+    "currentEventEndFrame": 12008,
+    "currentEventEndFrameSeconds": 500.8341675008342,
+    "currentEventStartFrame": 11846,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 494.07741074407744,
+    "currentEventDuration": 162
+  },
+  {
+    "currentEventEndFrame": 11642,
+    "currentEventEndFrameSeconds": 485.56890223556894,
+    "currentEventStartFrame": 10917,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 455.33033033033036,
+    "currentEventDuration": 725
+  },
+  {
+    "currentEventEndFrame": 12263,
+    "currentEventEndFrameSeconds": 511.4698031364698,
+    "currentEventStartFrame": 12091,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 504.29596262929596,
+    "currentEventDuration": 172
+  },
+  {
+    "currentEventEndFrame": 12347,
+    "currentEventEndFrameSeconds": 514.9733066399733,
+    "currentEventStartFrame": 12270,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 511.76176176176176,
+    "currentEventDuration": 77
+  },
+  {
+    "currentEventEndFrame": 13399,
+    "currentEventEndFrameSeconds": 558.8505171838506,
+    "currentEventStartFrame": 13327,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 555.8475141808475,
+    "currentEventDuration": 72
+  },
+  {
+    "currentEventEndFrame": 13383,
+    "currentEventEndFrameSeconds": 558.1831831831832,
+    "currentEventStartFrame": 13336,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 556.2228895562229,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 14011,
+    "currentEventEndFrameSeconds": 584.3760427093761,
+    "currentEventStartFrame": 13962,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 582.3323323323324,
+    "currentEventDuration": 49
+  },
+  {
+    "currentEventEndFrame": 14029,
+    "currentEventEndFrameSeconds": 585.1267934601268,
+    "currentEventStartFrame": 13982,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 583.1664998331665,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 14101,
+    "currentEventEndFrameSeconds": 588.1297964631298,
+    "currentEventStartFrame": 14051,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 586.0443777110444,
+    "currentEventDuration": 50
+  },
+  {
+    "currentEventEndFrame": 14798,
+    "currentEventEndFrameSeconds": 617.2005338672005,
+    "currentEventStartFrame": 14485,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 604.1458124791459,
+    "currentEventDuration": 313
+  },
+  {
+    "currentEventEndFrame": 14822,
+    "currentEventEndFrameSeconds": 618.2015348682015,
+    "currentEventStartFrame": 14775,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 616.2412412412413,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 15100,
+    "currentEventEndFrameSeconds": 629.7964631297965,
+    "currentEventStartFrame": 14485,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 604.1458124791459,
+    "currentEventDuration": 615
+  },
+  {
+    "currentEventEndFrame": 17271,
+    "currentEventEndFrameSeconds": 720.3453453453453,
+    "currentEventStartFrame": 15693,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 654.5295295295296,
+    "currentEventDuration": 1578
+  },
+  {
+    "currentEventEndFrame": 17240,
+    "currentEventEndFrameSeconds": 719.0523857190524,
+    "currentEventStartFrame": 15946,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 665.0817484150817,
+    "currentEventDuration": 1294
+  },
+  {
+    "currentEventEndFrame": 16138,
+    "currentEventEndFrameSeconds": 673.0897564230897,
+    "currentEventStartFrame": 16049,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 669.3777110443777,
+    "currentEventDuration": 89
+  },
+  {
+    "currentEventEndFrame": 16185,
+    "currentEventEndFrameSeconds": 675.0500500500501,
+    "currentEventStartFrame": 16138,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 673.0897564230897,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 16381,
+    "currentEventEndFrameSeconds": 683.224891558225,
+    "currentEventStartFrame": 16086,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 670.9209209209209,
+    "currentEventDuration": 295
+  },
+  {
+    "currentEventEndFrame": 16260,
+    "currentEventEndFrameSeconds": 678.1781781781782,
+    "currentEventStartFrame": 16147,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 673.4651317984651,
+    "currentEventDuration": 113
+  },
+  {
+    "currentEventEndFrame": 16962,
+    "currentEventEndFrameSeconds": 707.4574574574575,
+    "currentEventStartFrame": 15950,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 665.2485819152486,
+    "currentEventDuration": 1012
+  },
+  {
+    "currentEventEndFrame": 17568,
+    "currentEventEndFrameSeconds": 732.7327327327328,
+    "currentEventStartFrame": 16578,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 691.4414414414415,
+    "currentEventDuration": 990
+  },
+  {
+    "currentEventEndFrame": 17522,
+    "currentEventEndFrameSeconds": 730.8141474808142,
+    "currentEventStartFrame": 16446,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 685.935935935936,
+    "currentEventDuration": 1076
+  },
+  {
+    "currentEventEndFrame": 17591,
+    "currentEventEndFrameSeconds": 733.692025358692,
+    "currentEventStartFrame": 16645,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 694.2359025692359,
+    "currentEventDuration": 946
+  },
+  {
+    "currentEventEndFrame": 17917,
+    "currentEventEndFrameSeconds": 747.288955622289,
+    "currentEventStartFrame": 16717,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 697.2389055722389,
+    "currentEventDuration": 1200
+  },
+  {
+    "currentEventEndFrame": 17917,
+    "currentEventEndFrameSeconds": 747.288955622289,
+    "currentEventStartFrame": 17145,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 715.0900900900901,
+    "currentEventDuration": 772
+  },
+  {
+    "currentEventEndFrame": 17917,
+    "currentEventEndFrameSeconds": 747.288955622289,
+    "currentEventStartFrame": 17215,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 718.0096763430097,
+    "currentEventDuration": 702
+  },
+  {
+    "currentEventEndFrame": 17917,
+    "currentEventEndFrameSeconds": 747.288955622289,
+    "currentEventStartFrame": 17256,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 719.7197197197197,
+    "currentEventDuration": 661
+  },
+  {
+    "currentEventEndFrame": 17657,
+    "currentEventEndFrameSeconds": 736.4447781114449,
+    "currentEventStartFrame": 17528,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 731.0643977310644,
+    "currentEventDuration": 129
+  },
+  {
+    "currentEventEndFrame": 17627,
+    "currentEventEndFrameSeconds": 735.1935268601935,
+    "currentEventStartFrame": 17580,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 733.2332332332332,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 18215,
+    "currentEventEndFrameSeconds": 759.718051384718,
+    "currentEventStartFrame": 18130,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 756.1728395061729,
+    "currentEventDuration": 85
+  },
+  {
+    "currentEventEndFrame": 18212,
+    "currentEventEndFrameSeconds": 759.5929262595929,
+    "currentEventStartFrame": 18165,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 757.6326326326326,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 18063,
+    "currentEventEndFrameSeconds": 753.3783783783784,
+    "currentEventStartFrame": 17917,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 747.288955622289,
+    "currentEventDuration": 146
+  },
+  {
+    "currentEventEndFrame": 18105,
+    "currentEventEndFrameSeconds": 755.1301301301302,
+    "currentEventStartFrame": 17917,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 747.288955622289,
+    "currentEventDuration": 188
+  },
+  {
+    "currentEventEndFrame": 18601,
+    "currentEventEndFrameSeconds": 775.8174841508176,
+    "currentEventStartFrame": 18524,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 772.605939272606,
+    "currentEventDuration": 77
+  },
+  {
+    "currentEventEndFrame": 17983,
+    "currentEventEndFrameSeconds": 750.0417083750417,
+    "currentEventStartFrame": 17917,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 747.288955622289,
+    "currentEventDuration": 66
+  },
+  {
+    "currentEventEndFrame": 19744,
+    "currentEventEndFrameSeconds": 823.4901568234902,
+    "currentEventStartFrame": 19358,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 807.3907240573908,
+    "currentEventDuration": 386
+  },
+  {
+    "currentEventEndFrame": 21135,
+    "currentEventEndFrameSeconds": 881.5065065065065,
+    "currentEventStartFrame": 20431,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 852.1438104771438,
+    "currentEventDuration": 704
+  },
+  {
+    "currentEventEndFrame": 20735,
+    "currentEventEndFrameSeconds": 864.8231564898232,
+    "currentEventStartFrame": 20668,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 862.0286953620288,
+    "currentEventDuration": 67
+  },
+  {
+    "currentEventEndFrame": 20271,
+    "currentEventEndFrameSeconds": 845.4704704704706,
+    "currentEventStartFrame": 20176,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 841.5081748415082,
+    "currentEventDuration": 95
+  },
+  {
+    "currentEventEndFrame": 20655,
+    "currentEventEndFrameSeconds": 861.4864864864866,
+    "currentEventStartFrame": 20520,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 855.8558558558559,
+    "currentEventDuration": 135
+  },
+  {
+    "currentEventEndFrame": 20954,
+    "currentEventEndFrameSeconds": 873.9572906239573,
+    "currentEventStartFrame": 20679,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 862.4874874874876,
+    "currentEventDuration": 275
+  },
+  {
+    "currentEventEndFrame": 20968,
+    "currentEventEndFrameSeconds": 874.5412078745412,
+    "currentEventStartFrame": 20883,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 870.995995995996,
+    "currentEventDuration": 85
+  },
+  {
+    "currentEventEndFrame": 21493,
+    "currentEventEndFrameSeconds": 896.4381047714381,
+    "currentEventStartFrame": 21439,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 894.1858525191859,
+    "currentEventDuration": 54
+  },
+  {
+    "currentEventEndFrame": 22197,
+    "currentEventEndFrameSeconds": 925.8008008008009,
+    "currentEventStartFrame": 22142,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 923.5068401735069,
+    "currentEventDuration": 55
+  },
+  {
+    "currentEventEndFrame": 22239,
+    "currentEventEndFrameSeconds": 927.5525525525526,
+    "currentEventStartFrame": 22192,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 925.5922589255923,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 22843,
+    "currentEventEndFrameSeconds": 952.7444110777444,
+    "currentEventStartFrame": 22796,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 950.7841174507842,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 22981,
+    "currentEventEndFrameSeconds": 958.5001668335002,
+    "currentEventStartFrame": 22810,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 951.3680347013681,
+    "currentEventDuration": 171
+  },
+  {
+    "currentEventEndFrame": 25521,
+    "currentEventEndFrameSeconds": 1064.4394394394394,
+    "currentEventStartFrame": 24791,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1033.9923256589923,
+    "currentEventDuration": 730
+  },
+  {
+    "currentEventEndFrame": 25031,
+    "currentEventEndFrameSeconds": 1044.0023356690024,
+    "currentEventStartFrame": 24968,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1041.3747080413748,
+    "currentEventDuration": 63
+  },
+  {
+    "currentEventEndFrame": 26031,
+    "currentEventEndFrameSeconds": 1085.7107107107108,
+    "currentEventStartFrame": 25374,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1058.3083083083084,
+    "currentEventDuration": 657
+  },
+  {
+    "currentEventEndFrame": 27494,
+    "currentEventEndFrameSeconds": 1146.7300633967302,
+    "currentEventStartFrame": 27414,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1143.3933933933934,
+    "currentEventDuration": 80
+  },
+  {
+    "currentEventEndFrame": 27699,
+    "currentEventEndFrameSeconds": 1155.2802802802803,
+    "currentEventStartFrame": 27626,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1152.2355689022356,
+    "currentEventDuration": 73
+  },
+  {
+    "currentEventEndFrame": 27998,
+    "currentEventEndFrameSeconds": 1167.7510844177511,
+    "currentEventStartFrame": 27932,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1164.9983316649984,
+    "currentEventDuration": 66
+  },
+  {
+    "currentEventEndFrame": 28065,
+    "currentEventEndFrameSeconds": 1170.5455455455456,
+    "currentEventStartFrame": 27977,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1166.8752085418753,
+    "currentEventDuration": 88
+  },
+  {
+    "currentEventEndFrame": 27691,
+    "currentEventEndFrameSeconds": 1154.9466132799466,
+    "currentEventStartFrame": 27631,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1152.4441107774442,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 28109,
+    "currentEventEndFrameSeconds": 1172.3807140473807,
+    "currentEventStartFrame": 28047,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1169.7947947947948,
+    "currentEventDuration": 62
+  },
+  {
+    "currentEventEndFrame": 28142,
+    "currentEventEndFrameSeconds": 1173.757090423757,
+    "currentEventStartFrame": 28095,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1171.7967967967968,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 21627,
+    "currentEventEndFrameSeconds": 902.0270270270271,
+    "currentEventStartFrame": 21400,
+    "currentEventName": "10: Person running",
+    "currentEventStartFrameSeconds": 892.5592258925593,
+    "currentEventDuration": 227
+  },
+  {
+    "currentEventEndFrame": 22002,
+    "currentEventEndFrameSeconds": 917.6676676676677,
+    "currentEventStartFrame": 21928,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 914.5812479145812,
+    "currentEventDuration": 74
+  },
+  {
+    "currentEventEndFrame": 22093,
+    "currentEventEndFrameSeconds": 921.4631297964631,
+    "currentEventStartFrame": 21529,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 897.9396062729396,
+    "currentEventDuration": 564
+  },
+  {
+    "currentEventEndFrame": 24134,
+    "currentEventEndFrameSeconds": 1006.5899232565899,
+    "currentEventStartFrame": 24066,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1003.7537537537538,
+    "currentEventDuration": 68
+  },
+  {
+    "currentEventEndFrame": 25961,
+    "currentEventEndFrameSeconds": 1082.791124457791,
+    "currentEventStartFrame": 24856,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1036.7033700367035,
+    "currentEventDuration": 1105
+  },
+  {
+    "currentEventEndFrame": 25941,
+    "currentEventEndFrameSeconds": 1081.956956956957,
+    "currentEventStartFrame": 25053,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1044.91991991992,
+    "currentEventDuration": 888
+  },
+  {
+    "currentEventEndFrame": 25943,
+    "currentEventEndFrameSeconds": 1082.0403737070403,
+    "currentEventStartFrame": 25877,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1079.2876209542876,
+    "currentEventDuration": 66
+  },
+  {
+    "currentEventEndFrame": 26898,
+    "currentEventEndFrameSeconds": 1121.871871871872,
+    "currentEventStartFrame": 26811,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1118.2432432432433,
+    "currentEventDuration": 87
+  },
+  {
+    "currentEventEndFrame": 27472,
+    "currentEventEndFrameSeconds": 1145.8124791458126,
+    "currentEventStartFrame": 27229,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1135.6773440106774,
+    "currentEventDuration": 243
+  },
+  {
+    "currentEventEndFrame": 28617,
+    "currentEventEndFrameSeconds": 1193.5685685685687,
+    "currentEventStartFrame": 28570,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1191.6082749416082,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 28914,
+    "currentEventEndFrameSeconds": 1205.955955955956,
+    "currentEventStartFrame": 28574,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1191.775108441775,
+    "currentEventDuration": 340
+  },
+  {
+    "currentEventEndFrame": 28695,
+    "currentEventEndFrameSeconds": 1196.821821821822,
+    "currentEventStartFrame": 28418,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1185.2686019352686,
+    "currentEventDuration": 277
+  },
+  {
+    "currentEventEndFrame": 29252,
+    "currentEventEndFrameSeconds": 1220.0533867200534,
+    "currentEventStartFrame": 29131,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1215.0066733400067,
+    "currentEventDuration": 121
+  },
+  {
+    "currentEventEndFrame": 29273,
+    "currentEventEndFrameSeconds": 1220.9292625959292,
+    "currentEventStartFrame": 29226,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1218.968968968969,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 29552,
+    "currentEventEndFrameSeconds": 1232.565899232566,
+    "currentEventStartFrame": 29444,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1228.0613947280615,
+    "currentEventDuration": 108
+  },
+  {
+    "currentEventEndFrame": 30136,
+    "currentEventEndFrameSeconds": 1256.9235902569237,
+    "currentEventStartFrame": 29985,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1250.6256256256256,
+    "currentEventDuration": 151
+  },
+  {
+    "currentEventEndFrame": 29543,
+    "currentEventEndFrameSeconds": 1232.1905238571906,
+    "currentEventStartFrame": 29184,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1217.2172172172172,
+    "currentEventDuration": 359
+  },
+  {
+    "currentEventEndFrame": 30130,
+    "currentEventEndFrameSeconds": 1256.6733400066735,
+    "currentEventStartFrame": 30063,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1253.8788788788788,
+    "currentEventDuration": 67
+  },
+  {
+    "currentEventEndFrame": 30399,
+    "currentEventEndFrameSeconds": 1267.8928928928929,
+    "currentEventStartFrame": 29996,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1251.0844177510844,
+    "currentEventDuration": 403
+  },
+  {
+    "currentEventEndFrame": 30398,
+    "currentEventEndFrameSeconds": 1267.8511845178512,
+    "currentEventStartFrame": 30311,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1264.2225558892226,
+    "currentEventDuration": 87
+  },
+  {
+    "currentEventEndFrame": 30778,
+    "currentEventEndFrameSeconds": 1283.7003670337003,
+    "currentEventStartFrame": 30692,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1280.1134467801135,
+    "currentEventDuration": 86
+  },
+  {
+    "currentEventEndFrame": 30958,
+    "currentEventEndFrameSeconds": 1291.207874541208,
+    "currentEventStartFrame": 30683,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1279.738071404738,
+    "currentEventDuration": 275
+  },
+  {
+    "currentEventEndFrame": 30553,
+    "currentEventEndFrameSeconds": 1274.315982649316,
+    "currentEventStartFrame": 30506,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1272.3556890223558,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 31296,
+    "currentEventEndFrameSeconds": 1305.3053053053054,
+    "currentEventStartFrame": 31249,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1303.3450116783451,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 31587,
+    "currentEventEndFrameSeconds": 1317.4424424424426,
+    "currentEventStartFrame": 31517,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1314.5228561895228,
+    "currentEventDuration": 70
+  },
+  {
+    "currentEventEndFrame": 31582,
+    "currentEventEndFrameSeconds": 1317.233900567234,
+    "currentEventStartFrame": 31345,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1307.349015682349,
+    "currentEventDuration": 237
+  },
+  {
+    "currentEventEndFrame": 32174,
+    "currentEventEndFrameSeconds": 1341.9252585919253,
+    "currentEventStartFrame": 32161,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1341.383049716383,
+    "currentEventDuration": 13
+  },
+  {
+    "currentEventEndFrame": 32322,
+    "currentEventEndFrameSeconds": 1348.0980980980983,
+    "currentEventStartFrame": 32255,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1345.3036369703036,
+    "currentEventDuration": 67
+  },
+  {
+    "currentEventEndFrame": 32597,
+    "currentEventEndFrameSeconds": 1359.567901234568,
+    "currentEventStartFrame": 32533,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1356.8985652318986,
+    "currentEventDuration": 64
+  },
+  {
+    "currentEventEndFrame": 32902,
+    "currentEventEndFrameSeconds": 1372.288955622289,
+    "currentEventStartFrame": 32855,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1370.3286619953287,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 32928,
+    "currentEventEndFrameSeconds": 1373.3733733733734,
+    "currentEventStartFrame": 32881,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1371.4130797464131,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 33021,
+    "currentEventEndFrameSeconds": 1377.2522522522522,
+    "currentEventStartFrame": 32952,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1374.3743743743744,
+    "currentEventDuration": 69
+  },
+  {
+    "currentEventEndFrame": 32643,
+    "currentEventEndFrameSeconds": 1361.4864864864865,
+    "currentEventStartFrame": 31880,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1329.662996329663,
+    "currentEventDuration": 763
+  },
+  {
+    "currentEventEndFrame": 32577,
+    "currentEventEndFrameSeconds": 1358.7337337337337,
+    "currentEventStartFrame": 32343,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1348.9739739739741,
+    "currentEventDuration": 234
+  },
+  {
+    "currentEventEndFrame": 33495,
+    "currentEventEndFrameSeconds": 1397.0220220220222,
+    "currentEventStartFrame": 33404,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1393.2265598932265,
+    "currentEventDuration": 91
+  },
+  {
+    "currentEventEndFrame": 33436,
+    "currentEventEndFrameSeconds": 1394.5612278945612,
+    "currentEventStartFrame": 33384,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1392.3923923923924,
+    "currentEventDuration": 52
+  },
+  {
+    "currentEventEndFrame": 33722,
+    "currentEventEndFrameSeconds": 1406.4898231564898,
+    "currentEventStartFrame": 33653,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1403.611945278612,
+    "currentEventDuration": 69
+  },
+  {
+    "currentEventEndFrame": 34120,
+    "currentEventEndFrameSeconds": 1423.0897564230897,
+    "currentEventStartFrame": 34073,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1421.1294627961295,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 34299,
+    "currentEventEndFrameSeconds": 1430.5555555555557,
+    "currentEventStartFrame": 34206,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1426.6766766766768,
+    "currentEventDuration": 93
+  },
+  {
+    "currentEventEndFrame": 34342,
+    "currentEventEndFrameSeconds": 1432.349015682349,
+    "currentEventStartFrame": 34295,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1430.3887220553888,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 34403,
+    "currentEventEndFrameSeconds": 1434.8932265598933,
+    "currentEventStartFrame": 34356,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1432.932932932933,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 33684,
+    "currentEventEndFrameSeconds": 1404.904904904905,
+    "currentEventStartFrame": 33412,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1393.5602268935602,
+    "currentEventDuration": 272
+  },
+  {
+    "currentEventEndFrame": 34859,
+    "currentEventEndFrameSeconds": 1453.9122455789122,
+    "currentEventStartFrame": 34812,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1451.951951951952,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 34952,
+    "currentEventEndFrameSeconds": 1457.7911244577913,
+    "currentEventStartFrame": 34869,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1454.3293293293293,
+    "currentEventDuration": 83
+  },
+  {
+    "currentEventEndFrame": 34966,
+    "currentEventEndFrameSeconds": 1458.3750417083752,
+    "currentEventStartFrame": 34919,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1456.4147480814147,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 35411,
+    "currentEventEndFrameSeconds": 1476.9352686019354,
+    "currentEventStartFrame": 35297,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1472.1805138471805,
+    "currentEventDuration": 114
+  },
+  {
+    "currentEventEndFrame": 35380,
+    "currentEventEndFrameSeconds": 1475.6423089756424,
+    "currentEventStartFrame": 35310,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1472.7227227227227,
+    "currentEventDuration": 70
+  },
+  {
+    "currentEventEndFrame": 35440,
+    "currentEventEndFrameSeconds": 1478.144811478145,
+    "currentEventStartFrame": 35365,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1475.0166833500168,
+    "currentEventDuration": 75
+  },
+  {
+    "currentEventEndFrame": 35819,
+    "currentEventEndFrameSeconds": 1493.9522856189524,
+    "currentEventStartFrame": 35767,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1491.7834501167836,
+    "currentEventDuration": 52
+  },
+  {
+    "currentEventEndFrame": 36085,
+    "currentEventEndFrameSeconds": 1505.0467133800469,
+    "currentEventStartFrame": 36014,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1502.0854187520854,
+    "currentEventDuration": 71
+  },
+  {
+    "currentEventEndFrame": 36084,
+    "currentEventEndFrameSeconds": 1505.0050050050052,
+    "currentEventStartFrame": 35396,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1476.3096429763098,
+    "currentEventDuration": 688
+  },
+  {
+    "currentEventEndFrame": 36084,
+    "currentEventEndFrameSeconds": 1505.0050050050052,
+    "currentEventStartFrame": 35544,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1482.4824824824825,
+    "currentEventDuration": 540
+  },
+  {
+    "currentEventEndFrame": 35712,
+    "currentEventEndFrameSeconds": 1489.4894894894896,
+    "currentEventStartFrame": 35438,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1478.0613947280615,
+    "currentEventDuration": 274
+  },
+  {
+    "currentEventEndFrame": 35566,
+    "currentEventEndFrameSeconds": 1483.4000667334,
+    "currentEventStartFrame": 35369,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1475.1835168501837,
+    "currentEventDuration": 197
+  },
+  {
+    "currentEventEndFrame": 37164,
+    "currentEventEndFrameSeconds": 1550.05005005005,
+    "currentEventStartFrame": 37056,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1545.5455455455456,
+    "currentEventDuration": 108
+  },
+  {
+    "currentEventEndFrame": 38115,
+    "currentEventEndFrameSeconds": 1589.7147147147148,
+    "currentEventStartFrame": 36948,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1541.0410410410411,
+    "currentEventDuration": 1167
+  },
+  {
+    "currentEventEndFrame": 37999,
+    "currentEventEndFrameSeconds": 1584.8765432098767,
+    "currentEventStartFrame": 37939,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1582.3740407073742,
+    "currentEventDuration": 60
+  },
+  {
+    "currentEventEndFrame": 38189,
+    "currentEventEndFrameSeconds": 1592.8011344678011,
+    "currentEventStartFrame": 38113,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1589.6312979646314,
+    "currentEventDuration": 76
+  },
+  {
+    "currentEventEndFrame": 37342,
+    "currentEventEndFrameSeconds": 1557.4741408074742,
+    "currentEventStartFrame": 36685,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1530.0717384050718,
+    "currentEventDuration": 657
+  },
+  {
+    "currentEventEndFrame": 37126,
+    "currentEventEndFrameSeconds": 1548.465131798465,
+    "currentEventStartFrame": 36127,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1506.7984651317986,
+    "currentEventDuration": 999
+  },
+  {
+    "currentEventEndFrame": 37051,
+    "currentEventEndFrameSeconds": 1545.337003670337,
+    "currentEventStartFrame": 36127,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1506.7984651317986,
+    "currentEventDuration": 924
+  },
+  {
+    "currentEventEndFrame": 37085,
+    "currentEventEndFrameSeconds": 1546.755088421755,
+    "currentEventStartFrame": 37038,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1544.7947947947948,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 36958,
+    "currentEventEndFrameSeconds": 1541.4581247914582,
+    "currentEventStartFrame": 36911,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1539.497831164498,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 37006,
+    "currentEventEndFrameSeconds": 1543.4601267934602,
+    "currentEventStartFrame": 36975,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1542.1671671671672,
+    "currentEventDuration": 31
+  },
+  {
+    "currentEventEndFrame": 38112,
+    "currentEventEndFrameSeconds": 1589.5895895895897,
+    "currentEventStartFrame": 37584,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1567.5675675675677,
+    "currentEventDuration": 528
+  },
+  {
+    "currentEventEndFrame": 37606,
+    "currentEventEndFrameSeconds": 1568.4851518184853,
+    "currentEventStartFrame": 36984,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1542.5425425425426,
+    "currentEventDuration": 622
+  },
+  {
+    "currentEventEndFrame": 38728,
+    "currentEventEndFrameSeconds": 1615.281948615282,
+    "currentEventStartFrame": 38662,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1612.5291958625291,
+    "currentEventDuration": 66
+  },
+  {
+    "currentEventEndFrame": 39337,
+    "currentEventEndFrameSeconds": 1640.6823490156823,
+    "currentEventStartFrame": 39242,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1636.72005338672,
+    "currentEventDuration": 95
+  },
+  {
+    "currentEventEndFrame": 39263,
+    "currentEventEndFrameSeconds": 1637.595929262596,
+    "currentEventStartFrame": 39216,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1635.6356356356357,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 39649,
+    "currentEventEndFrameSeconds": 1653.6953620286954,
+    "currentEventStartFrame": 39367,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1641.9336002669336,
+    "currentEventDuration": 282
+  },
+  {
+    "currentEventEndFrame": 39649,
+    "currentEventEndFrameSeconds": 1653.6953620286954,
+    "currentEventStartFrame": 39367,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1641.9336002669336,
+    "currentEventDuration": 282
+  },
+  {
+    "currentEventEndFrame": 40156,
+    "currentEventEndFrameSeconds": 1674.8415081748415,
+    "currentEventStartFrame": 39649,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1653.6953620286954,
+    "currentEventDuration": 507
+  },
+  {
+    "currentEventEndFrame": 39872,
+    "currentEventEndFrameSeconds": 1662.9963296629965,
+    "currentEventStartFrame": 39822,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1660.910910910911,
+    "currentEventDuration": 50
+  },
+  {
+    "currentEventEndFrame": 40319,
+    "currentEventEndFrameSeconds": 1681.63997330664,
+    "currentEventStartFrame": 40272,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1679.6796796796798,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 40540,
+    "currentEventEndFrameSeconds": 1690.8575241908575,
+    "currentEventStartFrame": 40472,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1688.0213546880213,
+    "currentEventDuration": 68
+  },
+  {
+    "currentEventEndFrame": 40611,
+    "currentEventEndFrameSeconds": 1693.818818818819,
+    "currentEventStartFrame": 40559,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1691.6499833166502,
+    "currentEventDuration": 52
+  },
+  {
+    "currentEventEndFrame": 40740,
+    "currentEventEndFrameSeconds": 1699.1991991991993,
+    "currentEventStartFrame": 40693,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1697.238905572239,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 40754,
+    "currentEventEndFrameSeconds": 1699.7831164497832,
+    "currentEventStartFrame": 40676,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1696.52986319653,
+    "currentEventDuration": 78
+  },
+  {
+    "currentEventEndFrame": 40612,
+    "currentEventEndFrameSeconds": 1693.8605271938607,
+    "currentEventStartFrame": 40346,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1682.7660994327662,
+    "currentEventDuration": 266
+  },
+  {
+    "currentEventEndFrame": 41046,
+    "currentEventEndFrameSeconds": 1711.961961961962,
+    "currentEventStartFrame": 40565,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1691.9002335669004,
+    "currentEventDuration": 481
+  },
+  {
+    "currentEventEndFrame": 41046,
+    "currentEventEndFrameSeconds": 1711.961961961962,
+    "currentEventStartFrame": 40764,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1700.2002002002002,
+    "currentEventDuration": 282
+  },
+  {
+    "currentEventEndFrame": 41046,
+    "currentEventEndFrameSeconds": 1711.961961961962,
+    "currentEventStartFrame": 40765,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1700.241908575242,
+    "currentEventDuration": 281
+  },
+  {
+    "currentEventEndFrame": 41525,
+    "currentEventEndFrameSeconds": 1731.9402736069403,
+    "currentEventStartFrame": 41478,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1729.97997997998,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 41808,
+    "currentEventEndFrameSeconds": 1743.7437437437438,
+    "currentEventStartFrame": 41563,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1733.5251918585252,
+    "currentEventDuration": 245
+  },
+  {
+    "currentEventEndFrame": 41869,
+    "currentEventEndFrameSeconds": 1746.287954621288,
+    "currentEventStartFrame": 41822,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1744.3276609943277,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 41914,
+    "currentEventEndFrameSeconds": 1748.1648314981649,
+    "currentEventStartFrame": 41867,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1746.2045378712046,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 42240,
+    "currentEventEndFrameSeconds": 1761.7617617617618,
+    "currentEventStartFrame": 42170,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1758.8421755088423,
+    "currentEventDuration": 70
+  },
+  {
+    "currentEventEndFrame": 43630,
+    "currentEventEndFrameSeconds": 1819.7364030697365,
+    "currentEventStartFrame": 42524,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1773.606940273607,
+    "currentEventDuration": 1106
+  },
+  {
+    "currentEventEndFrame": 43667,
+    "currentEventEndFrameSeconds": 1821.2796129462797,
+    "currentEventStartFrame": 43620,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1819.3193193193194,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 43713,
+    "currentEventEndFrameSeconds": 1823.1981981981983,
+    "currentEventStartFrame": 43666,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1821.237904571238,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 43871,
+    "currentEventEndFrameSeconds": 1829.788121454788,
+    "currentEventStartFrame": 43824,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1827.8278278278278,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 42671,
+    "currentEventEndFrameSeconds": 1779.738071404738,
+    "currentEventStartFrame": 42599,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1776.7350684017351,
+    "currentEventDuration": 72
+  },
+  {
+    "currentEventEndFrame": 42897,
+    "currentEventEndFrameSeconds": 1789.1641641641643,
+    "currentEventStartFrame": 42850,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1787.203870537204,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 42852,
+    "currentEventEndFrameSeconds": 1787.2872872872874,
+    "currentEventStartFrame": 42802,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1785.201868535202,
+    "currentEventDuration": 50
+  },
+  {
+    "currentEventEndFrame": 42798,
+    "currentEventEndFrameSeconds": 1785.0350350350352,
+    "currentEventStartFrame": 42751,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1783.0747414080747,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 42793,
+    "currentEventEndFrameSeconds": 1784.8264931598267,
+    "currentEventStartFrame": 42746,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1782.8661995328662,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 43875,
+    "currentEventEndFrameSeconds": 1829.954954954955,
+    "currentEventStartFrame": 43825,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1827.8695362028695,
+    "currentEventDuration": 50
+  },
+  {
+    "currentEventEndFrame": 43725,
+    "currentEventEndFrameSeconds": 1823.6986986986988,
+    "currentEventStartFrame": 43678,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1821.7384050717385,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 43719,
+    "currentEventEndFrameSeconds": 1823.4484484484485,
+    "currentEventStartFrame": 43672,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1821.4881548214883,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 43731,
+    "currentEventEndFrameSeconds": 1823.948948948949,
+    "currentEventStartFrame": 43684,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1821.9886553219887,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 44011,
+    "currentEventEndFrameSeconds": 1835.6272939606274,
+    "currentEventStartFrame": 43961,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1833.541875208542,
+    "currentEventDuration": 50
+  },
+  {
+    "currentEventEndFrame": 44063,
+    "currentEventEndFrameSeconds": 1837.7961294627962,
+    "currentEventStartFrame": 44016,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1835.835835835836,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 44465,
+    "currentEventEndFrameSeconds": 1854.562896229563,
+    "currentEventStartFrame": 44418,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1852.6026026026027,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 44759,
+    "currentEventEndFrameSeconds": 1866.8251584918253,
+    "currentEventStartFrame": 44347,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1849.6413079746414,
+    "currentEventDuration": 412
+  },
+  {
+    "currentEventEndFrame": 42233,
+    "currentEventEndFrameSeconds": 1761.4698031364699,
+    "currentEventStartFrame": 42186,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1759.5095095095096,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 44284,
+    "currentEventEndFrameSeconds": 1847.0136803470139,
+    "currentEventStartFrame": 43306,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1806.222889556223,
+    "currentEventDuration": 978
+  },
+  {
+    "currentEventEndFrame": 42436,
+    "currentEventEndFrameSeconds": 1769.9366032699368,
+    "currentEventStartFrame": 42270,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1763.013013013013,
+    "currentEventDuration": 166
+  },
+  {
+    "currentEventEndFrame": 43708,
+    "currentEventEndFrameSeconds": 1822.9896563229897,
+    "currentEventStartFrame": 42553,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1774.8164831498166,
+    "currentEventDuration": 1155
+  },
+  {
+    "currentEventEndFrame": 43392,
+    "currentEventEndFrameSeconds": 1809.8098098098098,
+    "currentEventStartFrame": 42574,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1775.6923590256924,
+    "currentEventDuration": 818
+  },
+  {
+    "currentEventEndFrame": 43692,
+    "currentEventEndFrameSeconds": 1822.3223223223224,
+    "currentEventStartFrame": 43096,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1797.4641307974641,
+    "currentEventDuration": 596
+  },
+  {
+    "currentEventEndFrame": 44077,
+    "currentEventEndFrameSeconds": 1838.3800467133801,
+    "currentEventStartFrame": 43670,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1821.4047380714048,
+    "currentEventDuration": 407
+  },
+  {
+    "currentEventEndFrame": 43511,
+    "currentEventEndFrameSeconds": 1814.773106439773,
+    "currentEventStartFrame": 43355,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1808.2665999332667,
+    "currentEventDuration": 156
+  },
+  {
+    "currentEventEndFrame": 43705,
+    "currentEventEndFrameSeconds": 1822.8645311978646,
+    "currentEventStartFrame": 43579,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1817.6092759426094,
+    "currentEventDuration": 126
+  },
+  {
+    "currentEventEndFrame": 44759,
+    "currentEventEndFrameSeconds": 1866.8251584918253,
+    "currentEventStartFrame": 44353,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1849.8915582248917,
+    "currentEventDuration": 406
+  },
+  {
+    "currentEventEndFrame": 43978,
+    "currentEventEndFrameSeconds": 1834.250917584251,
+    "currentEventStartFrame": 43670,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1821.4047380714048,
+    "currentEventDuration": 308
+  },
+  {
+    "currentEventEndFrame": 43692,
+    "currentEventEndFrameSeconds": 1822.3223223223224,
+    "currentEventStartFrame": 43063,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1796.0877544210878,
+    "currentEventDuration": 629
+  },
+  {
+    "currentEventEndFrame": 45020,
+    "currentEventEndFrameSeconds": 1877.711044377711,
+    "currentEventStartFrame": 44973,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1875.7507507507507,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 45344,
+    "currentEventEndFrameSeconds": 1891.2245578912245,
+    "currentEventStartFrame": 45297,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1889.2642642642643,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 45358,
+    "currentEventEndFrameSeconds": 1891.8084751418085,
+    "currentEventStartFrame": 45311,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1889.8481815148482,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 44850,
+    "currentEventEndFrameSeconds": 1870.6206206206207,
+    "currentEventStartFrame": 44759,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1866.8251584918253,
+    "currentEventDuration": 91
+  },
+  {
+    "currentEventEndFrame": 45601,
+    "currentEventEndFrameSeconds": 1901.9436102769437,
+    "currentEventStartFrame": 44759,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1866.8251584918253,
+    "currentEventDuration": 842
+  },
+  {
+    "currentEventEndFrame": 45378,
+    "currentEventEndFrameSeconds": 1892.6426426426426,
+    "currentEventStartFrame": 44928,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1873.873873873874,
+    "currentEventDuration": 450
+  },
+  {
+    "currentEventEndFrame": 45601,
+    "currentEventEndFrameSeconds": 1901.9436102769437,
+    "currentEventStartFrame": 45006,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1877.127127127127,
+    "currentEventDuration": 595
+  },
+  {
+    "currentEventEndFrame": 45297,
+    "currentEventEndFrameSeconds": 1889.2642642642643,
+    "currentEventStartFrame": 45113,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1881.58992325659,
+    "currentEventDuration": 184
+  },
+  {
+    "currentEventEndFrame": 45640,
+    "currentEventEndFrameSeconds": 1903.5702369035703,
+    "currentEventStartFrame": 45601,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1901.9436102769437,
+    "currentEventDuration": 39
+  },
+  {
+    "currentEventEndFrame": 46290,
+    "currentEventEndFrameSeconds": 1930.6806806806808,
+    "currentEventStartFrame": 45601,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1901.9436102769437,
+    "currentEventDuration": 689
+  },
+  {
+    "currentEventEndFrame": 45921,
+    "currentEventEndFrameSeconds": 1915.2902902902904,
+    "currentEventStartFrame": 45626,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1902.9863196529864,
+    "currentEventDuration": 295
+  },
+  {
+    "currentEventEndFrame": 45924,
+    "currentEventEndFrameSeconds": 1915.4154154154155,
+    "currentEventStartFrame": 45877,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1913.4551217884552,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 45737,
+    "currentEventEndFrameSeconds": 1907.615949282616,
+    "currentEventStartFrame": 45601,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1901.9436102769437,
+    "currentEventDuration": 136
+  },
+  {
+    "currentEventEndFrame": 46560,
+    "currentEventEndFrameSeconds": 1941.941941941942,
+    "currentEventStartFrame": 46121,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1923.631965298632,
+    "currentEventDuration": 439
+  },
+  {
+    "currentEventEndFrame": 46850,
+    "currentEventEndFrameSeconds": 1954.0373707040374,
+    "currentEventStartFrame": 46560,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1941.941941941942,
+    "currentEventDuration": 290
+  },
+  {
+    "currentEventEndFrame": 47097,
+    "currentEventEndFrameSeconds": 1964.3393393393394,
+    "currentEventStartFrame": 46560,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1941.941941941942,
+    "currentEventDuration": 537
+  },
+  {
+    "currentEventEndFrame": 47097,
+    "currentEventEndFrameSeconds": 1964.3393393393394,
+    "currentEventStartFrame": 46560,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1941.941941941942,
+    "currentEventDuration": 537
+  },
+  {
+    "currentEventEndFrame": 47209,
+    "currentEventEndFrameSeconds": 1969.0106773440107,
+    "currentEventStartFrame": 47156,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 1966.8001334668002,
+    "currentEventDuration": 53
+  },
+  {
+    "currentEventEndFrame": 47270,
+    "currentEventEndFrameSeconds": 1971.554888221555,
+    "currentEventStartFrame": 47223,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 1969.5945945945946,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 47413,
+    "currentEventEndFrameSeconds": 1977.5191858525193,
+    "currentEventStartFrame": 47097,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1964.3393393393394,
+    "currentEventDuration": 316
+  },
+  {
+    "currentEventEndFrame": 47719,
+    "currentEventEndFrameSeconds": 1990.281948615282,
+    "currentEventStartFrame": 47097,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1964.3393393393394,
+    "currentEventDuration": 622
+  },
+  {
+    "currentEventEndFrame": 47771,
+    "currentEventEndFrameSeconds": 1992.450784117451,
+    "currentEventStartFrame": 47680,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1988.6553219886555,
+    "currentEventDuration": 91
+  },
+  {
+    "currentEventEndFrame": 48176,
+    "currentEventEndFrameSeconds": 2009.3426760093428,
+    "currentEventStartFrame": 47771,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 1992.450784117451,
+    "currentEventDuration": 405
+  },
+  {
+    "currentEventEndFrame": 48266,
+    "currentEventEndFrameSeconds": 2013.0964297630965,
+    "currentEventStartFrame": 48186,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2009.7597597597598,
+    "currentEventDuration": 80
+  },
+  {
+    "currentEventEndFrame": 48685,
+    "currentEventEndFrameSeconds": 2030.5722389055722,
+    "currentEventStartFrame": 48266,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2013.0964297630965,
+    "currentEventDuration": 419
+  },
+  {
+    "currentEventEndFrame": 48552,
+    "currentEventEndFrameSeconds": 2025.0250250250251,
+    "currentEventStartFrame": 48489,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2022.3973973973975,
+    "currentEventDuration": 63
+  },
+  {
+    "currentEventEndFrame": 48590,
+    "currentEventEndFrameSeconds": 2026.60994327661,
+    "currentEventStartFrame": 48541,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2024.5662328995663,
+    "currentEventDuration": 49
+  },
+  {
+    "currentEventEndFrame": 48877,
+    "currentEventEndFrameSeconds": 2038.5802469135804,
+    "currentEventStartFrame": 48830,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2036.61995328662,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 49165,
+    "currentEventEndFrameSeconds": 2050.5922589255924,
+    "currentEventStartFrame": 48890,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2039.1224557891226,
+    "currentEventDuration": 275
+  },
+  {
+    "currentEventEndFrame": 50615,
+    "currentEventEndFrameSeconds": 2111.0694027360696,
+    "currentEventStartFrame": 50568,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2109.1091091091093,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 50589,
+    "currentEventEndFrameSeconds": 2109.984984984985,
+    "currentEventStartFrame": 50542,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2108.024691358025,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 50553,
+    "currentEventEndFrameSeconds": 2108.4834834834837,
+    "currentEventStartFrame": 50506,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2106.5231898565235,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 50510,
+    "currentEventEndFrameSeconds": 2106.6900233566903,
+    "currentEventStartFrame": 50459,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2104.562896229563,
+    "currentEventDuration": 51
+  },
+  {
+    "currentEventEndFrame": 50500,
+    "currentEventEndFrameSeconds": 2106.272939606273,
+    "currentEventStartFrame": 49269,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2054.92992992993,
+    "currentEventDuration": 1231
+  },
+  {
+    "currentEventEndFrame": 51355,
+    "currentEventEndFrameSeconds": 2141.933600266934,
+    "currentEventStartFrame": 51113,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2131.84017350684,
+    "currentEventDuration": 242
+  },
+  {
+    "currentEventEndFrame": 51692,
+    "currentEventEndFrameSeconds": 2155.9893226559893,
+    "currentEventStartFrame": 51373,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2142.6843510176845,
+    "currentEventDuration": 319
+  },
+  {
+    "currentEventEndFrame": 51188,
+    "currentEventEndFrameSeconds": 2134.968301634968,
+    "currentEventStartFrame": 51141,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2133.008008008008,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 51445,
+    "currentEventEndFrameSeconds": 2145.6873540206875,
+    "currentEventStartFrame": 51398,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2143.7270603937272,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 51692,
+    "currentEventEndFrameSeconds": 2155.9893226559893,
+    "currentEventStartFrame": 51115,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2131.9235902569235,
+    "currentEventDuration": 577
+  },
+  {
+    "currentEventEndFrame": 51177,
+    "currentEventEndFrameSeconds": 2134.5095095095094,
+    "currentEventStartFrame": 51054,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2129.3793793793793,
+    "currentEventDuration": 123
+  },
+  {
+    "currentEventEndFrame": 51692,
+    "currentEventEndFrameSeconds": 2155.9893226559893,
+    "currentEventStartFrame": 51248,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2137.470804137471,
+    "currentEventDuration": 444
+  },
+  {
+    "currentEventEndFrame": 51952,
+    "currentEventEndFrameSeconds": 2166.833500166834,
+    "currentEventStartFrame": 51867,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2163.288288288288,
+    "currentEventDuration": 85
+  },
+  {
+    "currentEventEndFrame": 51949,
+    "currentEventEndFrameSeconds": 2166.7083750417087,
+    "currentEventStartFrame": 51883,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2163.9556222889555,
+    "currentEventDuration": 66
+  },
+  {
+    "currentEventEndFrame": 52847,
+    "currentEventEndFrameSeconds": 2204.1624958291627,
+    "currentEventStartFrame": 52231,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2178.4701368034703,
+    "currentEventDuration": 616
+  },
+  {
+    "currentEventEndFrame": 52514,
+    "currentEventEndFrameSeconds": 2190.2736069402736,
+    "currentEventStartFrame": 52448,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2187.520854187521,
+    "currentEventDuration": 66
+  },
+  {
+    "currentEventEndFrame": 52521,
+    "currentEventEndFrameSeconds": 2190.5655655655655,
+    "currentEventStartFrame": 52456,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2187.8545211878545,
+    "currentEventDuration": 65
+  },
+  {
+    "currentEventEndFrame": 53047,
+    "currentEventEndFrameSeconds": 2212.5041708375043,
+    "currentEventStartFrame": 53000,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2210.543877210544,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 53318,
+    "currentEventEndFrameSeconds": 2223.807140473807,
+    "currentEventStartFrame": 53009,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2210.9192525859194,
+    "currentEventDuration": 309
+  },
+  {
+    "currentEventEndFrame": 53331,
+    "currentEventEndFrameSeconds": 2224.3493493493493,
+    "currentEventStartFrame": 53284,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2222.389055722389,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 54511,
+    "currentEventEndFrameSeconds": 2273.5652318985653,
+    "currentEventStartFrame": 54287,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2264.222555889223,
+    "currentEventDuration": 224
+  },
+  {
+    "currentEventEndFrame": 54511,
+    "currentEventEndFrameSeconds": 2273.5652318985653,
+    "currentEventStartFrame": 54218,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2261.344678011345,
+    "currentEventDuration": 293
+  },
+  {
+    "currentEventEndFrame": 53724,
+    "currentEventEndFrameSeconds": 2240.740740740741,
+    "currentEventStartFrame": 53318,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2223.807140473807,
+    "currentEventDuration": 406
+  },
+  {
+    "currentEventEndFrame": 54712,
+    "currentEventEndFrameSeconds": 2281.9486152819486,
+    "currentEventStartFrame": 54511,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2273.5652318985653,
+    "currentEventDuration": 201
+  },
+  {
+    "currentEventEndFrame": 55353,
+    "currentEventEndFrameSeconds": 2308.6836836836837,
+    "currentEventStartFrame": 55306,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2306.7233900567235,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 55385,
+    "currentEventEndFrameSeconds": 2310.0183516850184,
+    "currentEventStartFrame": 54992,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2293.6269602936272,
+    "currentEventDuration": 393
+  },
+  {
+    "currentEventEndFrame": 55786,
+    "currentEventEndFrameSeconds": 2326.7434100767437,
+    "currentEventStartFrame": 55264,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2304.9716383049717,
+    "currentEventDuration": 522
+  },
+  {
+    "currentEventEndFrame": 56433,
+    "currentEventEndFrameSeconds": 2353.728728728729,
+    "currentEventStartFrame": 55786,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2326.7434100767437,
+    "currentEventDuration": 647
+  },
+  {
+    "currentEventEndFrame": 56152,
+    "currentEventEndFrameSeconds": 2342.0086753420087,
+    "currentEventStartFrame": 56105,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2340.0483817150484,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 56156,
+    "currentEventEndFrameSeconds": 2342.1755088421755,
+    "currentEventStartFrame": 56109,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2340.2152152152153,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 56433,
+    "currentEventEndFrameSeconds": 2353.728728728729,
+    "currentEventStartFrame": 56008,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2336.002669336003,
+    "currentEventDuration": 425
+  },
+  {
+    "currentEventEndFrame": 56408,
+    "currentEventEndFrameSeconds": 2352.686019352686,
+    "currentEventStartFrame": 56110,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2340.256923590257,
+    "currentEventDuration": 298
+  },
+  {
+    "currentEventEndFrame": 56192,
+    "currentEventEndFrameSeconds": 2343.677010343677,
+    "currentEventStartFrame": 56090,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2339.422756089423,
+    "currentEventDuration": 102
+  },
+  {
+    "currentEventEndFrame": 56940,
+    "currentEventEndFrameSeconds": 2374.874874874875,
+    "currentEventStartFrame": 56566,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2359.275942609276,
+    "currentEventDuration": 374
+  },
+  {
+    "currentEventEndFrame": 56679,
+    "currentEventEndFrameSeconds": 2363.988988988989,
+    "currentEventStartFrame": 56614,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2361.277944611278,
+    "currentEventDuration": 65
+  },
+  {
+    "currentEventEndFrame": 56697,
+    "currentEventEndFrameSeconds": 2364.73973973974,
+    "currentEventStartFrame": 56617,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2361.4030697364033,
+    "currentEventDuration": 80
+  },
+  {
+    "currentEventEndFrame": 56740,
+    "currentEventEndFrameSeconds": 2366.5331998665333,
+    "currentEventStartFrame": 56523,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2357.4824824824827,
+    "currentEventDuration": 217
+  },
+  {
+    "currentEventEndFrame": 56940,
+    "currentEventEndFrameSeconds": 2374.874874874875,
+    "currentEventStartFrame": 56589,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2360.2352352352355,
+    "currentEventDuration": 351
+  },
+  {
+    "currentEventEndFrame": 57123,
+    "currentEventEndFrameSeconds": 2382.5075075075074,
+    "currentEventStartFrame": 56940,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2374.874874874875,
+    "currentEventDuration": 183
+  },
+  {
+    "currentEventEndFrame": 57481,
+    "currentEventEndFrameSeconds": 2397.4391057724392,
+    "currentEventStartFrame": 56940,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2374.874874874875,
+    "currentEventDuration": 541
+  },
+  {
+    "currentEventEndFrame": 57572,
+    "currentEventEndFrameSeconds": 2401.2345679012346,
+    "currentEventStartFrame": 57517,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2398.9406072739407,
+    "currentEventDuration": 55
+  },
+  {
+    "currentEventEndFrame": 57609,
+    "currentEventEndFrameSeconds": 2402.777777777778,
+    "currentEventStartFrame": 57548,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2400.2335669002337,
+    "currentEventDuration": 61
+  },
+  {
+    "currentEventEndFrame": 57117,
+    "currentEventEndFrameSeconds": 2382.257257257257,
+    "currentEventStartFrame": 56940,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2374.874874874875,
+    "currentEventDuration": 177
+  },
+  {
+    "currentEventEndFrame": 58210,
+    "currentEventEndFrameSeconds": 2427.8445111778447,
+    "currentEventStartFrame": 58163,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2425.8842175508844,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 58497,
+    "currentEventEndFrameSeconds": 2439.814814814815,
+    "currentEventStartFrame": 58450,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2437.8545211878545,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 58761,
+    "currentEventEndFrameSeconds": 2450.825825825826,
+    "currentEventStartFrame": 58038,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2420.670670670671,
+    "currentEventDuration": 723
+  },
+  {
+    "currentEventEndFrame": 58241,
+    "currentEventEndFrameSeconds": 2429.1374708041376,
+    "currentEventStartFrame": 58066,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2421.8385051718387,
+    "currentEventDuration": 175
+  },
+  {
+    "currentEventEndFrame": 58497,
+    "currentEventEndFrameSeconds": 2439.814814814815,
+    "currentEventStartFrame": 57871,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2413.7053720387053,
+    "currentEventDuration": 626
+  },
+  {
+    "currentEventEndFrame": 58945,
+    "currentEventEndFrameSeconds": 2458.5001668335003,
+    "currentEventStartFrame": 58853,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2454.662996329663,
+    "currentEventDuration": 92
+  },
+  {
+    "currentEventEndFrame": 59068,
+    "currentEventEndFrameSeconds": 2463.6302969636304,
+    "currentEventStartFrame": 58993,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2460.5021688355023,
+    "currentEventDuration": 75
+  },
+  {
+    "currentEventEndFrame": 59187,
+    "currentEventEndFrameSeconds": 2468.5935935935936,
+    "currentEventStartFrame": 59074,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2463.8805472138806,
+    "currentEventDuration": 113
+  },
+  {
+    "currentEventEndFrame": 59620,
+    "currentEventEndFrameSeconds": 2486.6533199866535,
+    "currentEventStartFrame": 59506,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2481.898565231899,
+    "currentEventDuration": 114
+  },
+  {
+    "currentEventEndFrame": 59630,
+    "currentEventEndFrameSeconds": 2487.0704037370706,
+    "currentEventStartFrame": 59535,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2483.1081081081084,
+    "currentEventDuration": 95
+  },
+  {
+    "currentEventEndFrame": 59812,
+    "currentEventEndFrameSeconds": 2494.6613279946614,
+    "currentEventStartFrame": 59714,
+    "currentEventName": "7: Person gesturing",
+    "currentEventStartFrameSeconds": 2490.573907240574,
+    "currentEventDuration": 98
+  },
+  {
+    "currentEventEndFrame": 60186,
+    "currentEventEndFrameSeconds": 2510.2602602602606,
+    "currentEventStartFrame": 60115,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2507.298965632299,
+    "currentEventDuration": 71
+  },
+  {
+    "currentEventEndFrame": 60600,
+    "currentEventEndFrameSeconds": 2527.5275275275276,
+    "currentEventStartFrame": 60527,
+    "currentEventName": "7: Person gesturing",
+    "currentEventStartFrameSeconds": 2524.482816149483,
+    "currentEventDuration": 73
+  },
+  {
+    "currentEventEndFrame": 59060,
+    "currentEventEndFrameSeconds": 2463.2966299632967,
+    "currentEventStartFrame": 59011,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2461.252919586253,
+    "currentEventDuration": 49
+  },
+  {
+    "currentEventEndFrame": 59181,
+    "currentEventEndFrameSeconds": 2468.3433433433433,
+    "currentEventStartFrame": 59096,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2464.798131464798,
+    "currentEventDuration": 85
+  },
+  {
+    "currentEventEndFrame": 59027,
+    "currentEventEndFrameSeconds": 2461.9202535869204,
+    "currentEventStartFrame": 58761,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2450.825825825826,
+    "currentEventDuration": 266
+  },
+  {
+    "currentEventEndFrame": 58809,
+    "currentEventEndFrameSeconds": 2452.827827827828,
+    "currentEventStartFrame": 58761,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2450.825825825826,
+    "currentEventDuration": 48
+  },
+  {
+    "currentEventEndFrame": 58863,
+    "currentEventEndFrameSeconds": 2455.0800800800803,
+    "currentEventStartFrame": 58761,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2450.825825825826,
+    "currentEventDuration": 102
+  },
+  {
+    "currentEventEndFrame": 59096,
+    "currentEventEndFrameSeconds": 2464.798131464798,
+    "currentEventStartFrame": 59049,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2462.837837837838,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 59524,
+    "currentEventEndFrameSeconds": 2482.6493159826496,
+    "currentEventStartFrame": 58946,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2458.541875208542,
+    "currentEventDuration": 578
+  },
+  {
+    "currentEventEndFrame": 59822,
+    "currentEventEndFrameSeconds": 2495.0784117450785,
+    "currentEventStartFrame": 59076,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2463.963963963964,
+    "currentEventDuration": 746
+  },
+  {
+    "currentEventEndFrame": 59707,
+    "currentEventEndFrameSeconds": 2490.281948615282,
+    "currentEventStartFrame": 59072,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2463.797130463797,
+    "currentEventDuration": 635
+  },
+  {
+    "currentEventEndFrame": 59983,
+    "currentEventEndFrameSeconds": 2501.7934601267934,
+    "currentEventStartFrame": 59570,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2484.567901234568,
+    "currentEventDuration": 413
+  },
+  {
+    "currentEventEndFrame": 59983,
+    "currentEventEndFrameSeconds": 2501.7934601267934,
+    "currentEventStartFrame": 59574,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2484.734734734735,
+    "currentEventDuration": 409
+  },
+  {
+    "currentEventEndFrame": 60678,
+    "currentEventEndFrameSeconds": 2530.780780780781,
+    "currentEventStartFrame": 59675,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2488.9472806139474,
+    "currentEventDuration": 1003
+  },
+  {
+    "currentEventEndFrame": 60136,
+    "currentEventEndFrameSeconds": 2508.1748415081747,
+    "currentEventStartFrame": 60111,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2507.132132132132,
+    "currentEventDuration": 25
+  },
+  {
+    "currentEventEndFrame": 60583,
+    "currentEventEndFrameSeconds": 2526.8184851518185,
+    "currentEventStartFrame": 60168,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2509.50950950951,
+    "currentEventDuration": 415
+  },
+  {
+    "currentEventEndFrame": 61800,
+    "currentEventEndFrameSeconds": 2577.577577577578,
+    "currentEventStartFrame": 61281,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2555.930930930931,
+    "currentEventDuration": 519
+  },
+  {
+    "currentEventEndFrame": 61997,
+    "currentEventEndFrameSeconds": 2585.7941274607942,
+    "currentEventStartFrame": 60880,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2539.2058725392058,
+    "currentEventDuration": 1117
+  },
+  {
+    "currentEventEndFrame": 61064,
+    "currentEventEndFrameSeconds": 2546.8802135468804,
+    "currentEventStartFrame": 60406,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2519.4361027694363,
+    "currentEventDuration": 658
+  },
+  {
+    "currentEventEndFrame": 62428,
+    "currentEventEndFrameSeconds": 2603.7704371037707,
+    "currentEventStartFrame": 61089,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2547.922922922923,
+    "currentEventDuration": 1339
+  },
+  {
+    "currentEventEndFrame": 61871,
+    "currentEventEndFrameSeconds": 2580.538872205539,
+    "currentEventStartFrame": 61528,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2566.232899566233,
+    "currentEventDuration": 343
+  },
+  {
+    "currentEventEndFrame": 62083,
+    "currentEventEndFrameSeconds": 2589.381047714381,
+    "currentEventStartFrame": 62081,
+    "currentEventName": "10: Person running",
+    "currentEventStartFrameSeconds": 2589.2976309642977,
+    "currentEventDuration": 2
+  },
+  {
+    "currentEventEndFrame": 62510,
+    "currentEventEndFrameSeconds": 2607.190523857191,
+    "currentEventStartFrame": 61149,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2550.4254254254256,
+    "currentEventDuration": 1361
+  },
+  {
+    "currentEventEndFrame": 62526,
+    "currentEventEndFrameSeconds": 2607.857857857858,
+    "currentEventStartFrame": 61151,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2550.508842175509,
+    "currentEventDuration": 1375
+  },
+  {
+    "currentEventEndFrame": 62221,
+    "currentEventEndFrameSeconds": 2595.136803470137,
+    "currentEventStartFrame": 61785,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2576.951951951952,
+    "currentEventDuration": 436
+  },
+  {
+    "currentEventEndFrame": 63425,
+    "currentEventEndFrameSeconds": 2645.353687020354,
+    "currentEventStartFrame": 62650,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2613.02969636303,
+    "currentEventDuration": 775
+  },
+  {
+    "currentEventEndFrame": 63931,
+    "currentEventEndFrameSeconds": 2666.4581247914584,
+    "currentEventStartFrame": 63252,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2638.1381381381384,
+    "currentEventDuration": 679
+  },
+  {
+    "currentEventEndFrame": 63547,
+    "currentEventEndFrameSeconds": 2650.442108775442,
+    "currentEventStartFrame": 63485,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2647.8561895228563,
+    "currentEventDuration": 62
+  },
+  {
+    "currentEventEndFrame": 63670,
+    "currentEventEndFrameSeconds": 2655.5722389055722,
+    "currentEventStartFrame": 63590,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2652.2355689022356,
+    "currentEventDuration": 80
+  },
+  {
+    "currentEventEndFrame": 63686,
+    "currentEventEndFrameSeconds": 2656.2395729062396,
+    "currentEventStartFrame": 63610,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2653.06973640307,
+    "currentEventDuration": 76
+  },
+  {
+    "currentEventEndFrame": 64308,
+    "currentEventEndFrameSeconds": 2682.1821821821823,
+    "currentEventStartFrame": 64170,
+    "currentEventName": "10: Person running",
+    "currentEventStartFrameSeconds": 2676.4264264264266,
+    "currentEventDuration": 138
+  },
+  {
+    "currentEventEndFrame": 63480,
+    "currentEventEndFrameSeconds": 2647.647647647648,
+    "currentEventStartFrame": 63393,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2644.019019019019,
+    "currentEventDuration": 87
+  },
+  {
+    "currentEventEndFrame": 63272,
+    "currentEventEndFrameSeconds": 2638.9723056389726,
+    "currentEventStartFrame": 62753,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2617.3256589923258,
+    "currentEventDuration": 519
+  },
+  {
+    "currentEventEndFrame": 63380,
+    "currentEventEndFrameSeconds": 2643.476810143477,
+    "currentEventStartFrame": 62953,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2625.6673340006673,
+    "currentEventDuration": 427
+  },
+  {
+    "currentEventEndFrame": 64180,
+    "currentEventEndFrameSeconds": 2676.8435101768437,
+    "currentEventStartFrame": 63103,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2631.9235902569235,
+    "currentEventDuration": 1077
+  },
+  {
+    "currentEventEndFrame": 63645,
+    "currentEventEndFrameSeconds": 2654.5295295295296,
+    "currentEventStartFrame": 63400,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2644.310977644311,
+    "currentEventDuration": 245
+  },
+  {
+    "currentEventEndFrame": 63660,
+    "currentEventEndFrameSeconds": 2655.155155155155,
+    "currentEventStartFrame": 63496,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2648.314981648315,
+    "currentEventDuration": 164
+  },
+  {
+    "currentEventEndFrame": 63781,
+    "currentEventEndFrameSeconds": 2660.201868535202,
+    "currentEventStartFrame": 63734,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2658.2415749082415,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 64542,
+    "currentEventEndFrameSeconds": 2691.941941941942,
+    "currentEventStartFrame": 63862,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2663.58024691358,
+    "currentEventDuration": 680
+  },
+  {
+    "currentEventEndFrame": 64172,
+    "currentEventEndFrameSeconds": 2676.50984317651,
+    "currentEventStartFrame": 64053,
+    "currentEventName": "10: Person running",
+    "currentEventStartFrameSeconds": 2671.546546546547,
+    "currentEventDuration": 119
+  },
+  {
+    "currentEventEndFrame": 65263,
+    "currentEventEndFrameSeconds": 2722.0136803470136,
+    "currentEventStartFrame": 65115,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2715.840840840841,
+    "currentEventDuration": 148
+  },
+  {
+    "currentEventEndFrame": 65329,
+    "currentEventEndFrameSeconds": 2724.7664330997663,
+    "currentEventStartFrame": 65262,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2721.971971971972,
+    "currentEventDuration": 67
+  },
+  {
+    "currentEventEndFrame": 66602,
+    "currentEventEndFrameSeconds": 2777.8611945278612,
+    "currentEventStartFrame": 66533,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2774.9833166499834,
+    "currentEventDuration": 69
+  },
+  {
+    "currentEventEndFrame": 66683,
+    "currentEventEndFrameSeconds": 2781.2395729062396,
+    "currentEventStartFrame": 66549,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2775.6506506506507,
+    "currentEventDuration": 134
+  },
+  {
+    "currentEventEndFrame": 67382,
+    "currentEventEndFrameSeconds": 2810.3937270603938,
+    "currentEventStartFrame": 67317,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2807.6826826826828,
+    "currentEventDuration": 65
+  },
+  {
+    "currentEventEndFrame": 67758,
+    "currentEventEndFrameSeconds": 2826.0760760760763,
+    "currentEventStartFrame": 67706,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2823.9072405739075,
+    "currentEventDuration": 52
+  },
+  {
+    "currentEventEndFrame": 68119,
+    "currentEventEndFrameSeconds": 2841.132799466133,
+    "currentEventStartFrame": 68035,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2837.6292959626294,
+    "currentEventDuration": 84
+  },
+  {
+    "currentEventEndFrame": 68111,
+    "currentEventEndFrameSeconds": 2840.799132465799,
+    "currentEventStartFrame": 68035,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2837.6292959626294,
+    "currentEventDuration": 76
+  },
+  {
+    "currentEventEndFrame": 68625,
+    "currentEventEndFrameSeconds": 2862.2372372372374,
+    "currentEventStartFrame": 68567,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2859.8181514848184,
+    "currentEventDuration": 58
+  },
+  {
+    "currentEventEndFrame": 68815,
+    "currentEventEndFrameSeconds": 2870.161828495162,
+    "currentEventStartFrame": 68765,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2868.0764097430765,
+    "currentEventDuration": 50
+  },
+  {
+    "currentEventEndFrame": 69424,
+    "currentEventEndFrameSeconds": 2895.5622288955624,
+    "currentEventStartFrame": 69377,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2893.601935268602,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 69731,
+    "currentEventEndFrameSeconds": 2908.3667000333667,
+    "currentEventStartFrame": 69570,
+    "currentEventName": "10: Person running",
+    "currentEventStartFrameSeconds": 2901.6516516516517,
+    "currentEventDuration": 161
+  },
+  {
+    "currentEventEndFrame": 70191,
+    "currentEventEndFrameSeconds": 2927.5525525525527,
+    "currentEventStartFrame": 70135,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2925.216883550217,
+    "currentEventDuration": 56
+  },
+  {
+    "currentEventEndFrame": 70228,
+    "currentEventEndFrameSeconds": 2929.095762429096,
+    "currentEventStartFrame": 70164,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2926.4264264264266,
+    "currentEventDuration": 64
+  },
+  {
+    "currentEventEndFrame": 70336,
+    "currentEventEndFrameSeconds": 2933.6002669336003,
+    "currentEventStartFrame": 70248,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2929.92992992993,
+    "currentEventDuration": 88
+  },
+  {
+    "currentEventEndFrame": 70358,
+    "currentEventEndFrameSeconds": 2934.517851184518,
+    "currentEventStartFrame": 70248,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2929.92992992993,
+    "currentEventDuration": 110
+  },
+  {
+    "currentEventEndFrame": 70399,
+    "currentEventEndFrameSeconds": 2936.227894561228,
+    "currentEventStartFrame": 70352,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2934.2676009342676,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 70425,
+    "currentEventEndFrameSeconds": 2937.3123123123123,
+    "currentEventStartFrame": 70378,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 2935.352018685352,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 71656,
+    "currentEventEndFrameSeconds": 2988.6553219886555,
+    "currentEventStartFrame": 71426,
+    "currentEventName": "9: Person carrying an object",
+    "currentEventStartFrameSeconds": 2979.0623957290627,
+    "currentEventDuration": 230
+  },
+  {
+    "currentEventEndFrame": 71951,
+    "currentEventEndFrameSeconds": 3000.9592926259593,
+    "currentEventStartFrame": 71874,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 2997.747747747748,
+    "currentEventDuration": 77
+  },
+  {
+    "currentEventEndFrame": 72831,
+    "currentEventEndFrameSeconds": 3037.6626626626626,
+    "currentEventStartFrame": 72753,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 3034.4094094094094,
+    "currentEventDuration": 78
+  },
+  {
+    "currentEventEndFrame": 73044,
+    "currentEventEndFrameSeconds": 3046.546546546547,
+    "currentEventStartFrame": 72993,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 3044.4194194194197,
+    "currentEventDuration": 51
+  },
+  {
+    "currentEventEndFrame": 73060,
+    "currentEventEndFrameSeconds": 3047.213880547214,
+    "currentEventStartFrame": 72966,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 3043.2932932932936,
+    "currentEventDuration": 94
+  },
+  {
+    "currentEventEndFrame": 74205,
+    "currentEventEndFrameSeconds": 3094.96996996997,
+    "currentEventStartFrame": 74158,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 3093.0096763430097,
+    "currentEventDuration": 47
+  },
+  {
+    "currentEventEndFrame": 74262,
+    "currentEventEndFrameSeconds": 3097.3473473473473,
+    "currentEventStartFrame": 74179,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 3093.8855522188856,
+    "currentEventDuration": 83
+  },
+  {
+    "currentEventEndFrame": 73808,
+    "currentEventEndFrameSeconds": 3078.411745078412,
+    "currentEventStartFrame": 73727,
+    "currentEventName": "12: Person exiting a facility",
+    "currentEventStartFrameSeconds": 3075.0333667000336,
+    "currentEventDuration": 81
+  },
+  {
+    "currentEventEndFrame": 74528,
+    "currentEventEndFrameSeconds": 3108.441775108442,
+    "currentEventStartFrame": 74478,
+    "currentEventName": "11: Person entering a facility",
+    "currentEventStartFrameSeconds": 3106.3563563563566,
+    "currentEventDuration": 50
+  }
+]
