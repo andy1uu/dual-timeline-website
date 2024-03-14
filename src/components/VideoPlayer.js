@@ -228,7 +228,7 @@ const VideoPlayer = () => {
         controls={videoState.controls}
         muted={videoState.muted}
         onProgress={progressHandler}
-        className="VideoPlayer-video mx-auto !h-[480px] !w-[640px]"
+        className="VideoPlayer-video mx-auto !h-[480px] !w-[1080px]"
       />
       <div className="VideoPlayer-controls mx-auto flex w-[640px] justify-between">
         <div className="VideoPlayer-rewindButton" onClick={rewindHandler}>
