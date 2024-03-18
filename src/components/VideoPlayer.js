@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, Fragment } from "react";
+import React, { useState, useRef, Fragment, useEffect } from "react";
 import ReactPlayer from "react-player";
 import * as Plot from "@observablehq/plot";
 import { Slider } from "@mui/material";
@@ -39,9 +39,9 @@ const VideoPlayer = () => {
     label: "0: All Events",
   });
   const [timeline, setTimeline] = useState({
-    key: "timeline1",
-    label: "Timeline 1",
-    value: "timeline1",
+    key: "timeline2",
+    label: "Timeline 2",
+    value: "timeline2",
   });
 
   const videoPlayerRef = useRef(null);
@@ -87,7 +87,7 @@ const VideoPlayer = () => {
   };
 
   const progressHandler = (progress) => {
-    console.log(progress);
+    //console.log(progress);
     setVideoState({
       ...videoState,
       played: progress.playedSeconds / videoState.duration,
@@ -133,11 +133,54 @@ const VideoPlayer = () => {
     };
   };
 
+  const densityFunctionHandler = () => {
+    //console.log(videoEvents);
+
+    const eventsPerSecond = [];
+
+    // Create the buckets
+    for (let sec = 0; sec < Math.trunc(selectedVideo.duration); sec++) {
+      eventsPerSecond[sec] = 0;
+    }
+
+    console.log(eventsPerSecond);
+
+    // Loop through the event start times
+    for (
+      let videoEventIndex = 0;
+      videoEventIndex < videoEvents.length;
+      videoEventIndex++
+    ) {
+      let eventStartTime = Math.trunc(
+        videoEvents[videoEventIndex].currentEventStartFrameSeconds,
+      );
+      let eventEndTime = Math.trunc(
+        videoEvents[videoEventIndex].currentEventEndFrameSeconds,
+      );
+      for (
+        let startSecondIndex = eventStartTime;
+        startSecondIndex < eventsPerSecond.length;
+        startSecondIndex++
+      ) {
+        eventsPerSecond[startSecondIndex]++;
+      }
+      for (
+        let endSecondIndex = eventEndTime;
+        endSecondIndex < eventsPerSecond.length;
+        endSecondIndex++
+      ) {
+        eventsPerSecond[endSecondIndex]--;
+      }
+    }
+
+    return eventsPerSecond;
+  };
+
   const timelineFiveHandler = () => {
     const filteredEvents =
       selectedEventType.label.slice(0, 2) !== "0:"
         ? videoEvents.filter(({ currentEventName }) => {
-            console.log(currentEventName);
+            //console.log(currentEventName);
             return (
               currentEventName.slice(0, 2) ===
               selectedEventType.label.slice(0, 2)
@@ -199,7 +242,7 @@ const VideoPlayer = () => {
   };
 
   return (
-    <div className="VideoPlayer flex  w-full flex-col">
+    <div className="VideoPlayer relative flex w-full flex-col">
       <div className="VideoPlayer-controls relative left-0 right-0 top-[52px] z-10 mx-auto flex w-fit rounded-xl bg-primary p-2">
         <div
           className="VideoPlayer-rewindButton my-auto"
@@ -324,152 +367,118 @@ const VideoPlayer = () => {
         width={1920}
         height={1080}
         onProgress={progressHandler}
-        className="VideoPlayer-video pointer-events-none z-0 mx-auto top-0"
+        className="VideoPlayer-video pointer-events-none top-0 z-0 mx-auto"
       />
-      <div className="VideoPlayer-timelineContainer relative bottom-24 left-0 right-0 mx-auto w-[1920px] bg-light bg-opacity-50 z-10 py-2">
-        {timeline.value === "timeline1" && (
-          <div className="VideoPlayer-timeline1 flex flex-col justify-end">
-            <Slider
-              min={0}
-              max={videoState.duration}
-              value={videoState.played * videoState.duration}
-              onChange={seekHandler}
-              onChangeCommitted={seekMouseUpHandler}
-              className="!text-primary"
-            />
-            <div className="flex justify-between">
-              <div>
-                {convertSecondsToTime(videoState.played * videoState.duration)}
-              </div>
-              <div>{convertSecondsToTime(videoState.duration)}</div>
-            </div>
-          </div>
-        )}
-
+      <div className="VideoPlayer-timelineContainer absolute bottom-0 left-0 right-0 mx-auto w-[1920px] bg-dark bg-opacity-50 py-2 text-primary">
         {timeline.value === "timeline2" && (
-          <div className="VideoPlayer-timeline2 flex h-full flex-col">
-            <PlotFigure
-              options={{
-                width: 1920,
-                height: 50,
-                grid: true,
-                axis: null,
-                marks: [
-                  Plot.lineY(
-                    videoEvents,
-                    Plot.binX(
-                      { y: "count", filter: null },
-                      {
-                        thresholds: 1920 / 10,
-                        x: "currentEventStartFrameSeconds",
-                        curve: "step-after",
-                      },
-                    ),
-                  ),
-                ],
-              }}
-            />
-            <Slider
-              min={0}
-              max={videoState.duration}
-              value={videoState.played * videoState.duration}
-              onChange={seekHandler}
-              onChangeCommitted={seekMouseUpHandler}
-              className="!text-primary"
-            />
-            <div className="flex justify-between">
-              <div>
-                {convertSecondsToTime(videoState.played * videoState.duration)}
-              </div>
-              <div>{convertSecondsToTime(videoState.duration)}</div>
-            </div>
-          </div>
+          <PlotFigure
+            options={{
+              width: 1920,
+              height: 50,
+              grid: true,
+              axis: null,
+              marks: [
+                Plot.lineY(densityFunctionHandler(), {
+                  curve: "step-after",
+                }),
+              ],
+            }}
+          />
         )}
-
         {timeline.value === "timeline4" && (
-          <div className="VideoPlayer-timeline4">
-            <PlotFigure
-              options={{
-                width: 1920,
-                height: 100,
-                marks: [
-                  Plot.dot(videoEvents, {
-                    x: "currentEventStartFrameSeconds",
-                    y: "currentEventDisplacer",
-                    stroke: "currentEventName",
-                    channels: { eventName: "currentEventName" },
-                    tip: true,
-                  }),
-                ],
-              }}
-            />
-          </div>
+          <PlotFigure
+            options={{
+              width: 1920,
+              height: 100,
+              marks: [
+                Plot.dot(videoEvents, {
+                  x: "currentEventStartFrameSeconds",
+                  y: "currentEventDisplacer",
+                  stroke: "currentEventName",
+                  channels: { eventName: "currentEventName" },
+                  tip: true,
+                }),
+              ],
+            }}
+          />
         )}
         {timeline.value === "timeline5" && (
-          <div className="VideoPlayer-timeline5">
-            <div className="mx-auto mb-4 flex items-center justify-between">
-              <Listbox
-                value={selectedEventType}
-                onChange={currentEventTypeHandler}>
-                <div className="VideoPlayer-selector relative mx-auto w-[480px]">
-                  <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
-                    <span className="block truncate">
-                      {selectedEventType.label}
-                    </span>
-                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                      <FaChevronDown
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </Listbox.Button>
-                  <Transition
-                    as={Fragment}
-                    leave="transition ease-in duration-100"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0">
-                    <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                      {eventTypes.map((eventType) => (
-                        <Listbox.Option
-                          key={eventType.label}
-                          className={({ active }) =>
-                            `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                              active ? "bg-primary text-white" : "text-gray-900"
-                            }`
-                          }
-                          value={eventType}>
-                          {({ selectedEventType }) => (
-                            <>
-                              <span
-                                className={`block truncate ${
-                                  selectedEventType
-                                    ? "font-medium"
-                                    : "font-normal"
-                                }`}>
-                                {eventType.label}
+          <div className="mx-auto mb-4 flex flex-col items-center justify-between">
+            <Listbox
+              value={selectedEventType}
+              onChange={currentEventTypeHandler}>
+              <div className="VideoPlayer-selector relative mx-auto w-[480px]">
+                <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
+                  <span className="block truncate">
+                    {selectedEventType.label}
+                  </span>
+                  <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                    <FaChevronDown
+                      className="h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </Listbox.Button>
+                <Transition
+                  as={Fragment}
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0">
+                  <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                    {eventTypes.map((eventType) => (
+                      <Listbox.Option
+                        key={eventType.label}
+                        className={({ active }) =>
+                          `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                            active ? "bg-primary text-white" : "text-gray-900"
+                          }`
+                        }
+                        value={eventType}>
+                        {({ selectedEventType }) => (
+                          <>
+                            <span
+                              className={`block truncate ${
+                                selectedEventType
+                                  ? "font-medium"
+                                  : "font-normal"
+                              }`}>
+                              {eventType.label}
+                            </span>
+                            {selectedEventType ? (
+                              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                                <FaCheck
+                                  className="h-5 w-5"
+                                  aria-hidden="true"
+                                />
                               </span>
-                              {selectedEventType ? (
-                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                                  <FaCheck
-                                    className="h-5 w-5"
-                                    aria-hidden="true"
-                                  />
-                                </span>
-                              ) : null}
-                            </>
-                          )}
-                        </Listbox.Option>
-                      ))}
-                    </Listbox.Options>
-                  </Transition>
-                </div>
-              </Listbox>
-            </div>
-            <div className="VideoPlayer-timeline5 flex gap-1 overflow-x-scroll">
+                            ) : null}
+                          </>
+                        )}
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                </Transition>
+              </div>
+            </Listbox>
+            <div className="VideoPlayer-timeline5 flex w-full gap-1 overflow-x-scroll">
               {timelineFiveHandler()}
             </div>
           </div>
         )}
+        <Slider
+          min={0}
+          max={videoState.duration}
+          value={videoState.played * videoState.duration}
+          onChange={seekHandler}
+          onChangeCommitted={seekMouseUpHandler}
+          className="!text-primary"
+        />
+        <div className="flex justify-between p-2 text-xl font-semibold">
+          <div>
+            {convertSecondsToTime(videoState.played * videoState.duration)}
+          </div>
+          <div>{convertSecondsToTime(videoState.duration)}</div>
+        </div>
       </div>
     </div>
   );

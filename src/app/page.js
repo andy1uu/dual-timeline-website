@@ -8,7 +8,7 @@ export const metadata = {
 };
 const HomePage = () => {
   return (
-    <main className="Homepage flex min-h-screen w-full justify-center bg-light">
+    <main className="Homepage flex w-full justify-center bg-light">
       <VideoPlayer />
     </main>
   );
