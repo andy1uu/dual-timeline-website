@@ -15,6 +15,7 @@
     "@mui/material": "^5.15.11",
     "@observablehq/plot": "^0.6.13",
     "axios": "^1.6.7",
+    "d3": "^7.9.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
     "prettier": "^3.2.5",
