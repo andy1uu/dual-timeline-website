@@ -175,10 +175,7 @@ const VideoPlayer = () => {
     return filteredEvents;
   };
 
-  const timelineThreeSeekMouseUpHandler = (e, value) => {
-    const timelineThreeSliderValue = value;
-    setTimelineThreeValue(timelineThreeSliderValue);
-
+  useEffect(() => {
     const filteredEvents = timelineEventFilterer();
 
     //console.log(filteredEvents);
@@ -221,13 +218,21 @@ const VideoPlayer = () => {
     seekHandler(
       null,
       filteredEvents[filteredEventIndex].currentEventStartFrameSeconds +
-        ((totalDuration * (timelineThreeValue / 100)) - currentEventStart),
+        (totalDuration * (timelineThreeValue / 100) - currentEventStart),
     );
     seekMouseUpHandler(
       null,
       filteredEvents[filteredEventIndex].currentEventStartFrameSeconds +
-        ((totalDuration * (timelineThreeValue / 100)) - currentEventStart),
+        (totalDuration * (timelineThreeValue / 100) - currentEventStart),
     );
+  }, [timelineThreeValue]);
+
+  const timelineThreeSeekHandler = (e, value) => {
+    setTimelineThreeValue(value);
+  };
+
+  const timelineThreeSeekMouseUpHandler = (e, value) => {
+    setTimelineThreeValue(value);
   };
 
   const timelineThreeHandler = () => {
@@ -235,6 +240,38 @@ const VideoPlayer = () => {
       return;
     } else {
       const filteredEvents = timelineEventFilterer();
+
+      const filteredEventsType =
+        filteredEvents[0].currentEventName.split(":")[0];
+
+      console.log(filteredEventsType);
+
+      let eventColor = "";
+      if (filteredEventsType === "1") {
+        eventColor = "red-500";
+      } else if (filteredEventsType === "2") {
+        eventColor = "orange-500";
+      } else if (filteredEventsType === "3") {
+        eventColor = "yellow-500";
+      } else if (filteredEventsType === "4") {
+        eventColor = "amber-500";
+      } else if (filteredEventsType === "5") {
+        eventColor = "emerald-500";
+      } else if (filteredEventsType === "6") {
+        eventColor = "teal-500";
+      } else if (filteredEventsType === "7") {
+        eventColor = "blue-500";
+      } else if (filteredEventsType === "8") {
+        eventColor = "indigo-500";
+      } else if (filteredEventsType === "9") {
+        eventColor = "violet-500";
+      } else if (filteredEventsType === "10") {
+        eventColor = "purple-500";
+      } else if (filteredEventsType === "11") {
+        eventColor = "pink-500";
+      } else if (filteredEventsType === "12") {
+        eventColor = "rose-500";
+      }
 
       let totalDuration = 0;
 
@@ -254,15 +291,15 @@ const VideoPlayer = () => {
         };
       }
       return (
-        <>
-          <div className="flex w-[1920px] justify-between">
+        <div className="relative">
+          <div className="absolute flex w-[1920px] justify-between">
             {filteredEvents.map((filteredEvent) => {
               return (
                 <div
                   style={{
                     width: `${Math.trunc((filteredEvent.currentEventDurationSeconds / totalDuration) * 1920)}px`,
                   }}
-                  className="h-4 rounded-lg bg-primary"></div>
+                  className={`h-8 rounded-lg opacity-75 bg-${eventColor}`}></div>
               );
             })}
           </div>
@@ -270,60 +307,15 @@ const VideoPlayer = () => {
             min={0}
             max={100}
             value={timelineThreeValue}
+            step={2}
+            marks={true}
+            onChange={timelineThreeSeekHandler}
             onChangeCommitted={timelineThreeSeekMouseUpHandler}
-            className="!text-primary"
+            className={`!text-white`}
           />
-        </>
+        </div>
       );
     }
-  };
-
-  const timelineFiveHandler = () => {
-    const filteredEvents = timelineEventFilterer();
-
-    return filteredEvents.map((event) => {
-      let eventColor = "";
-      if (event.currentEventName.slice(0, 2) === "1:") {
-        eventColor = "bg-red-500";
-      } else if (event.currentEventName.slice(0, 2) === "2:") {
-        eventColor = "bg-orange-500";
-      } else if (event.currentEventName.slice(0, 2) === "3:") {
-        eventColor = "bg-yellow-500";
-      } else if (event.currentEventName.slice(0, 2) === "4:") {
-        eventColor = "bg-amber-500";
-      } else if (event.currentEventName.slice(0, 2) === "5:") {
-        eventColor = "bg-emerald-500";
-      } else if (event.currentEventName.slice(0, 2) === "6:") {
-        eventColor = "bg-teal-500";
-      } else if (event.currentEventName.slice(0, 2) === "7:") {
-        eventColor = "bg-blue-500";
-      } else if (event.currentEventName.slice(0, 2) === "8:") {
-        eventColor = "bg-indigo-500";
-      } else if (event.currentEventName.slice(0, 2) === "9:") {
-        eventColor = "bg-violet-500";
-      } else if (event.currentEventName.slice(0, 3) === "10:") {
-        eventColor = "bg-purple-500";
-      } else if (event.currentEventName.slice(0, 3) === "11:") {
-        eventColor = "bg-pink-500";
-      } else if (event.currentEventName.slice(0, 3) === "12:") {
-        eventColor = "bg-rose-500";
-      }
-
-      return (
-        <button
-          key={Math.random() * 10000}
-          onClick={() =>
-            seekMouseUpHandler(null, event.currentEventStartFrameSeconds)
-          }
-          className={`flex-none rounded-3xl p-4 ${eventColor}`}>
-          <div>{event.currentEventName}</div>
-          <div>
-            Start Time:
-            {convertSecondsToTime(event.currentEventStartFrameSeconds)}
-          </div>
-        </button>
-      );
-    });
   };
 
   const currentEventTypeHandler = (eventType) => {
@@ -341,7 +333,9 @@ const VideoPlayer = () => {
       eventTypes.add(videoEvents[videoEventIndex].currentEventName);
     }
 
-    const eventTypesArray = Array.from(eventTypes);
+    const eventTypesArray = Array.from(eventTypes).sort(
+      (a, b) => a.split(":")[0] - b.split(":")[0],
+    );
 
     const eventTypeLabels = [];
 
@@ -369,9 +363,10 @@ const VideoPlayer = () => {
         onProgress={progressHandler}
         className="VideoPlayer-video pointer-events-none top-0 z-0 mx-auto"
       />
-      <div className="VideoPlayer-timelineContainer relative mx-auto w-[1920px] bg-dark pt-[80px] text-primary">
-        {(timeline.value === "timeline2" || timeline.value === "timeline3") && (
-          <div className="absolute bottom-[72px]">
+      <div
+        className={`VideoPlayer-timelineContainer relative mx-auto w-[1920px] bg-dark text-primary ${timeline.value === "timeline2" || timeline.value === "timeline4" ? "pt-20" : ""}`}>
+        {(timeline.value === "timeline2" || timeline.value === "timeline4") && (
+          <div className="absolute top-4">
             <PlotFigure
               options={{
                 width: 1920,
@@ -387,35 +382,17 @@ const VideoPlayer = () => {
             />
           </div>
         )}
-        {timeline.value === "timeline3" && timelineThreeHandler()}
-        {timeline.value === "timeline4" && (
-          <PlotFigure
-            options={{
-              width: 1920,
-              height: 100,
-              grid: true,
-              axis: null,
-              marks: [
-                Plot.dot(videoEvents, {
-                  x: "currentEventStartFrameSeconds",
-                  y: "currentEventDisplacer",
-                  stroke: "currentEventName",
-                  channels: { eventName: "currentEventName" },
-                  tip: true,
-                }),
-              ],
-            }}
-          />
-        )}
-        {timeline.value === "timeline5" && timelineFiveHandler()}
         <Slider
           min={0}
           max={videoState.duration}
           value={videoState.played * videoState.duration}
+          
           onChange={seekHandler}
           onChangeCommitted={seekMouseUpHandler}
           className="!text-primary"
         />
+        {(timeline.value === "timeline3" || timeline.value === "timeline4") &&
+          timelineThreeHandler()}
         <div className="flex justify-between p-2 text-xl font-semibold">
           <div>
             {convertSecondsToTime(videoState.played * videoState.duration)}
@@ -540,9 +517,7 @@ const VideoPlayer = () => {
                 </Transition>
               </div>
             </Listbox>
-            {(timeline.value === "timeline2" ||
-              timeline.value === "timeline3" ||
-              timeline.value === "timeline5") && (
+            {(timeline.value !== "timeline1") && (
               <Listbox
                 value={selectedEventType}
                 onChange={currentEventTypeHandler}>

@@ -20,6 +20,7 @@ export const timelineTypes = [
   { key: "timeline3", label: "Timeline 3", value: "timeline3" },
   { key: "timeline4", label: "Timeline 4", value: "timeline4" },
   { key: "timeline5", label: "Timeline 5", value: "timeline5" },
+  { key: "timeline6", label: "Timeline 6", value: "timeline6" },
 ];
 
 export const videos = [
