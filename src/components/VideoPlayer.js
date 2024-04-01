@@ -248,29 +248,29 @@ const VideoPlayer = () => {
 
       let eventColor = "";
       if (filteredEventsType === "1") {
-        eventColor = "red-500";
+        eventColor = "bg-red-500";
       } else if (filteredEventsType === "2") {
-        eventColor = "orange-500";
+        eventColor = "bg-orange-500";
       } else if (filteredEventsType === "3") {
-        eventColor = "yellow-500";
+        eventColor = "bg-yellow-500";
       } else if (filteredEventsType === "4") {
-        eventColor = "amber-500";
+        eventColor = "bg-amber-500";
       } else if (filteredEventsType === "5") {
-        eventColor = "emerald-500";
+        eventColor = "bg-emerald-500";
       } else if (filteredEventsType === "6") {
-        eventColor = "teal-500";
+        eventColor = "bg-teal-500";
       } else if (filteredEventsType === "7") {
-        eventColor = "blue-500";
+        eventColor = "bg-blue-500";
       } else if (filteredEventsType === "8") {
-        eventColor = "indigo-500";
+        eventColor = "bg-indigo-500";
       } else if (filteredEventsType === "9") {
-        eventColor = "violet-500";
+        eventColor = "bg-violet-500";
       } else if (filteredEventsType === "10") {
-        eventColor = "purple-500";
+        eventColor = "bg-purple-500";
       } else if (filteredEventsType === "11") {
-        eventColor = "pink-500";
+        eventColor = "bg-pink-500";
       } else if (filteredEventsType === "12") {
-        eventColor = "rose-500";
+        eventColor = "bg-rose-500";
       }
 
       let totalDuration = 0;
@@ -299,7 +299,7 @@ const VideoPlayer = () => {
                   style={{
                     width: `${Math.trunc((filteredEvent.currentEventDurationSeconds / totalDuration) * 1920)}px`,
                   }}
-                  className={`h-8 rounded-lg opacity-75 bg-${eventColor}`}>Event</div>
+                  className={`h-8 rounded-lg opacity-75 ${eventColor}`}></div>
               );
             })}
           </div>
