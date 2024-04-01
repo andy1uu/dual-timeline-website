@@ -299,7 +299,7 @@ const VideoPlayer = () => {
                   style={{
                     width: `${Math.trunc((filteredEvent.currentEventDurationSeconds / totalDuration) * 1920)}px`,
                   }}
-                  className={`h-8 rounded-lg opacity-75 bg-${eventColor}`}></div>
+                  className={`h-8 rounded-lg opacity-75 bg-${eventColor}`}>Event</div>
               );
             })}
           </div>
