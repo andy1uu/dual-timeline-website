@@ -114,6 +114,11 @@ const VideoPlayer = () => {
           parseFloat(b.currentEventStartFrameSeconds),
       ),
     );
+    setTimeline({
+      key: "timeline1",
+      label: "Timeline 1",
+      value: "timeline1",
+    });
   };
 
   const densityFunctionHandler = () => {
@@ -176,55 +181,58 @@ const VideoPlayer = () => {
   };
 
   useEffect(() => {
-    const filteredEvents = timelineEventFilterer();
+    if (timeline.value === "timeline3" || timeline.value === "timeline4") {
+      const filteredEvents = timelineEventFilterer();
 
-    //console.log(filteredEvents);
+      //console.log(filteredEvents);
 
-    let totalDuration = 0;
+      let totalDuration = 0;
 
-    for (
-      let filteredEventIndex = 0;
-      filteredEventIndex < filteredEvents.length;
-      filteredEventIndex++
-    ) {
-      totalDuration +=
-        filteredEvents[filteredEventIndex].currentEventEndFrameSeconds -
-        filteredEvents[filteredEventIndex].currentEventStartFrameSeconds;
+      for (
+        let filteredEventIndex = 0;
+        filteredEventIndex < filteredEvents.length;
+        filteredEventIndex++
+      ) {
+        totalDuration +=
+          filteredEvents[filteredEventIndex].currentEventEndFrameSeconds -
+          filteredEvents[filteredEventIndex].currentEventStartFrameSeconds;
+      }
+
+      let currentEventStart = totalDuration;
+      let filteredEventIndex = filteredEvents.length - 1;
+
+      while (filteredEventIndex > 0) {
+        currentEventStart -=
+          filteredEvents[filteredEventIndex].currentEventEndFrameSeconds -
+          filteredEvents[filteredEventIndex].currentEventStartFrameSeconds;
+        if (currentEventStart < totalDuration * (timelineThreeValue / 100))
+          break;
+        filteredEventIndex--;
+      }
+
+      console.log("Filtered Events Length: " + filteredEvents.length);
+      console.log("Filtered Event Index: " + filteredEventIndex);
+      console.log(
+        "Current Event Start Time: " +
+          filteredEvents[filteredEventIndex].currentEventStartFrameSeconds,
+      );
+      console.log(
+        "totalDuration * (timelineThreeValue / 100): " +
+          totalDuration * (timelineThreeValue / 100),
+      );
+      console.log("Current Event Current Time: " + currentEventStart);
+
+      seekHandler(
+        null,
+        filteredEvents[filteredEventIndex].currentEventStartFrameSeconds +
+          (totalDuration * (timelineThreeValue / 100) - currentEventStart),
+      );
+      seekMouseUpHandler(
+        null,
+        filteredEvents[filteredEventIndex].currentEventStartFrameSeconds +
+          (totalDuration * (timelineThreeValue / 100) - currentEventStart),
+      );
     }
-
-    let currentEventStart = totalDuration;
-    let filteredEventIndex = filteredEvents.length - 1;
-
-    while (filteredEventIndex > 0) {
-      currentEventStart -=
-        filteredEvents[filteredEventIndex].currentEventEndFrameSeconds -
-        filteredEvents[filteredEventIndex].currentEventStartFrameSeconds;
-      if (currentEventStart < totalDuration * (timelineThreeValue / 100)) break;
-      filteredEventIndex--;
-    }
-
-    console.log("Filtered Events Length: " + filteredEvents.length);
-    console.log("Filtered Event Index: " + filteredEventIndex);
-    console.log(
-      "Current Event Start Time: " +
-        filteredEvents[filteredEventIndex].currentEventStartFrameSeconds,
-    );
-    console.log(
-      "totalDuration * (timelineThreeValue / 100): " +
-        totalDuration * (timelineThreeValue / 100),
-    );
-    console.log("Current Event Current Time: " + currentEventStart);
-
-    seekHandler(
-      null,
-      filteredEvents[filteredEventIndex].currentEventStartFrameSeconds +
-        (totalDuration * (timelineThreeValue / 100) - currentEventStart),
-    );
-    seekMouseUpHandler(
-      null,
-      filteredEvents[filteredEventIndex].currentEventStartFrameSeconds +
-        (totalDuration * (timelineThreeValue / 100) - currentEventStart),
-    );
   }, [timelineThreeValue]);
 
   const timelineThreeSeekHandler = (e, value) => {
@@ -386,7 +394,6 @@ const VideoPlayer = () => {
           min={0}
           max={videoState.duration}
           value={videoState.played * videoState.duration}
-          
           onChange={seekHandler}
           onChangeCommitted={seekMouseUpHandler}
           className="!text-primary"
@@ -517,7 +524,7 @@ const VideoPlayer = () => {
                 </Transition>
               </div>
             </Listbox>
-            {(timeline.value !== "timeline1") && (
+            {timeline.value !== "timeline1" && (
               <Listbox
                 value={selectedEventType}
                 onChange={currentEventTypeHandler}>
