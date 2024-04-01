@@ -39,9 +39,9 @@ const VideoPlayer = () => {
     label: "0: All Events",
   });
   const [timeline, setTimeline] = useState({
-    key: "timeline3",
-    label: "Timeline 3",
-    value: "timeline3",
+    key: "timeline1",
+    label: "Timeline 1",
+    value: "timeline1",
   });
 
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
