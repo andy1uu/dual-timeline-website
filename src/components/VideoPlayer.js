@@ -125,7 +125,7 @@ const VideoPlayer = () => {
     const eventsPerSecond = [];
 
     // Create the buckets
-    for (let sec = 0; sec < Math.trunc(selectedVideo.duration); sec++) {
+    for (let sec = 0; sec < Math.ceil(selectedVideo.duration); sec++) {
       eventsPerSecond[sec] = 0;
     }
 
@@ -141,7 +141,7 @@ const VideoPlayer = () => {
       let eventStartTime = Math.trunc(
         filteredEvents[videoEventIndex].currentEventStartFrameSeconds,
       );
-      let eventEndTime = Math.trunc(
+      let eventEndTime = Math.ceil(
         filteredEvents[videoEventIndex].currentEventEndFrameSeconds,
       );
       for (
@@ -315,8 +315,6 @@ const VideoPlayer = () => {
             min={0}
             max={100}
             value={timelineThreeValue}
-            step={2}
-            marks={true}
             onChange={timelineThreeSeekHandler}
             onChangeCommitted={timelineThreeSeekMouseUpHandler}
             className={`!text-white`}
