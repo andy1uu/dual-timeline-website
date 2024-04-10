@@ -39,14 +39,19 @@ const VideoPlayer = () => {
     label: "0: All Events",
   });
   const [timeline, setTimeline] = useState({
-    key: "timeline1",
-    label: "Timeline 1",
-    value: "timeline1",
+    key: "timeline4",
+    label: "Timeline 4",
+    value: "timeline4",
   });
 
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
 
+  const [highlightGraph, setHighlightGraph] = useState(false);
+  const [highlightGraphBlock, setHighlightGraphBlock] = useState({});
+
   const videoPlayerRef = useRef(null);
+
+  const timelineThreeMax = 1000;
 
   const convertSecondsToTime = (sec) => {
     const dateObj = new Date(sec * 1000);
@@ -54,8 +59,7 @@ const VideoPlayer = () => {
     const minutes = dateObj.getUTCMinutes();
     const seconds = dateObj.getSeconds();
     const timeString =
-      hours.toString().padStart(2, "0") +
-      ":" +
+      (hours != 0 ? hours.toString().padStart(2, "0") + ":" : "") +
       minutes.toString().padStart(2, "0") +
       ":" +
       seconds.toString().padStart(2, "0");
@@ -77,7 +81,34 @@ const VideoPlayer = () => {
   };
 
   const seekHandler = (e, value) => {
-    console.log(value);
+    if (timeline.value === "timeline3" || timeline.value === "timeline4") {
+      const eventBlocks = eventBlocksHandler();
+
+      let currentEventBlocks = eventBlocks.filter((eventBlock) => {
+        return eventBlock.eventBlockEndSeconds <= value;
+      });
+
+      if (currentEventBlocks.length === eventBlocks.length) {
+        setTimelineThreeValue(timelineThreeMax);
+      } else {
+        const totalDuration = timelineThreeTotalDurationHandler();
+        let currentDuration = 0;
+
+        for (
+          let filteredEventBlockIndex = 0;
+          filteredEventBlockIndex < currentEventBlocks.length;
+          filteredEventBlockIndex++
+        ) {
+          currentDuration +=
+            eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
+        }
+
+        setTimelineThreeValue(
+          timelineThreeMax * (currentDuration / totalDuration),
+        );
+      }
+    }
+
     setVideoState({
       ...videoState,
       played: parseFloat(value) / videoState.duration,
@@ -119,15 +150,32 @@ const VideoPlayer = () => {
       label: "Timeline 1",
       value: "timeline1",
     });
+    setSelectedEventType({
+      label: "0: All Events",
+    });
+  };
+
+  const timelineEventFilterer = () => {
+    const filteredEvents =
+      selectedEventType.label.slice(0, 2) !== "0:"
+        ? videoEvents.filter(({ currentEventName }) => {
+            return (
+              currentEventName.slice(0, 2) ===
+              selectedEventType.label.slice(0, 2)
+            );
+          })
+        : videoEvents.sort(
+            (a, b) =>
+              parseFloat(a.currentEventStartFrameSeconds) -
+              parseFloat(b.currentEventStartFrameSeconds),
+          );
+    return filteredEvents;
   };
 
   const densityFunctionHandler = () => {
-    const eventsPerSecond = [];
-
-    // Create the buckets
-    for (let sec = 0; sec < Math.ceil(selectedVideo.duration); sec++) {
-      eventsPerSecond[sec] = 0;
-    }
+    const eventsPerSecond = new Array(Math.ceil(selectedVideo.duration)).fill(
+      0,
+    );
 
     // Get the filtered events
     const filteredEvents = timelineEventFilterer();
@@ -138,7 +186,7 @@ const VideoPlayer = () => {
       videoEventIndex < filteredEvents.length;
       videoEventIndex++
     ) {
-      let eventStartTime = Math.trunc(
+      let eventStartTime = Math.floor(
         filteredEvents[videoEventIndex].currentEventStartFrameSeconds,
       );
       let eventEndTime = Math.ceil(
@@ -163,157 +211,383 @@ const VideoPlayer = () => {
     return eventsPerSecond;
   };
 
-  const timelineEventFilterer = () => {
-    const filteredEvents =
-      selectedEventType.label.slice(0, 2) !== "0:"
-        ? videoEvents.filter(({ currentEventName }) => {
+  const highlightDensityFunctionHandler = () => {
+    const highlightedDensityFunctionValues = new Array(
+      Math.ceil(selectedVideo.duration),
+    ).fill(0);
+
+    if (highlightGraphBlock) {
+      for (
+        let indexToHighlight = highlightGraphBlock.eventBlockStartSeconds;
+        indexToHighlight < highlightGraphBlock.eventBlockEndSeconds;
+        indexToHighlight++
+      ) {
+        highlightedDensityFunctionValues[indexToHighlight] =
+          highlightGraphBlock.eventBlockDensityValues[
+            indexToHighlight - highlightGraphBlock.eventBlockStartSeconds
+          ];
+      }
+    }
+
+    return highlightedDensityFunctionValues;
+  };
+
+  const eventBlocksHandler = () => {
+    const filteredEvents = timelineEventFilterer();
+    const densityFunctionValues = densityFunctionHandler();
+
+    const eventBlocks = [];
+    let startSecondIndex = null;
+    let eventBlockIndex = 0;
+
+    for (
+      let secondIndex = 0;
+      secondIndex < densityFunctionValues.length;
+      secondIndex++
+    ) {
+      if (densityFunctionValues[secondIndex] !== 0) {
+        if (startSecondIndex === null) {
+          startSecondIndex = secondIndex;
+        }
+      } else {
+        if (startSecondIndex !== null) {
+          eventBlocks.push({
+            eventBlockIndex: eventBlockIndex,
+            eventBlockStartSeconds: startSecondIndex,
+            eventBlockEndSeconds: secondIndex - 1,
+            eventBlockDurationSeconds: secondIndex - 1 - startSecondIndex,
+            eventBlockEventType: selectedEventType.label,
+            eventBlockDensityValues: densityFunctionValues.slice(
+              startSecondIndex,
+              secondIndex - 1,
+            ),
+            eventBlockEvents: filteredEvents
+              .filter((filteredEvent) => {
+                return (
+                  startSecondIndex - 1 <
+                    Math.ceil(filteredEvent.currentEventStartFrameSeconds) &&
+                  secondIndex >=
+                    Math.floor(filteredEvent.currentEventEndFrameSeconds)
+                );
+              })
+              .sort(
+                (a, b) =>
+                  parseFloat(a.currentEventStartFrameSeconds) -
+                  parseFloat(b.currentEventStartFrameSeconds),
+              ),
+          });
+          startSecondIndex = null;
+          eventBlockIndex++;
+        }
+      }
+    }
+
+    // Handle the case where the last section is non-zero
+    if (startSecondIndex !== null) {
+      eventBlocks.push({
+        eventBlockIndex: eventBlockIndex,
+        eventBlockStartSeconds: startSecondIndex,
+        eventBlockEndSeconds: densityFunctionValues.length - 1,
+        eventBlockDurationSeconds:
+          densityFunctionValues.length - 1 - startSecondIndex,
+        eventBlockEventType: selectedEventType.label,
+        eventBlockDensityValues: densityFunctionValues.slice(
+          startSecondIndex,
+          densityFunctionValues.length - 1,
+        ),
+        eventBlockEvents: filteredEvents
+          .filter((filteredEvent) => {
             return (
-              currentEventName.slice(0, 2) ===
-              selectedEventType.label.slice(0, 2)
+              startSecondIndex - 1 <
+                Math.ceil(filteredEvent.currentEventStartFrameSeconds) &&
+              densityFunctionValues.length >=
+                Math.floor(filteredEvent.currentEventEndFrameSeconds)
             );
           })
-        : videoEvents.sort(
+          .sort(
             (a, b) =>
               parseFloat(a.currentEventStartFrameSeconds) -
               parseFloat(b.currentEventStartFrameSeconds),
-          );
-    return filteredEvents;
+          ),
+      });
+    }
+    //console.log(eventBlocks);
+    return eventBlocks;
   };
 
-  useEffect(() => {
-    if (timeline.value === "timeline3" || timeline.value === "timeline4") {
-      const filteredEvents = timelineEventFilterer();
+  const timelineThreeTotalDurationHandler = () => {
+    const eventBlocks = eventBlocksHandler();
 
-      //console.log(filteredEvents);
+    let totalDuration = 0;
 
-      let totalDuration = 0;
-
-      for (
-        let filteredEventIndex = 0;
-        filteredEventIndex < filteredEvents.length;
-        filteredEventIndex++
-      ) {
-        totalDuration +=
-          filteredEvents[filteredEventIndex].currentEventEndFrameSeconds -
-          filteredEvents[filteredEventIndex].currentEventStartFrameSeconds;
-      }
-
-      let currentEventStart = totalDuration;
-      let filteredEventIndex = filteredEvents.length - 1;
-
-      while (filteredEventIndex > 0) {
-        currentEventStart -=
-          filteredEvents[filteredEventIndex].currentEventEndFrameSeconds -
-          filteredEvents[filteredEventIndex].currentEventStartFrameSeconds;
-        if (currentEventStart < totalDuration * (timelineThreeValue / 100))
-          break;
-        filteredEventIndex--;
-      }
-
-      console.log("Filtered Events Length: " + filteredEvents.length);
-      console.log("Filtered Event Index: " + filteredEventIndex);
-      console.log(
-        "Current Event Start Time: " +
-          filteredEvents[filteredEventIndex].currentEventStartFrameSeconds,
-      );
-      console.log(
-        "totalDuration * (timelineThreeValue / 100): " +
-          totalDuration * (timelineThreeValue / 100),
-      );
-      console.log("Current Event Current Time: " + currentEventStart);
-
-      seekHandler(
-        null,
-        filteredEvents[filteredEventIndex].currentEventStartFrameSeconds +
-          (totalDuration * (timelineThreeValue / 100) - currentEventStart),
-      );
-      seekMouseUpHandler(
-        null,
-        filteredEvents[filteredEventIndex].currentEventStartFrameSeconds +
-          (totalDuration * (timelineThreeValue / 100) - currentEventStart),
-      );
+    for (
+      let filteredEventBlockIndex = 0;
+      filteredEventBlockIndex < eventBlocks.length;
+      filteredEventBlockIndex++
+    ) {
+      totalDuration +=
+        eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
     }
-  }, [timelineThreeValue]);
+
+    return totalDuration;
+  };
 
   const timelineThreeSeekHandler = (e, value) => {
+    const eventBlocks = eventBlocksHandler();
+
+    const totalDuration = timelineThreeTotalDurationHandler();
+
+    let currentEventBlockStart = totalDuration;
+    let filteredEventBlockIndex = eventBlocks.length - 1;
+
+    while (filteredEventBlockIndex >= 0) {
+      currentEventBlockStart -=
+        eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
+      if (currentEventBlockStart < totalDuration * (value / timelineThreeMax))
+        break;
+      filteredEventBlockIndex--;
+    }
+
+    seekHandler(
+      null,
+      eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds +
+        (totalDuration * (value / timelineThreeMax) - currentEventBlockStart),
+    );
+
     setTimelineThreeValue(value);
   };
 
   const timelineThreeSeekMouseUpHandler = (e, value) => {
     setTimelineThreeValue(value);
+
+    const eventBlocks = eventBlocksHandler();
+
+    const totalDuration = timelineThreeTotalDurationHandler();
+
+    let currentEventBlockStart = totalDuration;
+    let filteredEventBlockIndex = eventBlocks.length - 1;
+
+    while (filteredEventBlockIndex >= 0) {
+      currentEventBlockStart -=
+        eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
+      if (currentEventBlockStart < totalDuration * (value / timelineThreeMax))
+        break;
+      filteredEventBlockIndex--;
+    }
+
+    seekMouseUpHandler(
+      null,
+      eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds +
+        (totalDuration * (value / timelineThreeMax) - currentEventBlockStart),
+    );
   };
+
+  useEffect(() => {
+    if (timeline.value === "timeline3" || timeline.value === "timeline4") {
+      const eventBlocks = eventBlocksHandler();
+
+      let currentTime = videoState.played * videoState.duration;
+
+      // Check if current time is in a time block
+
+      let currentEventBlock = eventBlocks.find((eventBlock) => {
+        return (
+          eventBlock.eventBlockEndSeconds >= currentTime &&
+          eventBlock.eventBlockStartSeconds <= currentTime
+        );
+      });
+      if (currentEventBlock) {
+        const totalDuration = timelineThreeTotalDurationHandler();
+        let currentDuration = 0;
+
+        for (
+          let filteredEventBlockIndex = 0;
+          filteredEventBlockIndex < currentEventBlock.eventBlockIndex;
+          filteredEventBlockIndex++
+        ) {
+          currentDuration +=
+            eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
+        }
+
+        currentDuration +=
+          currentTime - currentEventBlock.eventBlockStartSeconds;
+
+        setTimelineThreeValue(
+          timelineThreeMax * (currentDuration / totalDuration),
+        );
+        return;
+      } else {
+        let currentEventBlocks = eventBlocks.filter((eventBlock) => {
+          return eventBlock.eventBlockEndSeconds <= currentTime;
+        });
+
+        if (currentEventBlocks.length === eventBlocks.length) {
+          setTimelineThreeValue(timelineThreeMax);
+        } else {
+          const totalDuration = timelineThreeTotalDurationHandler();
+          let currentDuration = 0;
+
+          for (
+            let filteredEventBlockIndex = 0;
+            filteredEventBlockIndex < currentEventBlocks.length;
+            filteredEventBlockIndex++
+          ) {
+            currentDuration +=
+              eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
+          }
+
+          setTimelineThreeValue(
+            timelineThreeMax * (currentDuration / totalDuration),
+          );
+        }
+      }
+    }
+  }, [videoState]);
 
   const timelineThreeHandler = () => {
     if (selectedEventType.label === "0: All Events") {
       return;
     } else {
-      const filteredEvents = timelineEventFilterer();
+      const eventBlocks = eventBlocksHandler();
 
-      const filteredEventsType =
-        filteredEvents[0].currentEventName.split(":")[0];
-
-      console.log(filteredEventsType);
+      const filteredEventBlockType =
+        eventBlocks[0].eventBlockEventType.split(":")[0];
 
       let eventColor = "";
-      if (filteredEventsType === "1") {
-        eventColor = "bg-red-500";
-      } else if (filteredEventsType === "2") {
-        eventColor = "bg-orange-500";
-      } else if (filteredEventsType === "3") {
-        eventColor = "bg-yellow-500";
-      } else if (filteredEventsType === "4") {
-        eventColor = "bg-amber-500";
-      } else if (filteredEventsType === "5") {
-        eventColor = "bg-emerald-500";
-      } else if (filteredEventsType === "6") {
-        eventColor = "bg-teal-500";
-      } else if (filteredEventsType === "7") {
-        eventColor = "bg-blue-500";
-      } else if (filteredEventsType === "8") {
-        eventColor = "bg-indigo-500";
-      } else if (filteredEventsType === "9") {
-        eventColor = "bg-violet-500";
-      } else if (filteredEventsType === "10") {
-        eventColor = "bg-purple-500";
-      } else if (filteredEventsType === "11") {
-        eventColor = "bg-pink-500";
-      } else if (filteredEventsType === "12") {
-        eventColor = "bg-rose-500";
+      if (filteredEventBlockType === "1") {
+        eventColor = "bg-red-200";
+      } else if (filteredEventBlockType === "2") {
+        eventColor = "bg-orange-200";
+      } else if (filteredEventBlockType === "3") {
+        eventColor = "bg-yellow-200";
+      } else if (filteredEventBlockType === "4") {
+        eventColor = "bg-amber-200";
+      } else if (filteredEventBlockType === "5") {
+        eventColor = "bg-emerald-200";
+      } else if (filteredEventBlockType === "6") {
+        eventColor = "bg-teal-200";
+      } else if (filteredEventBlockType === "7") {
+        eventColor = "bg-blue-200";
+      } else if (filteredEventBlockType === "8") {
+        eventColor = "bg-indigo-200";
+      } else if (filteredEventBlockType === "9") {
+        eventColor = "bg-violet-200";
+      } else if (filteredEventBlockType === "10") {
+        eventColor = "bg-purple-200";
+      } else if (filteredEventBlockType === "11") {
+        eventColor = "bg-pink-200";
+      } else if (filteredEventBlockType === "12") {
+        eventColor = "bg-rose-200";
+      } else {
+        eventColor = "bg-zinc-200";
       }
 
       let totalDuration = 0;
 
       for (
-        let filteredEventIndex = 0;
-        filteredEventIndex < filteredEvents.length;
-        filteredEventIndex++
+        let filteredEventBlockIndex = 0;
+        filteredEventBlockIndex < eventBlocks.length;
+        filteredEventBlockIndex++
       ) {
         totalDuration +=
-          filteredEvents[filteredEventIndex].currentEventEndFrameSeconds -
-          filteredEvents[filteredEventIndex].currentEventStartFrameSeconds;
-        filteredEvents[filteredEventIndex] = {
-          ...filteredEvents[filteredEventIndex],
-          currentEventDurationSeconds:
-            filteredEvents[filteredEventIndex].currentEventEndFrameSeconds -
-            filteredEvents[filteredEventIndex].currentEventStartFrameSeconds,
-        };
+          eventBlocks[filteredEventBlockIndex].eventBlockEndSeconds -
+          eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds;
       }
+
       return (
-        <div className="relative">
-          <div className="absolute flex w-[1920px] justify-between">
-            {filteredEvents.map((filteredEvent) => {
+        <div className="!text-black">
+          <div className=" flex w-[1920px] justify-between">
+            {eventBlocks.map((eventBlock) => {
               return (
                 <div
                   style={{
-                    width: `${Math.trunc((filteredEvent.currentEventDurationSeconds / totalDuration) * 1920)}px`,
+                    width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * 1920)}px`,
                   }}
-                  className={`h-8 rounded-lg opacity-75 ${eventColor}`}></div>
+                  onMouseEnter={() => {
+                    setHighlightGraph(true);
+                    setHighlightGraphBlock(eventBlock);
+                  }}
+                  onMouseLeave={() => {
+                    setHighlightGraph(false);
+                    setHighlightGraphBlock({});
+                  }}
+                  className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[2px] flex`}>
+                  <div className="absolute bottom-10 z-10 hidden w-fit flex-col rounded-md bg-white group-hover:flex">
+                    {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
+                      const filteredEventBlockType =
+                        eventBlockEvent.currentEventName.split(":")[0];
+
+                      let eventColor = "";
+                      if (filteredEventBlockType === "1") {
+                        eventColor = "bg-red-200";
+                      } else if (filteredEventBlockType === "2") {
+                        eventColor = "bg-orange-200";
+                      } else if (filteredEventBlockType === "3") {
+                        eventColor = "bg-yellow-200";
+                      } else if (filteredEventBlockType === "4") {
+                        eventColor = "bg-amber-200";
+                      } else if (filteredEventBlockType === "5") {
+                        eventColor = "bg-emerald-200";
+                      } else if (filteredEventBlockType === "6") {
+                        eventColor = "bg-teal-200";
+                      } else if (filteredEventBlockType === "7") {
+                        eventColor = "bg-blue-200";
+                      } else if (filteredEventBlockType === "8") {
+                        eventColor = "bg-indigo-200";
+                      } else if (filteredEventBlockType === "9") {
+                        eventColor = "bg-violet-200";
+                      } else if (filteredEventBlockType === "10") {
+                        eventColor = "bg-purple-200";
+                      } else if (filteredEventBlockType === "11") {
+                        eventColor = "bg-pink-200";
+                      } else if (filteredEventBlockType === "12") {
+                        eventColor = "bg-rose-200";
+                      } else {
+                        eventColor = "bg-zinc-200";
+                      }
+                      return (
+                        <div
+                          className={`${eventColor} mx-0.5 my-0.5 text-nowrap rounded-md p-1 first:mt-1 last:mb-1`}>
+                          {convertSecondsToTime(
+                            eventBlockEvent.currentEventStartFrameSeconds,
+                          )}
+                          -
+                          {convertSecondsToTime(
+                            eventBlockEvent.currentEventEndFrameSeconds,
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {
+                    <PlotFigure
+                      options={{
+                        width:
+                          Math.trunc(
+                            (eventBlock.eventBlockDurationSeconds /
+                              totalDuration) *
+                              1920,
+                          ) - 2,
+                        height: 64,
+                        grid: true,
+                        axis: null,
+                        y: { domain: [0, 5] },
+                        marks: [
+                          Plot.lineY(eventBlock.eventBlockDensityValues, {
+                            curve: "step-after",
+                          }),
+                          Plot.ruleY([0]),
+                        ],
+                      }}
+                    />
+                  }
+                </div>
               );
             })}
           </div>
           <Slider
             min={0}
-            max={100}
+            max={timelineThreeMax}
             value={timelineThreeValue}
             onChange={timelineThreeSeekHandler}
             onChangeCommitted={timelineThreeSeekMouseUpHandler}
@@ -379,8 +653,27 @@ const VideoPlayer = () => {
                 height: 80,
                 grid: true,
                 axis: null,
+                y: { domain: [0, 5] },
                 marks: [
                   Plot.lineY(densityFunctionHandler(), {
+                    curve: "step-after",
+                  }),
+                ],
+              }}
+            />
+          </div>
+        )}
+        {highlightGraph && (
+          <div className="absolute top-4 text-white">
+            <PlotFigure
+              options={{
+                width: 1920,
+                height: 80,
+                grid: true,
+                axis: null,
+                y: { domain: [0, 5] },
+                marks: [
+                  Plot.lineY(highlightDensityFunctionHandler(), {
                     curve: "step-after",
                   }),
                 ],

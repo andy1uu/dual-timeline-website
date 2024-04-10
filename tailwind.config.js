@@ -13,6 +13,7 @@ module.exports = {
         rubik: ["var(--font-rubik)", ...fontFamily.sans],
       },
       colors: { dark: "#1b1b1b", light: "#f5f5f5", primary: "#33b679" },
+      display: ["group-hover"],
     },
   },
   plugins: [],
