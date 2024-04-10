@@ -663,7 +663,7 @@ const VideoPlayer = () => {
             />
           </div>
         )}
-        {highlightGraph && (
+        {highlightGraph && timeline.value === "timeline4" && (
           <div className="absolute top-4 text-white">
             <PlotFigure
               options={{
