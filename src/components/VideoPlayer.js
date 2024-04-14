@@ -15,7 +15,8 @@ import {
 } from "react-icons/fa";
 import * as d3 from "d3";
 import PlotFigure from "./PlotFigure";
-import { videos, timelineTypes } from "./utils";
+import { videos } from "@/utils/videodata";
+import { timelineTypes } from "@/utils/TimelineTypes";
 
 const VideoPlayer = () => {
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);

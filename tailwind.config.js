@@ -12,7 +12,7 @@ module.exports = {
       fontFamily: {
         rubik: ["var(--font-rubik)", ...fontFamily.sans],
       },
-      colors: { dark: "#1b1b1b", light: "#f5f5f5", primary: "#33b679" },
+      colors: { dark: "#1b1b1b", light: "#f5f5f5", primary: "#861F41" },
       display: ["group-hover"],
     },
   },
