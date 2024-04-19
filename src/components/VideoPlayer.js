@@ -41,9 +41,9 @@ const VideoPlayer = () => {
     label: "0: All Events",
   });
   const [timeline, setTimeline] = useState({
-    key: "timeline1",
-    label: "Timeline 1",
-    value: "timeline1",
+    key: "timeline5",
+    label: "Timeline 5",
+    value: "timeline5",
   });
 
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
@@ -68,6 +68,20 @@ const VideoPlayer = () => {
       ":" +
       seconds.toString().padStart(2, "0");
     return timeString;
+  };
+
+  const heightConverter = (sizeToConvert, height) => {
+    if (height != 720) {
+      return (sizeToConvert / height) * 720;
+    }
+    return height;
+  };
+
+  const widthConverter = (sizeToConvert, width) => {
+    if (width != 1280) {
+      return (sizeToConvert / width) * 1280;
+    }
+    return width;
   };
 
   const playPauseHandler = () => {
@@ -315,7 +329,6 @@ const VideoPlayer = () => {
           ),
       });
     }
-    //console.log(eventBlocks);
     return eventBlocks;
   };
 
@@ -387,28 +400,28 @@ const VideoPlayer = () => {
   };
 
   useEffect(() => {
-    let currentTime = videoState.played * videoState.duration;
+    let currentFrame =
+      Math.trunc(videoPlayerRef.current.getCurrentTime() * 30) - 100;
 
     const filteredEvents = timelineEventFilterer();
 
     let currentEvents = filteredEvents.filter((currentEvent) => {
       return (
-        currentEvent.currentEventStartFrameSeconds <= currentTime &&
-        currentEvent.currentEventEndFrameSeconds >= currentTime
+        currentEvent.currentEventStartFrame <= currentFrame &&
+        currentEvent.currentEventEndFrame >= currentFrame
       );
     });
 
-    console.log("this is happening");
-    console.log(currentEvents);
-
-    setCurrVideoEventRects(currentEvents);
-  }, [videoEvents, videoState]);
+    setCurrVideoEventRects((prevState) => {
+      return currentEvents;
+    });
+  });
 
   useEffect(() => {
     if (timeline.value === "timeline3" || timeline.value === "timeline4") {
       const eventBlocks = eventBlocksHandler();
 
-      let currentTime = videoState.played * videoState.duration;
+      let currentTime = videoPlayerRef.current.getCurrentTime();
 
       // Check if current time is in a time block
 
@@ -467,157 +480,156 @@ const VideoPlayer = () => {
   }, [videoState]);
 
   const timelineThreeHandler = () => {
-    if (selectedEventType.label === "0: All Events") {
-      return;
+    // if (selectedEventType.label === "0: All Events") {
+    //   return;
+    // }
+    const eventBlocks = eventBlocksHandler();
+
+    const filteredEventBlockType =
+      eventBlocks[0].eventBlockEventType.split(":")[0];
+
+    let eventColor = "";
+    if (filteredEventBlockType === "1") {
+      eventColor = "bg-red-200";
+    } else if (filteredEventBlockType === "2") {
+      eventColor = "bg-orange-200";
+    } else if (filteredEventBlockType === "3") {
+      eventColor = "bg-yellow-200";
+    } else if (filteredEventBlockType === "4") {
+      eventColor = "bg-amber-200";
+    } else if (filteredEventBlockType === "5") {
+      eventColor = "bg-emerald-200";
+    } else if (filteredEventBlockType === "6") {
+      eventColor = "bg-teal-200";
+    } else if (filteredEventBlockType === "7") {
+      eventColor = "bg-blue-200";
+    } else if (filteredEventBlockType === "8") {
+      eventColor = "bg-indigo-200";
+    } else if (filteredEventBlockType === "9") {
+      eventColor = "bg-violet-200";
+    } else if (filteredEventBlockType === "10") {
+      eventColor = "bg-purple-200";
+    } else if (filteredEventBlockType === "11") {
+      eventColor = "bg-pink-200";
+    } else if (filteredEventBlockType === "12") {
+      eventColor = "bg-rose-200";
     } else {
-      const eventBlocks = eventBlocksHandler();
-
-      const filteredEventBlockType =
-        eventBlocks[0].eventBlockEventType.split(":")[0];
-
-      let eventColor = "";
-      if (filteredEventBlockType === "1") {
-        eventColor = "bg-red-200";
-      } else if (filteredEventBlockType === "2") {
-        eventColor = "bg-orange-200";
-      } else if (filteredEventBlockType === "3") {
-        eventColor = "bg-yellow-200";
-      } else if (filteredEventBlockType === "4") {
-        eventColor = "bg-amber-200";
-      } else if (filteredEventBlockType === "5") {
-        eventColor = "bg-emerald-200";
-      } else if (filteredEventBlockType === "6") {
-        eventColor = "bg-teal-200";
-      } else if (filteredEventBlockType === "7") {
-        eventColor = "bg-blue-200";
-      } else if (filteredEventBlockType === "8") {
-        eventColor = "bg-indigo-200";
-      } else if (filteredEventBlockType === "9") {
-        eventColor = "bg-violet-200";
-      } else if (filteredEventBlockType === "10") {
-        eventColor = "bg-purple-200";
-      } else if (filteredEventBlockType === "11") {
-        eventColor = "bg-pink-200";
-      } else if (filteredEventBlockType === "12") {
-        eventColor = "bg-rose-200";
-      } else {
-        eventColor = "bg-zinc-200";
-      }
-
-      let totalDuration = 0;
-
-      for (
-        let filteredEventBlockIndex = 0;
-        filteredEventBlockIndex < eventBlocks.length;
-        filteredEventBlockIndex++
-      ) {
-        totalDuration +=
-          eventBlocks[filteredEventBlockIndex].eventBlockEndSeconds -
-          eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds;
-      }
-
-      return (
-        <div className="!text-black">
-          <div className=" flex w-[1920px] justify-between">
-            {eventBlocks.map((eventBlock) => {
-              return (
-                <div
-                  style={{
-                    width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * 1920)}px`,
-                  }}
-                  onMouseEnter={() => {
-                    setHighlightGraph(true);
-                    setHighlightGraphBlock(eventBlock);
-                  }}
-                  onMouseLeave={() => {
-                    setHighlightGraph(false);
-                    setHighlightGraphBlock({});
-                  }}
-                  className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[2px] flex`}>
-                  <div className="absolute bottom-10 z-10 hidden w-fit flex-col rounded-md bg-white group-hover:flex">
-                    {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
-                      const filteredEventBlockType =
-                        eventBlockEvent.currentEventName.split(":")[0];
-
-                      let eventColor = "";
-                      if (filteredEventBlockType === "1") {
-                        eventColor = "bg-red-200";
-                      } else if (filteredEventBlockType === "2") {
-                        eventColor = "bg-orange-200";
-                      } else if (filteredEventBlockType === "3") {
-                        eventColor = "bg-yellow-200";
-                      } else if (filteredEventBlockType === "4") {
-                        eventColor = "bg-amber-200";
-                      } else if (filteredEventBlockType === "5") {
-                        eventColor = "bg-emerald-200";
-                      } else if (filteredEventBlockType === "6") {
-                        eventColor = "bg-teal-200";
-                      } else if (filteredEventBlockType === "7") {
-                        eventColor = "bg-blue-200";
-                      } else if (filteredEventBlockType === "8") {
-                        eventColor = "bg-indigo-200";
-                      } else if (filteredEventBlockType === "9") {
-                        eventColor = "bg-violet-200";
-                      } else if (filteredEventBlockType === "10") {
-                        eventColor = "bg-purple-200";
-                      } else if (filteredEventBlockType === "11") {
-                        eventColor = "bg-pink-200";
-                      } else if (filteredEventBlockType === "12") {
-                        eventColor = "bg-rose-200";
-                      } else {
-                        eventColor = "bg-zinc-200";
-                      }
-                      return (
-                        <div
-                          className={`${eventColor} mx-0.5 my-0.5 text-nowrap rounded-md p-1 first:mt-1 last:mb-1`}>
-                          {convertSecondsToTime(
-                            eventBlockEvent.currentEventStartFrameSeconds,
-                          )}
-                          -
-                          {convertSecondsToTime(
-                            eventBlockEvent.currentEventEndFrameSeconds,
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                  {
-                    <PlotFigure
-                      options={{
-                        width:
-                          Math.trunc(
-                            (eventBlock.eventBlockDurationSeconds /
-                              totalDuration) *
-                              1920,
-                          ) - 2,
-                        height: 64,
-                        grid: true,
-                        axis: null,
-                        y: { domain: [0, 5] },
-                        marks: [
-                          Plot.lineY(eventBlock.eventBlockDensityValues, {
-                            curve: "step-after",
-                          }),
-                          Plot.ruleY([0]),
-                        ],
-                      }}
-                    />
-                  }
-                </div>
-              );
-            })}
-          </div>
-          <Slider
-            min={0}
-            max={timelineThreeMax}
-            value={timelineThreeValue}
-            onChange={timelineThreeSeekHandler}
-            onChangeCommitted={timelineThreeSeekMouseUpHandler}
-            className={`!text-white`}
-          />
-        </div>
-      );
+      eventColor = "bg-zinc-200";
     }
+
+    let totalDuration = 0;
+
+    for (
+      let filteredEventBlockIndex = 0;
+      filteredEventBlockIndex < eventBlocks.length;
+      filteredEventBlockIndex++
+    ) {
+      totalDuration +=
+        eventBlocks[filteredEventBlockIndex].eventBlockEndSeconds -
+        eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds;
+    }
+
+    return (
+      <div className="!text-black">
+        <div className=" flex w-[1280px] justify-between">
+          {eventBlocks.map((eventBlock) => {
+            return (
+              <div
+                style={{
+                  width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * 1280)}px`,
+                }}
+                onMouseEnter={() => {
+                  setHighlightGraph(true);
+                  setHighlightGraphBlock(eventBlock);
+                }}
+                onMouseLeave={() => {
+                  setHighlightGraph(false);
+                  setHighlightGraphBlock({});
+                }}
+                className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[4px] flex`}>
+                <div className="absolute bottom-10 z-10 hidden w-fit flex-col rounded-md bg-white group-hover:flex">
+                  {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
+                    const filteredEventBlockType =
+                      eventBlockEvent.currentEventName.split(":")[0];
+
+                    let eventColor = "";
+                    if (filteredEventBlockType === "1") {
+                      eventColor = "bg-red-200";
+                    } else if (filteredEventBlockType === "2") {
+                      eventColor = "bg-orange-200";
+                    } else if (filteredEventBlockType === "3") {
+                      eventColor = "bg-yellow-200";
+                    } else if (filteredEventBlockType === "4") {
+                      eventColor = "bg-amber-200";
+                    } else if (filteredEventBlockType === "5") {
+                      eventColor = "bg-emerald-200";
+                    } else if (filteredEventBlockType === "6") {
+                      eventColor = "bg-teal-200";
+                    } else if (filteredEventBlockType === "7") {
+                      eventColor = "bg-blue-200";
+                    } else if (filteredEventBlockType === "8") {
+                      eventColor = "bg-indigo-200";
+                    } else if (filteredEventBlockType === "9") {
+                      eventColor = "bg-violet-200";
+                    } else if (filteredEventBlockType === "10") {
+                      eventColor = "bg-purple-200";
+                    } else if (filteredEventBlockType === "11") {
+                      eventColor = "bg-pink-200";
+                    } else if (filteredEventBlockType === "12") {
+                      eventColor = "bg-rose-200";
+                    } else {
+                      eventColor = "bg-zinc-200";
+                    }
+                    return (
+                      <div
+                        className={`${eventColor} mx-0.5 my-0.5 text-nowrap rounded-md p-1 first:mt-1 last:mb-1`}>
+                        {convertSecondsToTime(
+                          eventBlockEvent.currentEventStartFrameSeconds,
+                        )}
+                        -
+                        {convertSecondsToTime(
+                          eventBlockEvent.currentEventEndFrameSeconds,
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                {
+                  <PlotFigure
+                    options={{
+                      width:
+                        Math.trunc(
+                          (eventBlock.eventBlockDurationSeconds /
+                            totalDuration) *
+                            1280,
+                        ) - 2,
+                      height: 64,
+                      grid: true,
+                      axis: null,
+                      y: { domain: [0, 5] },
+                      marks: [
+                        Plot.lineY(eventBlock.eventBlockDensityValues, {
+                          curve: "step-after",
+                        }),
+                        Plot.ruleY([0]),
+                      ],
+                    }}
+                  />
+                }
+              </div>
+            );
+          })}
+        </div>
+        <Slider
+          min={0}
+          max={timelineThreeMax}
+          value={timelineThreeValue}
+          onChange={timelineThreeSeekHandler}
+          onChangeCommitted={timelineThreeSeekMouseUpHandler}
+          className={`!text-white`}
+        />
+      </div>
+    );
   };
 
   const currentEventTypeHandler = (eventType) => {
@@ -652,89 +664,97 @@ const VideoPlayer = () => {
     return eventTypeLabels;
   };
 
-  const timelineFiveHandler = () => {
-    const filteredEvents = timelineEventFilterer();
-
-    return filteredEvents.map((event) => {
-      const filteredEventType = event.currentEventName.split(":")[0];
-      let eventColor = "";
-      if (filteredEventType === "1") {
-        eventColor = "bg-red-200";
-      } else if (filteredEventType === "2") {
-        eventColor = "bg-orange-200";
-      } else if (filteredEventType === "3") {
-        eventColor = "bg-yellow-200";
-      } else if (filteredEventType === "4") {
-        eventColor = "bg-amber-200";
-      } else if (filteredEventType === "5") {
-        eventColor = "bg-emerald-200";
-      } else if (filteredEventType === "6") {
-        eventColor = "bg-teal-200";
-      } else if (filteredEventType === "7") {
-        eventColor = "bg-blue-200";
-      } else if (filteredEventType === "8") {
-        eventColor = "bg-indigo-200";
-      } else if (filteredEventType === "9") {
-        eventColor = "bg-violet-200";
-      } else if (filteredEventType === "10") {
-        eventColor = "bg-purple-200";
-      } else if (filteredEventType === "11") {
-        eventColor = "bg-pink-200";
-      } else if (filteredEventType === "12") {
-        eventColor = "bg-rose-200";
-      } else {
-        eventColor = "bg-zinc-200";
-      }
-      return (
-        <button
-          key={Math.random() * 10000}
-          onClick={() =>
-            seekMouseUpHandler(null, event.currentEventStartFrameSeconds)
-          }
-          className={`m-2 rounded-3xl p-4 ${eventColor}`}>
-          <Image
-            src={`/images/VIRAT_0400/${event.currentEventVideoName}_${event.currentEventID}.png`}
-            width={500}
-            height={500}
-            alt={`${event.currentEventVideoName}_${event.currentEventID}`}
-          />
-          <div>{event.currentEventName}</div>
-          <div>
-            Start Time:
-            {convertSecondsToTime(event.currentEventStartFrameSeconds)}
-          </div>
-        </button>
-      );
-    });
-  };
-
   return (
-    <div className="VideoPlayer-container flex w-full">
+    <div className="VideoPlayer-container mx-auto flex gap-2 py-8">
       {timeline.value === "timeline5" && (
-        <div className="ml-auto flex flex-col py-8 overflow-y-auto h-screen">{timelineFiveHandler()}</div>
+        <div className="flex h-[810px] w-[400px] flex-col gap-4 overflow-y-auto">
+          {timelineEventFilterer().map((event) => {
+            const filteredEventType = event.currentEventName.split(":")[0];
+            let eventColor = "";
+            if (filteredEventType === "1") {
+              eventColor = "bg-red-200";
+            } else if (filteredEventType === "2") {
+              eventColor = "bg-orange-200";
+            } else if (filteredEventType === "3") {
+              eventColor = "bg-yellow-200";
+            } else if (filteredEventType === "4") {
+              eventColor = "bg-amber-200";
+            } else if (filteredEventType === "5") {
+              eventColor = "bg-emerald-200";
+            } else if (filteredEventType === "6") {
+              eventColor = "bg-teal-200";
+            } else if (filteredEventType === "7") {
+              eventColor = "bg-blue-200";
+            } else if (filteredEventType === "8") {
+              eventColor = "bg-indigo-200";
+            } else if (filteredEventType === "9") {
+              eventColor = "bg-violet-200";
+            } else if (filteredEventType === "10") {
+              eventColor = "bg-purple-200";
+            } else if (filteredEventType === "11") {
+              eventColor = "bg-pink-200";
+            } else if (filteredEventType === "12") {
+              eventColor = "bg-rose-200";
+            } else {
+              eventColor = "bg-zinc-200";
+            }
+            return (
+              <button
+                key={Math.random() * 10000}
+                onClick={() => {
+                  console.log("I was clicked");
+                  setVideoState({ ...videoState, seeking: false });
+                  videoPlayerRef.current.seekTo(
+                    event.currentEventStartFrameSeconds / videoState.duration,
+                  );
+                }}
+                className={` rounded-3xl p-4 ${eventColor}`}>
+                <Image
+                  src={`/images/VIRAT_0400/${event.currentEventVideoName}_${event.currentEventID}.png`}
+                  width={400}
+                  height={350}
+                  alt={`${event.currentEventVideoName}_${event.currentEventID}`}
+                  className="rounded-xl"
+                />
+                <div>{event.currentEventName}</div>
+                <div className="flex justify-center gap-1">
+                  <div>Start Time:</div>
+                  <div>
+                    {convertSecondsToTime(event.currentEventStartFrameSeconds)}
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
       )}
-      <div className="VideoPlayer mx-auto flex w-[1920px] flex-col py-8">
+      <div className="VideoPlayer flex w-[1280px] flex-col">
         <div className="relative">
-          <div className="absolute z-10 h-[1080px] w-[1920px] border-4 border-primary">
+          <div className="absolute z-10 !h-[720px] !w-[1280px] border-4 border-primary">
             {currVideoEventRects.map((currVideoEventRect) => {
-              let currentTime = Math.trunc(
-                videoState.played * videoState.duration,
-              );
-              console.log(currentTime);
+              let currentFrame =
+                Math.trunc(videoPlayerRef.current.getCurrentTime() * 30) - 100;
 
               let currVideoEventRectLeft =
-                currVideoEventRect.currentEventRectWidthMin[currentTime];
+                widthConverter(
+                  currVideoEventRect.currentEventRectWidthMin[currentFrame],
+                  currVideoEventRect.currentEventVideoWidth,
+                ) - 50;
               let currVideoEventRectTop =
-                currVideoEventRect.currentEventRectHeightMin[currentTime];
+                heightConverter(
+                  currVideoEventRect.currentEventRectHeightMin[currentFrame],
+                  currVideoEventRect.currentEventVideoHeight,
+                ) - 50;
               let currVideoEventRectWidth =
-                currVideoEventRect.currentEventRectWidthMax[currentTime] -
-                currVideoEventRect.currentEventRectWidthMin[currentTime];
-              let currVideoEventRectHeight =
-                currVideoEventRect.currentEventRectHeightMax[currentTime] -
-                currVideoEventRect.currentEventRectHeightMin[currentTime];
+                currVideoEventRect.currentEventRectWidthMax[currentFrame] -
+                currVideoEventRect.currentEventRectWidthMin[currentFrame] +
+                50;
 
-              console.log(currVideoEventRectLeft);
-              console.log(currVideoEventRectTop);
+              let currVideoEventRectHeight =
+                currVideoEventRect.currentEventRectHeightMax[currentFrame] -
+                currVideoEventRect.currentEventRectHeightMin[currentFrame] +
+                50;
+
               return (
                 <div
                   key={
@@ -748,9 +768,7 @@ const VideoPlayer = () => {
                     top: `${currVideoEventRectTop}px`,
                     width: `${currVideoEventRectWidth}px`,
                     height: `${currVideoEventRectHeight}px`,
-                  }}>
-                  {" "}
-                </div>
+                  }}></div>
               );
             })}
           </div>
@@ -760,20 +778,20 @@ const VideoPlayer = () => {
             playing={videoState.playing}
             controls={videoState.controls}
             muted={videoState.muted}
-            width={1920}
-            height={1080}
+            width={1280}
+            height={720}
             onProgress={progressHandler}
             className="VideoPlayer-video pointer-events-none z-0"
           />
         </div>
         <div
-          className={`VideoPlayer-timelineContainer relative mx-auto w-[1920px] bg-dark text-primary ${timeline.value === "timeline2" || timeline.value === "timeline4" ? "pt-20" : ""}`}>
+          className={`VideoPlayer-timelineContainer relative mx-auto w-[1280px] bg-dark text-primary ${timeline.value === "timeline2" || timeline.value === "timeline4" ? "pt-20" : ""}`}>
           {(timeline.value === "timeline2" ||
             timeline.value === "timeline4") && (
             <div className="absolute top-4">
               <PlotFigure
                 options={{
-                  width: 1920,
+                  width: 1280,
                   height: 80,
                   grid: true,
                   axis: null,
@@ -791,7 +809,7 @@ const VideoPlayer = () => {
             <div className="absolute top-4 text-white">
               <PlotFigure
                 options={{
-                  width: 1920,
+                  width: 1280,
                   height: 80,
                   grid: true,
                   axis: null,
@@ -840,8 +858,8 @@ const VideoPlayer = () => {
                 <FaForward size="24px" />
               </div>
               <Listbox value={selectedVideo} onChange={changeVideoHandler}>
-                <div className="VideoPlayer-selector relative mx-2 w-96">
-                  <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
+                <div className="VideoPlayer-selector relative mx-2 w-fit">
+                  <Listbox.Button className="relative w-fit cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
                     <span className="block truncate">
                       {selectedVideo.label}
                     </span>
@@ -893,7 +911,7 @@ const VideoPlayer = () => {
               </Listbox>
               <Listbox value={timeline} onChange={setTimeline}>
                 <div className="VideoPlayer-selector w-[200px]">
-                  <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
+                  <Listbox.Button className="relative w-[200px] cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
                     <span className="block truncate">{timeline.label}</span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                       <FaChevronDown
@@ -907,33 +925,23 @@ const VideoPlayer = () => {
                     leave="transition ease-in duration-100"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0">
-                    <Listbox.Options className="absolute mt-1 max-h-60 w-[200px] overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                    <Listbox.Options className="absolute mt-1 max-h-60 w-[200px] overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
                       {timelineTypes.map((timelineType) => (
                         <Listbox.Option
                           key={timelineType.key}
                           className={({ active }) =>
-                            `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                            `relative w-full cursor-default select-none py-2 pl-3 ${
                               active ? "bg-primary text-white" : "text-gray-900"
                             }`
                           }
                           value={timelineType}>
                           {({ timeline }) => (
-                            <>
-                              <span
-                                className={`block truncate ${
-                                  timeline ? "font-medium" : "font-normal"
-                                }`}>
-                                {timelineType.label}
-                              </span>
-                              {timeline ? (
-                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                                  <FaCheck
-                                    className="h-5 w-5"
-                                    aria-hidden="true"
-                                  />
-                                </span>
-                              ) : null}
-                            </>
+                            <span
+                              className={`block truncate ${
+                                timeline ? "font-medium" : "font-normal"
+                              }`}>
+                              {timelineType.label}
+                            </span>
                           )}
                         </Listbox.Option>
                       ))}
