@@ -1,25 +1,38 @@
 "use client";
 
-import React, { useState, useRef, Fragment, useEffect } from "react";
-import ReactPlayer from "react-player";
-import * as Plot from "@observablehq/plot";
-import { Slider } from "@mui/material";
-import { Listbox, Transition } from "@headlessui/react";
-import Image from "next/image";
-import {
-  FaChevronDown,
-  FaCheck,
-  FaPlay,
-  FaPause,
-  FaBackward,
-  FaForward,
-} from "react-icons/fa";
-import * as d3 from "d3";
-import PlotFigure from "./PlotFigure";
-import { videos } from "@/utils/VideoData";
 import { timelineTypes } from "@/utils/TimelineTypes";
+import { Slider } from "@mui/material";
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import Image from "next/image";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import {
+  FaBackward,
+  FaCheck,
+  FaChevronDown,
+  FaForward,
+  FaPause,
+  FaPlay,
+} from "react-icons/fa";
+import ReactPlayer from "react-player";
+import PlotFigure from "./utils/PlotFigure";
+import CustomListBox from "./utils/CustomListBox";
+import {
+  convertSecondsToTime,
+  heightConverter,
+  widthConverter,
+  timelineEventFilterer,
+  playPauseHandler,
+  rewindHandler,
+  fastFowardHandler,
+} from "@/utils/HelperFunctions";
+import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
+import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
+import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
+import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
 
 const VideoPlayer = () => {
+  const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [videoState, setVideoState] = useState({
     playing: true,
@@ -41,9 +54,9 @@ const VideoPlayer = () => {
     label: "0: All Events",
   });
   const [timeline, setTimeline] = useState({
-    key: "timeline5",
-    label: "Timeline 5",
-    value: "timeline5",
+    key: "timeline1",
+    label: "Timeline 1",
+    value: "timeline1",
   });
 
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
@@ -51,52 +64,12 @@ const VideoPlayer = () => {
   const [highlightGraph, setHighlightGraph] = useState(false);
   const [highlightGraphBlock, setHighlightGraphBlock] = useState({});
 
-  const [currVideoEventRects, setCurrVideoEventRects] = useState([]);
-
   const videoPlayerRef = useRef(null);
+  const currentFrame = useRef(0);
 
   const timelineThreeMax = 1000;
-
-  const convertSecondsToTime = (sec) => {
-    const dateObj = new Date(sec * 1000);
-    const hours = dateObj.getUTCHours();
-    const minutes = dateObj.getUTCMinutes();
-    const seconds = dateObj.getSeconds();
-    const timeString =
-      (hours != 0 ? hours.toString().padStart(2, "0") + ":" : "") +
-      minutes.toString().padStart(2, "0") +
-      ":" +
-      seconds.toString().padStart(2, "0");
-    return timeString;
-  };
-
-  const heightConverter = (sizeToConvert, height) => {
-    if (height != 720) {
-      return (sizeToConvert / height) * 720;
-    }
-    return height;
-  };
-
-  const widthConverter = (sizeToConvert, width) => {
-    if (width != 1280) {
-      return (sizeToConvert / width) * 1280;
-    }
-    return width;
-  };
-
-  const playPauseHandler = () => {
-    setVideoState({ ...videoState, playing: !videoState.playing });
-  };
-
-  const rewindHandler = () => {
-    //Rewinds the video player reducing 10
-    videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() - 10);
-  };
-
-  const fastFowardHandler = () => {
-    //FastFowards the video player by adding 10
-    videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() + 10);
-  };
+  const videoWidth = 1280;
+  const videoHeight = 720;
 
   const seekHandler = (e, value) => {
     if (timeline.value === "timeline3" || timeline.value === "timeline4") {
@@ -173,30 +146,16 @@ const VideoPlayer = () => {
     });
   };
 
-  const timelineEventFilterer = () => {
-    const filteredEvents =
-      selectedEventType.label.slice(0, 2) !== "0:"
-        ? videoEvents.filter(({ currentEventName }) => {
-            return (
-              currentEventName.slice(0, 2) ===
-              selectedEventType.label.slice(0, 2)
-            );
-          })
-        : videoEvents.sort(
-            (a, b) =>
-              parseFloat(a.currentEventStartFrameSeconds) -
-              parseFloat(b.currentEventStartFrameSeconds),
-          );
-    return filteredEvents;
-  };
-
   const densityFunctionHandler = () => {
     const eventsPerSecond = new Array(Math.ceil(selectedVideo.duration)).fill(
       0,
     );
 
     // Get the filtered events
-    const filteredEvents = timelineEventFilterer();
+    const filteredEvents = timelineEventFilterer(
+      selectedEventType,
+      videoEvents,
+    );
 
     // Loop through the event start times
     for (
@@ -251,7 +210,10 @@ const VideoPlayer = () => {
   };
 
   const eventBlocksHandler = () => {
-    const filteredEvents = timelineEventFilterer();
+    const filteredEvents = timelineEventFilterer(
+      selectedEventType,
+      videoEvents,
+    );
     const densityFunctionValues = densityFunctionHandler();
 
     const eventBlocks = [];
@@ -399,21 +361,56 @@ const VideoPlayer = () => {
     );
   };
 
-  useEffect(() => {
-    let currentFrame =
-      Math.trunc(videoPlayerRef.current.getCurrentTime() * 30) - 100;
+  const canvasRef = useRef(null);
 
-    const filteredEvents = timelineEventFilterer();
+  useEffect(() => {
+    currentFrame.current = Math.round(
+      videoPlayerRef.current.getCurrentTime() * 30,
+    );
+    const filteredEvents = timelineEventFilterer(
+      selectedEventType,
+      videoEvents,
+    );
 
     let currentEvents = filteredEvents.filter((currentEvent) => {
       return (
-        currentEvent.currentEventStartFrame <= currentFrame &&
-        currentEvent.currentEventEndFrame >= currentFrame
+        currentEvent.currentEventStartFrame <= currentFrame.current &&
+        currentEvent.currentEventEndFrame >= currentFrame.current
       );
     });
 
-    setCurrVideoEventRects((prevState) => {
-      return currentEvents;
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw each rectangle
+    currentEvents.map((currVideoEventRect) => {
+      let currVideoEventRectLeft = widthConverter(
+        currVideoEventRect.currentEventRectWidthMin[currentFrame.current],
+        currVideoEventRect.currentEventVideoWidth,
+        videoWidth,
+      );
+      let currVideoEventRectTop = heightConverter(
+        currVideoEventRect.currentEventRectHeightMin[currentFrame.current],
+        currVideoEventRect.currentEventVideoHeight,
+        videoHeight,
+      );
+      let currVideoEventRectWidth =
+        currVideoEventRect.currentEventRectWidthMax[currentFrame.current] -
+        currVideoEventRect.currentEventRectWidthMin[currentFrame.current];
+      let currVideoEventRectHeight =
+        currVideoEventRect.currentEventRectHeightMax[currentFrame.current] -
+        currVideoEventRect.currentEventRectHeightMin[currentFrame.current];
+      ctx.strokeStyle = "#E5751F";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(
+        currVideoEventRectLeft,
+        currVideoEventRectTop,
+        currVideoEventRectWidth,
+        currVideoEventRectHeight,
+      );
     });
   });
 
@@ -606,7 +603,7 @@ const VideoPlayer = () => {
                       height: 64,
                       grid: true,
                       axis: null,
-                      y: { domain: [0, 5] },
+                      y: { domain: [0, Math.max(...densityFunctionHandler())] },
                       marks: [
                         Plot.lineY(eventBlock.eventBlockDensityValues, {
                           curve: "step-after",
@@ -664,114 +661,87 @@ const VideoPlayer = () => {
     return eventTypeLabels;
   };
 
+  const handleTimelineFiveClick = (currentEvent) => {
+    seekMouseUpHandler(null, currentEvent.currentEventStartFrameSeconds);
+  };
+
+  const timelineFiveHandler = () => {
+    const filteredEvents = timelineEventFilterer(
+      selectedEventType,
+      videoEvents,
+    );
+
+    return (
+      <div className="flex h-[810px] w-[400px] flex-col gap-4 overflow-y-auto text-dark">
+        {filteredEvents.map((currentEvent) => {
+          const filteredEventType = currentEvent.currentEventName.split(":")[0];
+          let eventColor = "";
+          if (filteredEventType === "1") {
+            eventColor = "bg-red-200";
+          } else if (filteredEventType === "2") {
+            eventColor = "bg-orange-200";
+          } else if (filteredEventType === "3") {
+            eventColor = "bg-yellow-200";
+          } else if (filteredEventType === "4") {
+            eventColor = "bg-amber-200";
+          } else if (filteredEventType === "5") {
+            eventColor = "bg-emerald-200";
+          } else if (filteredEventType === "6") {
+            eventColor = "bg-teal-200";
+          } else if (filteredEventType === "7") {
+            eventColor = "bg-blue-200";
+          } else if (filteredEventType === "8") {
+            eventColor = "bg-indigo-200";
+          } else if (filteredEventType === "9") {
+            eventColor = "bg-violet-200";
+          } else if (filteredEventType === "10") {
+            eventColor = "bg-purple-200";
+          } else if (filteredEventType === "11") {
+            eventColor = "bg-pink-200";
+          } else if (filteredEventType === "12") {
+            eventColor = "bg-rose-200";
+          } else {
+            eventColor = "bg-zinc-200";
+          }
+          return (
+            <button
+              key={Math.random() * 10000000}
+              onClick={() => handleTimelineFiveClick(currentEvent)}
+              className={` rounded-3xl p-4 ${eventColor}`}>
+              <Image
+                src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
+                width={400}
+                height={350}
+                alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
+                className="rounded-xl"
+              />
+              <div>{currentEvent.currentEventName}</div>
+              <div className="flex justify-center gap-1">
+                <div>Start Time:</div>
+                <div>
+                  {convertSecondsToTime(
+                    currentEvent.currentEventStartFrameSeconds,
+                  )}
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
     <div className="VideoPlayer-container mx-auto flex gap-2 py-8">
-      {timeline.value === "timeline5" && (
-        <div className="flex h-[810px] w-[400px] flex-col gap-4 overflow-y-auto">
-          {timelineEventFilterer().map((event) => {
-            const filteredEventType = event.currentEventName.split(":")[0];
-            let eventColor = "";
-            if (filteredEventType === "1") {
-              eventColor = "bg-red-200";
-            } else if (filteredEventType === "2") {
-              eventColor = "bg-orange-200";
-            } else if (filteredEventType === "3") {
-              eventColor = "bg-yellow-200";
-            } else if (filteredEventType === "4") {
-              eventColor = "bg-amber-200";
-            } else if (filteredEventType === "5") {
-              eventColor = "bg-emerald-200";
-            } else if (filteredEventType === "6") {
-              eventColor = "bg-teal-200";
-            } else if (filteredEventType === "7") {
-              eventColor = "bg-blue-200";
-            } else if (filteredEventType === "8") {
-              eventColor = "bg-indigo-200";
-            } else if (filteredEventType === "9") {
-              eventColor = "bg-violet-200";
-            } else if (filteredEventType === "10") {
-              eventColor = "bg-purple-200";
-            } else if (filteredEventType === "11") {
-              eventColor = "bg-pink-200";
-            } else if (filteredEventType === "12") {
-              eventColor = "bg-rose-200";
-            } else {
-              eventColor = "bg-zinc-200";
-            }
-            return (
-              <button
-                key={Math.random() * 10000}
-                onClick={() => {
-                  console.log("I was clicked");
-                  setVideoState({ ...videoState, seeking: false });
-                  videoPlayerRef.current.seekTo(
-                    event.currentEventStartFrameSeconds / videoState.duration,
-                  );
-                }}
-                className={` rounded-3xl p-4 ${eventColor}`}>
-                <Image
-                  src={`/images/VIRAT_0400/${event.currentEventVideoName}_${event.currentEventID}.png`}
-                  width={400}
-                  height={350}
-                  alt={`${event.currentEventVideoName}_${event.currentEventID}`}
-                  className="rounded-xl"
-                />
-                <div>{event.currentEventName}</div>
-                <div className="flex justify-center gap-1">
-                  <div>Start Time:</div>
-                  <div>
-                    {convertSecondsToTime(event.currentEventStartFrameSeconds)}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      )}
+      {timeline.value === "timeline5" && timelineFiveHandler()}
       <div className="VideoPlayer flex w-[1280px] flex-col">
         <div className="relative">
-          <div className="absolute z-10 !h-[720px] !w-[1280px] border-4 border-primary">
-            {currVideoEventRects.map((currVideoEventRect) => {
-              let currentFrame =
-                Math.trunc(videoPlayerRef.current.getCurrentTime() * 30) - 100;
-
-              let currVideoEventRectLeft =
-                widthConverter(
-                  currVideoEventRect.currentEventRectWidthMin[currentFrame],
-                  currVideoEventRect.currentEventVideoWidth,
-                ) - 50;
-              let currVideoEventRectTop =
-                heightConverter(
-                  currVideoEventRect.currentEventRectHeightMin[currentFrame],
-                  currVideoEventRect.currentEventVideoHeight,
-                ) - 50;
-              let currVideoEventRectWidth =
-                currVideoEventRect.currentEventRectWidthMax[currentFrame] -
-                currVideoEventRect.currentEventRectWidthMin[currentFrame] +
-                50;
-
-              let currVideoEventRectHeight =
-                currVideoEventRect.currentEventRectHeightMax[currentFrame] -
-                currVideoEventRect.currentEventRectHeightMin[currentFrame] +
-                50;
-
-              return (
-                <div
-                  key={
-                    currVideoEventRect.currentEventVideoName +
-                    "_" +
-                    currVideoEventRect.currentEventID
-                  }
-                  className={`absolute border-4 border-primary`}
-                  style={{
-                    left: `${currVideoEventRectLeft}px`,
-                    top: `${currVideoEventRectTop}px`,
-                    width: `${currVideoEventRectWidth}px`,
-                    height: `${currVideoEventRectHeight}px`,
-                  }}></div>
-              );
-            })}
-          </div>
+          <canvas
+            ref={canvasRef}
+            width={1280}
+            height={720}
+            className="absolute z-10"
+          />
           <ReactPlayer
             url={selectedVideo.link}
             ref={videoPlayerRef}
@@ -784,18 +754,20 @@ const VideoPlayer = () => {
             className="VideoPlayer-video pointer-events-none z-0"
           />
         </div>
+        {(timeline.value === "timeline3" || timeline.value === "timeline4") &&
+          timelineThreeHandler()}
         <div
-          className={`VideoPlayer-timelineContainer relative mx-auto w-[1280px] bg-dark text-primary ${timeline.value === "timeline2" || timeline.value === "timeline4" ? "pt-20" : ""}`}>
+          className={`VideoPlayer-timelineContainer relative mx-auto w-[1280px] bg-dark text-primary ${timeline.value === "timeline2" || timeline.value === "timeline4" ? "pt-16" : ""}`}>
           {(timeline.value === "timeline2" ||
             timeline.value === "timeline4") && (
             <div className="absolute top-4">
               <PlotFigure
                 options={{
                   width: 1280,
-                  height: 80,
+                  height: 64,
                   grid: true,
                   axis: null,
-                  y: { domain: [0, 5] },
+                  y: { domain: [0, Math.max(...densityFunctionHandler())] },
                   marks: [
                     Plot.lineY(densityFunctionHandler(), {
                       curve: "step-after",
@@ -810,10 +782,10 @@ const VideoPlayer = () => {
               <PlotFigure
                 options={{
                   width: 1280,
-                  height: 80,
+                  height: 64,
                   grid: true,
                   axis: null,
-                  y: { domain: [0, 5] },
+                  y: { domain: [0, Math.max(...densityFunctionHandler())] },
                   marks: [
                     Plot.lineY(highlightDensityFunctionHandler(), {
                       curve: "step-after",
@@ -831,8 +803,6 @@ const VideoPlayer = () => {
             onChangeCommitted={seekMouseUpHandler}
             className="!text-primary"
           />
-          {(timeline.value === "timeline3" || timeline.value === "timeline4") &&
-            timelineThreeHandler()}
           <div className="flex justify-between p-2 text-xl font-semibold">
             <div>
               {convertSecondsToTime(videoState.played * videoState.duration)}
@@ -840,12 +810,12 @@ const VideoPlayer = () => {
             <div className="VideoPlayer-controls mx-auto flex w-fit">
               <div
                 className="VideoPlayer-rewindButton my-auto "
-                onClick={rewindHandler}>
+                onClick={() => rewindHandler(videoPlayerRef)}>
                 <FaBackward size="24px" />
               </div>
               <div
                 className="VideoPlayer-playPauseButtons mx-2 my-auto"
-                onClick={playPauseHandler}>
+                onClick={() => playPauseHandler(videoState, setVideoState)}>
                 {videoState.playing ? (
                   <FaPause size="24px" />
                 ) : (
@@ -854,163 +824,33 @@ const VideoPlayer = () => {
               </div>
               <div
                 className="VideoPlayer-fastForwardButton my-auto"
-                onClick={fastFowardHandler}>
+                onClick={() => fastFowardHandler(videoPlayerRef)}>
                 <FaForward size="24px" />
               </div>
-              <Listbox value={selectedVideo} onChange={changeVideoHandler}>
-                <div className="VideoPlayer-selector relative mx-2 w-fit">
-                  <Listbox.Button className="relative w-fit cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
-                    <span className="block truncate">
-                      {selectedVideo.label}
-                    </span>
-                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                      <FaChevronDown
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </Listbox.Button>
-                  <Transition
-                    as={Fragment}
-                    leave="transition ease-in duration-100"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0">
-                    <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                      {videos.map((video) => (
-                        <Listbox.Option
-                          key={video.label}
-                          className={({ active }) =>
-                            `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                              active ? "bg-primary text-white" : "text-gray-900"
-                            }`
-                          }
-                          value={video}>
-                          {({ selectedVideo }) => (
-                            <>
-                              <span
-                                className={`block truncate ${
-                                  selectedVideo ? "font-medium" : "font-normal"
-                                }`}>
-                                {video.label}
-                              </span>
-                              {selectedVideo ? (
-                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                                  <FaCheck
-                                    className="h-5 w-5"
-                                    aria-hidden="true"
-                                  />
-                                </span>
-                              ) : null}
-                            </>
-                          )}
-                        </Listbox.Option>
-                      ))}
-                    </Listbox.Options>
-                  </Transition>
-                </div>
-              </Listbox>
-              <Listbox value={timeline} onChange={setTimeline}>
-                <div className="VideoPlayer-selector w-[200px]">
-                  <Listbox.Button className="relative w-[200px] cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
-                    <span className="block truncate">{timeline.label}</span>
-                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                      <FaChevronDown
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </Listbox.Button>
-                  <Transition
-                    as={Fragment}
-                    leave="transition ease-in duration-100"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0">
-                    <Listbox.Options className="absolute mt-1 max-h-60 w-[200px] overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                      {timelineTypes.map((timelineType) => (
-                        <Listbox.Option
-                          key={timelineType.key}
-                          className={({ active }) =>
-                            `relative w-full cursor-default select-none py-2 pl-3 ${
-                              active ? "bg-primary text-white" : "text-gray-900"
-                            }`
-                          }
-                          value={timelineType}>
-                          {({ timeline }) => (
-                            <span
-                              className={`block truncate ${
-                                timeline ? "font-medium" : "font-normal"
-                              }`}>
-                              {timelineType.label}
-                            </span>
-                          )}
-                        </Listbox.Option>
-                      ))}
-                    </Listbox.Options>
-                  </Transition>
-                </div>
-              </Listbox>
-              {timeline.value !== "timeline1" && (
-                <Listbox
-                  value={selectedEventType}
-                  onChange={currentEventTypeHandler}>
-                  <div className="VideoPlayer-selector relative ml-2 w-[480px]">
-                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
-                      <span className="block truncate">
-                        {selectedEventType.label}
-                      </span>
-                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                        <FaChevronDown
-                          className="h-5 w-5 text-gray-400"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </Listbox.Button>
-                    <Transition
-                      as={Fragment}
-                      leave="transition ease-in duration-100"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0">
-                      <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                        {eventTypesHandler().map((eventType) => (
-                          <Listbox.Option
-                            key={eventType.label}
-                            className={({ active }) =>
-                              `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                active
-                                  ? "bg-primary text-white"
-                                  : "text-gray-900"
-                              }`
-                            }
-                            value={eventType}>
-                            {({ selectedEventType }) => (
-                              <>
-                                <span
-                                  className={`block truncate ${
-                                    selectedEventType
-                                      ? "font-medium"
-                                      : "font-normal"
-                                  }`}>
-                                  {eventType.label}
-                                </span>
-                                {selectedEventType ? (
-                                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                                    <FaCheck
-                                      className="h-5 w-5"
-                                      aria-hidden="true"
-                                    />
-                                  </span>
-                                ) : null}
-                              </>
-                            )}
-                          </Listbox.Option>
-                        ))}
-                      </Listbox.Options>
-                    </Transition>
-                  </div>
-                </Listbox>
-              )}
             </div>
             <div>{convertSecondsToTime(videoState.duration)}</div>
+          </div>
+          <div className="flex justify-center p-4">
+            <CustomListBox
+              value={selectedVideo}
+              setFunction={changeVideoHandler}
+              options={videos}
+              width={200}
+            />
+            <CustomListBox
+              value={timeline}
+              setFunction={setTimeline}
+              options={timelineTypes}
+              width={200}
+            />
+            {timeline.value !== "timeline1" && (
+              <CustomListBox
+                value={selectedEventType}
+                setFunction={currentEventTypeHandler}
+                options={eventTypesHandler()}
+                width={400}
+              />
+            )}
           </div>
         </div>
       </div>
