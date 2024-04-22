@@ -391,18 +391,20 @@ const VideoPlayer = () => {
         currVideoEventRect.currentEventRectWidthMin[currentFrame.current],
         currVideoEventRect.currentEventVideoWidth,
         videoWidth,
-      );
+      ) - 25;
       let currVideoEventRectTop = heightConverter(
         currVideoEventRect.currentEventRectHeightMin[currentFrame.current],
         currVideoEventRect.currentEventVideoHeight,
         videoHeight,
-      );
+      ) - 25;
       let currVideoEventRectWidth =
         currVideoEventRect.currentEventRectWidthMax[currentFrame.current] -
-        currVideoEventRect.currentEventRectWidthMin[currentFrame.current];
+        currVideoEventRect.currentEventRectWidthMin[currentFrame.current] +
+        50;
       let currVideoEventRectHeight =
         currVideoEventRect.currentEventRectHeightMax[currentFrame.current] -
-        currVideoEventRect.currentEventRectHeightMin[currentFrame.current];
+        currVideoEventRect.currentEventRectHeightMin[currentFrame.current] +
+        50;
       ctx.strokeStyle = "#E5751F";
       ctx.lineWidth = 4;
       ctx.strokeRect(
@@ -527,7 +529,7 @@ const VideoPlayer = () => {
     }
 
     return (
-      <div className="!text-black bg-dark py-2">
+      <div className="bg-dark py-2 !text-black">
         <div className=" flex w-[1280px] justify-between">
           {eventBlocks.map((eventBlock) => {
             return (
