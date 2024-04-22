@@ -527,7 +527,7 @@ const VideoPlayer = () => {
     }
 
     return (
-      <div className="!text-black">
+      <div className="!text-black bg-dark py-2">
         <div className=" flex w-[1280px] justify-between">
           {eventBlocks.map((eventBlock) => {
             return (
@@ -672,7 +672,7 @@ const VideoPlayer = () => {
     );
 
     return (
-      <div className="flex h-[810px] w-[400px] flex-col gap-4 overflow-y-auto text-dark">
+      <div className="flex h-[865px] w-[400px] flex-col gap-4 overflow-y-auto text-dark">
         {filteredEvents.map((currentEvent) => {
           const filteredEventType = currentEvent.currentEventName.split(":")[0];
           let eventColor = "";
@@ -732,7 +732,7 @@ const VideoPlayer = () => {
   };
 
   return (
-    <div className="VideoPlayer-container mx-auto flex gap-2 py-8">
+    <div className="VideoPlayer-container mx-auto flex gap-1 py-8">
       {timeline.value === "timeline5" && timelineFiveHandler()}
       <div className="VideoPlayer flex w-[1280px] flex-col">
         <div className="relative">
