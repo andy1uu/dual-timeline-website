@@ -605,7 +605,7 @@ const VideoPlayer = () => {
                       height: 64,
                       grid: true,
                       axis: null,
-                      y: { domain: [0, Math.max(...densityFunctionHandler())] },
+                      y: { domain: [0, 10] },
                       marks: [
                         Plot.lineY(eventBlock.eventBlockDensityValues, {
                           curve: "step-after",
