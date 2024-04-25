@@ -2,9 +2,9 @@ import React from "react";
 import VideoPlayer from "@/components/VideoPlayer";
 
 export const metadata = {
-  title: "Dual-Timelines",
+  title: "Duet",
   description:
-    "This is the website for the dual-timeline project under the EchoLab.",
+    "This is the website for the Duet project under the EchoLab.",
 };
 const HomePage = () => {
   return (

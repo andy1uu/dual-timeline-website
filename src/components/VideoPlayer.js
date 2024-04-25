@@ -479,9 +479,6 @@ const VideoPlayer = () => {
   }, [videoState]);
 
   const timelineThreeHandler = () => {
-    // if (selectedEventType.label === "0: All Events") {
-    //   return;
-    // }
     const eventBlocks = eventBlocksHandler();
 
     const filteredEventBlockType =
@@ -530,12 +527,13 @@ const VideoPlayer = () => {
 
     return (
       <div className="bg-dark py-2 !text-black">
-        <div className=" flex w-[1280px] justify-between">
+        <div className={`flex justify-between`} style={{width: `${videoWidth}px`}}>
           {eventBlocks.map((eventBlock) => {
             return (
               <div
+                key={Math.random() * 10000000}
                 style={{
-                  width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * 1280)}px`,
+                  width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * videoWidth)}px`,
                 }}
                 onMouseEnter={() => {
                   setHighlightGraph(true);
@@ -581,6 +579,7 @@ const VideoPlayer = () => {
                     }
                     return (
                       <div
+                        key={Math.random() * 10000000}
                         className={`${eventColor} mx-0.5 my-0.5 text-nowrap rounded-md p-1 first:mt-1 last:mb-1`}>
                         {convertSecondsToTime(
                           eventBlockEvent.currentEventStartFrameSeconds,
@@ -600,7 +599,7 @@ const VideoPlayer = () => {
                         Math.trunc(
                           (eventBlock.eventBlockDurationSeconds /
                             totalDuration) *
-                            1280,
+                            videoWidth,
                         ) - 2,
                       height: 64,
                       grid: true,
@@ -736,12 +735,14 @@ const VideoPlayer = () => {
   return (
     <div className="VideoPlayer-container mx-auto flex gap-1 py-8">
       {timeline.value === "timeline5" && timelineFiveHandler()}
-      <div className="VideoPlayer flex w-[1280px] flex-col">
+      <div
+        className={`VideoPlayer flex flex-col`}
+        style={{ width: `${videoWidth}px` }}>
         <div className="relative">
           <canvas
             ref={canvasRef}
-            width={1280}
-            height={720}
+            width={videoWidth}
+            height={videoHeight}
             className="absolute z-10"
           />
           <ReactPlayer
@@ -750,8 +751,8 @@ const VideoPlayer = () => {
             playing={videoState.playing}
             controls={videoState.controls}
             muted={videoState.muted}
-            width={1280}
-            height={720}
+            width={videoWidth}
+            height={videoHeight}
             onProgress={progressHandler}
             className="VideoPlayer-video pointer-events-none z-0"
           />
@@ -759,13 +760,14 @@ const VideoPlayer = () => {
         {(timeline.value === "timeline3" || timeline.value === "timeline4") &&
           timelineThreeHandler()}
         <div
-          className={`VideoPlayer-timelineContainer relative mx-auto w-[1280px] bg-dark text-primary ${timeline.value === "timeline2" || timeline.value === "timeline4" ? "pt-16" : ""}`}>
+          className={`VideoPlayer-timelineContainer relative mx-auto bg-dark text-primary ${timeline.value === "timeline2" || timeline.value === "timeline4" ? "pt-16" : ""}`}
+          style={{ width: `${videoWidth}px` }}>
           {(timeline.value === "timeline2" ||
             timeline.value === "timeline4") && (
             <div className="absolute top-4">
               <PlotFigure
                 options={{
-                  width: 1280,
+                  width: videoWidth,
                   height: 64,
                   grid: true,
                   axis: null,
@@ -783,7 +785,7 @@ const VideoPlayer = () => {
             <div className="absolute top-4 text-white">
               <PlotFigure
                 options={{
-                  width: 1280,
+                  width: videoWidth,
                   height: 64,
                   grid: true,
                   axis: null,
