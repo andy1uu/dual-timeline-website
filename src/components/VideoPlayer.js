@@ -67,7 +67,7 @@ const VideoPlayer = () => {
   const videoPlayerRef = useRef(null);
   const currentFrame = useRef(0);
 
-  const timelineThreeMax = 1000;
+  const timelineThreeMax = 1080;
   const videoWidth = 1280;
   const videoHeight = 720;
 
