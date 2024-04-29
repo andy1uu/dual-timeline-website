@@ -28,11 +28,11 @@ import {
 } from "@/utils/HelperFunctions";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
 import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
-import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
+//import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
 
 const VideoPlayer = () => {
-  const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
+  const videos = [VIRAT_S_0002, VIRAT_S_0100 /*, VIRAT_S_0102*/, VIRAT_S_0400];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [videoState, setVideoState] = useState({
     playing: true,
@@ -67,7 +67,6 @@ const VideoPlayer = () => {
   const videoPlayerRef = useRef(null);
   const currentFrame = useRef(0);
 
-  const timelineThreeMax = 1080;
   const videoWidth = 1280;
   const videoHeight = 720;
 
@@ -80,7 +79,7 @@ const VideoPlayer = () => {
       });
 
       if (currentEventBlocks.length === eventBlocks.length) {
-        setTimelineThreeValue(timelineThreeMax);
+        setTimelineThreeValue(videoWidth);
       } else {
         const totalDuration = timelineThreeTotalDurationHandler();
         let currentDuration = 0;
@@ -95,7 +94,7 @@ const VideoPlayer = () => {
         }
 
         setTimelineThreeValue(
-          timelineThreeMax * (currentDuration / totalDuration),
+          videoWidth * (currentDuration / totalDuration),
         );
       }
     }
@@ -322,7 +321,7 @@ const VideoPlayer = () => {
     while (filteredEventBlockIndex >= 0) {
       currentEventBlockStart -=
         eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
-      if (currentEventBlockStart < totalDuration * (value / timelineThreeMax))
+      if (currentEventBlockStart < totalDuration * (value / videoWidth))
         break;
       filteredEventBlockIndex--;
     }
@@ -330,7 +329,8 @@ const VideoPlayer = () => {
     seekHandler(
       null,
       eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds +
-        (totalDuration * (value / timelineThreeMax) - currentEventBlockStart),
+        (totalDuration * (value / videoWidth
+      ) - currentEventBlockStart),
     );
 
     setTimelineThreeValue(value);
@@ -349,7 +349,7 @@ const VideoPlayer = () => {
     while (filteredEventBlockIndex >= 0) {
       currentEventBlockStart -=
         eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
-      if (currentEventBlockStart < totalDuration * (value / timelineThreeMax))
+      if (currentEventBlockStart < totalDuration * (value / videoWidth))
         break;
       filteredEventBlockIndex--;
     }
@@ -357,7 +357,7 @@ const VideoPlayer = () => {
     seekMouseUpHandler(
       null,
       eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds +
-        (totalDuration * (value / timelineThreeMax) - currentEventBlockStart),
+        (totalDuration * (value /  videoWidth) - currentEventBlockStart),
     );
   };
 
@@ -387,16 +387,18 @@ const VideoPlayer = () => {
 
     // Draw each rectangle
     currentEvents.map((currVideoEventRect) => {
-      let currVideoEventRectLeft = widthConverter(
-        currVideoEventRect.currentEventRectWidthMin[currentFrame.current],
-        currVideoEventRect.currentEventVideoWidth,
-        videoWidth,
-      ) - 25;
-      let currVideoEventRectTop = heightConverter(
-        currVideoEventRect.currentEventRectHeightMin[currentFrame.current],
-        currVideoEventRect.currentEventVideoHeight,
-        videoHeight,
-      ) - 25;
+      let currVideoEventRectLeft =
+        widthConverter(
+          currVideoEventRect.currentEventRectWidthMin[currentFrame.current],
+          currVideoEventRect.currentEventVideoWidth,
+          videoWidth,
+        ) - 25;
+      let currVideoEventRectTop =
+        heightConverter(
+          currVideoEventRect.currentEventRectHeightMin[currentFrame.current],
+          currVideoEventRect.currentEventVideoHeight,
+          videoHeight,
+        ) - 25;
       let currVideoEventRectWidth =
         currVideoEventRect.currentEventRectWidthMax[currentFrame.current] -
         currVideoEventRect.currentEventRectWidthMin[currentFrame.current] +
@@ -447,7 +449,7 @@ const VideoPlayer = () => {
           currentTime - currentEventBlock.eventBlockStartSeconds;
 
         setTimelineThreeValue(
-          timelineThreeMax * (currentDuration / totalDuration),
+          videoWidth * (currentDuration / totalDuration),
         );
         return;
       } else {
@@ -456,7 +458,7 @@ const VideoPlayer = () => {
         });
 
         if (currentEventBlocks.length === eventBlocks.length) {
-          setTimelineThreeValue(timelineThreeMax);
+          setTimelineThreeValue(videoWidth);
         } else {
           const totalDuration = timelineThreeTotalDurationHandler();
           let currentDuration = 0;
@@ -471,7 +473,7 @@ const VideoPlayer = () => {
           }
 
           setTimelineThreeValue(
-            timelineThreeMax * (currentDuration / totalDuration),
+            videoWidth * (currentDuration / totalDuration),
           );
         }
       }
@@ -527,7 +529,9 @@ const VideoPlayer = () => {
 
     return (
       <div className="bg-dark py-2 !text-black">
-        <div className={`flex justify-between`} style={{width: `${videoWidth}px`}}>
+        <div
+          className={`flex justify-between`}
+          style={{ width: `${videoWidth}px` }}>
           {eventBlocks.map((eventBlock) => {
             return (
               <div
@@ -620,7 +624,7 @@ const VideoPlayer = () => {
         </div>
         <Slider
           min={0}
-          max={timelineThreeMax}
+          max={videoWidth}
           value={timelineThreeValue}
           onChange={timelineThreeSeekHandler}
           onChangeCommitted={timelineThreeSeekMouseUpHandler}
