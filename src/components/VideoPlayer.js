@@ -27,12 +27,12 @@ import {
   fastFowardHandler,
 } from "@/utils/HelperFunctions";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
-import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
+// import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
 //import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
 
 const VideoPlayer = () => {
-  const videos = [VIRAT_S_0002, VIRAT_S_0100 /*, VIRAT_S_0102*/, VIRAT_S_0400];
+  const videos = [VIRAT_S_0002 /*, VIRAT_S_0100, VIRAT_S_0102*/, VIRAT_S_0400];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [videoState, setVideoState] = useState({
     playing: true,
@@ -93,9 +93,7 @@ const VideoPlayer = () => {
             eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
         }
 
-        setTimelineThreeValue(
-          videoWidth * (currentDuration / totalDuration),
-        );
+        setTimelineThreeValue(videoWidth * (currentDuration / totalDuration));
       }
     }
 
@@ -321,16 +319,14 @@ const VideoPlayer = () => {
     while (filteredEventBlockIndex >= 0) {
       currentEventBlockStart -=
         eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
-      if (currentEventBlockStart < totalDuration * (value / videoWidth))
-        break;
+      if (currentEventBlockStart < totalDuration * (value / videoWidth)) break;
       filteredEventBlockIndex--;
     }
 
     seekHandler(
       null,
       eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds +
-        (totalDuration * (value / videoWidth
-      ) - currentEventBlockStart),
+        (totalDuration * (value / videoWidth) - currentEventBlockStart),
     );
 
     setTimelineThreeValue(value);
@@ -349,15 +345,14 @@ const VideoPlayer = () => {
     while (filteredEventBlockIndex >= 0) {
       currentEventBlockStart -=
         eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
-      if (currentEventBlockStart < totalDuration * (value / videoWidth))
-        break;
+      if (currentEventBlockStart < totalDuration * (value / videoWidth)) break;
       filteredEventBlockIndex--;
     }
 
     seekMouseUpHandler(
       null,
       eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds +
-        (totalDuration * (value /  videoWidth) - currentEventBlockStart),
+        (totalDuration * (value / videoWidth) - currentEventBlockStart),
     );
   };
 
@@ -448,9 +443,7 @@ const VideoPlayer = () => {
         currentDuration +=
           currentTime - currentEventBlock.eventBlockStartSeconds;
 
-        setTimelineThreeValue(
-          videoWidth * (currentDuration / totalDuration),
-        );
+        setTimelineThreeValue(videoWidth * (currentDuration / totalDuration));
         return;
       } else {
         let currentEventBlocks = eventBlocks.filter((eventBlock) => {
@@ -472,9 +465,7 @@ const VideoPlayer = () => {
               eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
           }
 
-          setTimelineThreeValue(
-            videoWidth * (currentDuration / totalDuration),
-          );
+          setTimelineThreeValue(videoWidth * (currentDuration / totalDuration));
         }
       }
     }
