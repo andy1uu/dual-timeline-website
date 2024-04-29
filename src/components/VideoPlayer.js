@@ -5,15 +5,8 @@ import { Slider } from "@mui/material";
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import Image from "next/image";
-import React, { Fragment, useEffect, useRef, useState } from "react";
-import {
-  FaBackward,
-  FaCheck,
-  FaChevronDown,
-  FaForward,
-  FaPause,
-  FaPlay,
-} from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
 import PlotFigure from "./utils/PlotFigure";
 import CustomListBox from "./utils/CustomListBox";
@@ -27,12 +20,12 @@ import {
   fastFowardHandler,
 } from "@/utils/HelperFunctions";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
-// import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
-//import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
+import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
+import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
 
 const VideoPlayer = () => {
-  const videos = [VIRAT_S_0002 /*, VIRAT_S_0100, VIRAT_S_0102*/, VIRAT_S_0400];
+  const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [videoState, setVideoState] = useState({
     playing: true,
@@ -141,6 +134,8 @@ const VideoPlayer = () => {
     setSelectedEventType({
       label: "0: All Events",
     });
+    setHighlightGraph(false);
+    setHighlightGraphBlock({});
   };
 
   const densityFunctionHandler = () => {
@@ -360,7 +355,8 @@ const VideoPlayer = () => {
 
   useEffect(() => {
     currentFrame.current = Math.round(
-      videoPlayerRef.current.getCurrentTime() * 30,
+      videoPlayerRef.current.getCurrentTime() *
+        (selectedVideo === videos[1] || selectedVideo === videos[2] ? 24 : 30),
     );
     const filteredEvents = timelineEventFilterer(
       selectedEventType,
