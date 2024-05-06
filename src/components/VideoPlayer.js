@@ -1,28 +1,32 @@
 "use client";
 
-import { timelineTypes } from "@/utils/TimelineTypes";
+import React, { useRef, useState, useEffect } from "react";
+
+import * as d3 from "d3";
+import ReactPlayer from "react-player";
+
+import Image from "next/image";
 import { Slider } from "@mui/material";
 import * as Plot from "@observablehq/plot";
-import * as d3 from "d3";
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
-import ReactPlayer from "react-player";
-import PlotFigure from "./utils/PlotFigure";
-import CustomListBox from "./utils/CustomListBox";
-import {
-  convertSecondsToTime,
-  heightConverter,
-  widthConverter,
-  timelineEventFilterer,
-  playPauseHandler,
-  rewindHandler,
-  fastFowardHandler,
-} from "@/utils/HelperFunctions";
+import { timelineTypes } from "@/utils/TimelineTypes";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
 import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
 import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
+import { FaPlay, FaPause, FaForward, FaBackward } from "react-icons/fa";
+import {
+  rewindHandler,
+  widthConverter,
+  heightConverter,
+  playPauseHandler,
+  fastFowardHandler,
+  convertSecondsToTime,
+  timelineEventFilterer,
+} from "@/utils/HelperFunctions";
+
+import PlotFigure from "./utils/PlotFigure";
+import CustomListBox from "./utils/CustomListBox";
+import CustomSwitch from "./utils/CustomSwitch";
 
 const VideoPlayer = () => {
   const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
@@ -56,6 +60,8 @@ const VideoPlayer = () => {
 
   const [highlightGraph, setHighlightGraph] = useState(false);
   const [highlightGraphBlock, setHighlightGraphBlock] = useState({});
+
+  const [toggleRectangles, setToggleRectangles] = useState(true);
 
   const videoPlayerRef = useRef(null);
   const currentFrame = useRef(0);
@@ -355,8 +361,7 @@ const VideoPlayer = () => {
 
   useEffect(() => {
     currentFrame.current = Math.round(
-      videoPlayerRef.current.getCurrentTime() *
-        (selectedVideo === videos[1] || selectedVideo === videos[2] ? 24 : 30),
+      videoPlayerRef.current.getCurrentTime() * selectedVideo.frameRate,
     );
     const filteredEvents = timelineEventFilterer(
       selectedEventType,
@@ -375,38 +380,39 @@ const VideoPlayer = () => {
 
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw each rectangle
-    currentEvents.map((currVideoEventRect) => {
-      let currVideoEventRectLeft =
-        widthConverter(
-          currVideoEventRect.currentEventRectWidthMin[currentFrame.current],
-          currVideoEventRect.currentEventVideoWidth,
-          videoWidth,
-        ) - 25;
-      let currVideoEventRectTop =
-        heightConverter(
-          currVideoEventRect.currentEventRectHeightMin[currentFrame.current],
-          currVideoEventRect.currentEventVideoHeight,
-          videoHeight,
-        ) - 25;
-      let currVideoEventRectWidth =
-        currVideoEventRect.currentEventRectWidthMax[currentFrame.current] -
-        currVideoEventRect.currentEventRectWidthMin[currentFrame.current] +
-        50;
-      let currVideoEventRectHeight =
-        currVideoEventRect.currentEventRectHeightMax[currentFrame.current] -
-        currVideoEventRect.currentEventRectHeightMin[currentFrame.current] +
-        50;
-      ctx.strokeStyle = "#E5751F";
-      ctx.lineWidth = 4;
-      ctx.strokeRect(
-        currVideoEventRectLeft,
-        currVideoEventRectTop,
-        currVideoEventRectWidth,
-        currVideoEventRectHeight,
-      );
-    });
+    if (toggleRectangles) {
+      // Draw each rectangle
+      currentEvents.map((currVideoEventRect) => {
+        let currVideoEventRectLeft =
+          widthConverter(
+            currVideoEventRect.currentEventRectWidthMin[currentFrame.current],
+            currVideoEventRect.currentEventVideoWidth,
+            videoWidth,
+          ) - 25;
+        let currVideoEventRectTop =
+          heightConverter(
+            currVideoEventRect.currentEventRectHeightMin[currentFrame.current],
+            currVideoEventRect.currentEventVideoHeight,
+            videoHeight,
+          ) - 25;
+        let currVideoEventRectWidth =
+          currVideoEventRect.currentEventRectWidthMax[currentFrame.current] -
+          currVideoEventRect.currentEventRectWidthMin[currentFrame.current] +
+          50;
+        let currVideoEventRectHeight =
+          currVideoEventRect.currentEventRectHeightMax[currentFrame.current] -
+          currVideoEventRect.currentEventRectHeightMin[currentFrame.current] +
+          50;
+        ctx.strokeStyle = "#E5751F";
+        ctx.lineWidth = 4;
+        ctx.strokeRect(
+          currVideoEventRectLeft,
+          currVideoEventRectTop,
+          currVideoEventRectWidth,
+          currVideoEventRectHeight,
+        );
+      });
+    }
   });
 
   useEffect(() => {
@@ -520,9 +526,22 @@ const VideoPlayer = () => {
           className={`flex justify-between`}
           style={{ width: `${videoWidth}px` }}>
           {eventBlocks.map((eventBlock) => {
+            console.log(eventBlock.eventBlockEvents);
+
+            let isCurrentEventHappening = eventBlock.eventBlockEvents.find(
+              (eventBlock) => {
+                return (
+                  eventBlock.currentEventEndFrameSeconds >=
+                    videoPlayerRef.current.getCurrentTime() &&
+                  eventBlock.currentEventStartFrameSeconds <=
+                    videoPlayerRef.current.getCurrentTime()
+                );
+              },
+            );
+
             return (
               <div
-                key={Math.random() * 10000000}
+                key={(Math.random() + 1) * 10000000}
                 style={{
                   width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * videoWidth)}px`,
                 }}
@@ -534,7 +553,10 @@ const VideoPlayer = () => {
                   setHighlightGraph(false);
                   setHighlightGraphBlock({});
                 }}
-                className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[4px] flex`}>
+                onClick={() =>
+                  handleTimelineFiveClick(eventBlock.eventBlockEvents[0])
+                }
+                className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[4px] flex ${isCurrentEventHappening ? "border border-4 border-white" : ""}`}>
                 <div className="absolute bottom-10 z-10 hidden w-fit flex-col rounded-md bg-white group-hover:flex">
                   {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
                     const filteredEventBlockType =
@@ -570,7 +592,7 @@ const VideoPlayer = () => {
                     }
                     return (
                       <div
-                        key={Math.random() * 10000000}
+                        key={(Math.random() + 1) * 10000000}
                         className={`${eventColor} mx-0.5 my-0.5 text-nowrap rounded-md p-1 first:mt-1 last:mb-1`}>
                         {convertSecondsToTime(
                           eventBlockEvent.currentEventStartFrameSeconds,
@@ -697,7 +719,7 @@ const VideoPlayer = () => {
           }
           return (
             <button
-              key={Math.random() * 10000000}
+              key={(Math.random() + 1) * 10000000}
               onClick={() => handleTimelineFiveClick(currentEvent)}
               className={` rounded-3xl p-4 ${eventColor}`}>
               <Image
@@ -826,6 +848,11 @@ const VideoPlayer = () => {
             <div>{convertSecondsToTime(videoState.duration)}</div>
           </div>
           <div className="flex justify-center p-4">
+            <CustomSwitch
+              label={"Toggle Rectangles"}
+              checked={toggleRectangles}
+              setChecked={setToggleRectangles}
+            />
             <CustomListBox
               value={selectedVideo}
               setFunction={changeVideoHandler}
