@@ -474,6 +474,9 @@ const VideoPlayer = () => {
   }, [videoState]);
 
   const timelineThreeHandler = () => {
+    if (selectedEventType.label === "0: All Events") {
+      return;
+    }
     const eventBlocks = eventBlocksHandler();
 
     const filteredEventBlockType =
@@ -556,7 +559,7 @@ const VideoPlayer = () => {
                 onClick={() =>
                   handleTimelineFiveClick(eventBlock.eventBlockEvents[0])
                 }
-                className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[4px] flex ${isCurrentEventHappening ? "border border-4 border-white" : ""}`}>
+                className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[4px] flex ${isCurrentEventHappening ? "border border-y-4 border-white" : ""}`}>
                 <div className="absolute bottom-10 z-10 hidden w-fit flex-col rounded-md bg-white group-hover:flex">
                   {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
                     const filteredEventBlockType =
@@ -614,7 +617,7 @@ const VideoPlayer = () => {
                             totalDuration) *
                             videoWidth,
                         ) - 2,
-                      height: 64,
+                      height: 56,
                       grid: true,
                       axis: null,
                       y: { domain: [0, 10] },

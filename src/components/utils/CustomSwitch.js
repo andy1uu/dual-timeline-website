@@ -3,13 +3,13 @@ import { Switch } from "@headlessui/react";
 
 const CustomSwitch = ({ checked, setChecked, label }) => {
   return (
-    <div className="flex justify-center items-center">
-      <div className="">{label}</div>
+    <div className="flex justify-center items-center bg-white rounded-lg">
+      <div className="pl-4">{label}</div>
       <Switch
         checked={checked}
         onChange={setChecked}
         className={`${
-          checked ? "bg-primary" : "bg-gray-200"
+          checked ? "bg-primary" : "bg-black"
         } relative mx-2 my-auto inline-flex h-6 w-11 items-center rounded-full`}>
         <span className="sr-only">{label}</span>
         <span
