@@ -1,32 +1,35 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import * as d3 from "d3";
 import ReactPlayer from "react-player";
 
-import Image from "next/image";
-import { Slider } from "@mui/material";
-import * as Plot from "@observablehq/plot";
+import {
+  convertSecondsToTime,
+  fastFowardHandler,
+  heightConverter,
+  playPauseHandler,
+  rewindHandler,
+  timelineEventFilterer,
+  widthConverter,
+  eventColorFinder,
+} from "@/utils/HelperFunctions";
 import { timelineTypes } from "@/utils/TimelineTypes";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
 import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
 import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
-import { FaPlay, FaPause, FaForward, FaBackward } from "react-icons/fa";
-import {
-  rewindHandler,
-  widthConverter,
-  heightConverter,
-  playPauseHandler,
-  fastFowardHandler,
-  convertSecondsToTime,
-  timelineEventFilterer,
-} from "@/utils/HelperFunctions";
+import { Slider } from "@mui/material";
+import * as Plot from "@observablehq/plot";
+import Image from "next/image";
+import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
+import ImageZoom from "react-image-zooom";
 
-import PlotFigure from "./utils/PlotFigure";
 import CustomListBox from "./utils/CustomListBox";
 import CustomSwitch from "./utils/CustomSwitch";
+import PlotFigure from "./utils/PlotFigure";
+import EventBlockList from "./utils/EventBlockList";
 
 const VideoPlayer = () => {
   const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
@@ -51,9 +54,9 @@ const VideoPlayer = () => {
     label: "0: All Events",
   });
   const [timeline, setTimeline] = useState({
-    key: "timeline1",
-    label: "Timeline 1",
-    value: "timeline1",
+    key: "timeline5",
+    label: "Timeline 5",
+    value: "timeline5",
   });
 
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
@@ -65,6 +68,7 @@ const VideoPlayer = () => {
 
   const videoPlayerRef = useRef(null);
   const currentFrame = useRef(0);
+  const canvasRef = useRef(null);
 
   const videoWidth = 1280;
   const videoHeight = 720;
@@ -309,30 +313,6 @@ const VideoPlayer = () => {
     return totalDuration;
   };
 
-  const timelineThreeSeekHandler = (e, value) => {
-    const eventBlocks = eventBlocksHandler();
-
-    const totalDuration = timelineThreeTotalDurationHandler();
-
-    let currentEventBlockStart = totalDuration;
-    let filteredEventBlockIndex = eventBlocks.length - 1;
-
-    while (filteredEventBlockIndex >= 0) {
-      currentEventBlockStart -=
-        eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
-      if (currentEventBlockStart < totalDuration * (value / videoWidth)) break;
-      filteredEventBlockIndex--;
-    }
-
-    seekHandler(
-      null,
-      eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds +
-        (totalDuration * (value / videoWidth) - currentEventBlockStart),
-    );
-
-    setTimelineThreeValue(value);
-  };
-
   const timelineThreeSeekMouseUpHandler = (e, value) => {
     setTimelineThreeValue(value);
 
@@ -356,8 +336,6 @@ const VideoPlayer = () => {
         (totalDuration * (value / videoWidth) - currentEventBlockStart),
     );
   };
-
-  const canvasRef = useRef(null);
 
   useEffect(() => {
     currentFrame.current = Math.round(
@@ -383,34 +361,43 @@ const VideoPlayer = () => {
     if (toggleRectangles) {
       // Draw each rectangle
       currentEvents.map((currVideoEventRect) => {
-        let currVideoEventRectLeft =
-          widthConverter(
-            currVideoEventRect.currentEventRectWidthMin[currentFrame.current],
-            currVideoEventRect.currentEventVideoWidth,
-            videoWidth,
-          ) - 25;
-        let currVideoEventRectTop =
-          heightConverter(
-            currVideoEventRect.currentEventRectHeightMin[currentFrame.current],
-            currVideoEventRect.currentEventVideoHeight,
-            videoHeight,
-          ) - 25;
-        let currVideoEventRectWidth =
-          currVideoEventRect.currentEventRectWidthMax[currentFrame.current] -
-          currVideoEventRect.currentEventRectWidthMin[currentFrame.current] +
-          50;
-        let currVideoEventRectHeight =
-          currVideoEventRect.currentEventRectHeightMax[currentFrame.current] -
-          currVideoEventRect.currentEventRectHeightMin[currentFrame.current] +
-          50;
-        ctx.strokeStyle = "#E5751F";
-        ctx.lineWidth = 4;
-        ctx.strokeRect(
-          currVideoEventRectLeft,
-          currVideoEventRectTop,
-          currVideoEventRectWidth,
-          currVideoEventRectHeight,
-        );
+        let rectWidthMin =
+          currVideoEventRect.currentEventRectWidthMin[currentFrame.current];
+        let rectHeightMin =
+          currVideoEventRect.currentEventRectHeightMin[currentFrame.current];
+        let rectWidthMax =
+          currVideoEventRect.currentEventRectWidthMax[currentFrame.current];
+        let rectHeightMax =
+          currVideoEventRect.currentEventRectHeightMax[currentFrame.current];
+        if (
+          rectWidthMin != 0 &&
+          rectWidthMax != 0 &&
+          rectHeightMin != 0 &&
+          rectHeightMax != 0
+        ) {
+          let currVideoEventRectLeft =
+            widthConverter(
+              rectWidthMin,
+              currVideoEventRect.currentEventVideoWidth,
+              videoWidth,
+            ) - 25;
+          let currVideoEventRectTop =
+            heightConverter(
+              rectHeightMin,
+              currVideoEventRect.currentEventVideoHeight,
+              videoHeight,
+            ) - 25;
+          let currVideoEventRectWidth = rectWidthMax - rectWidthMin + 50;
+          let currVideoEventRectHeight = rectHeightMax - rectHeightMin + 50;
+          ctx.strokeStyle = "#E5751F";
+          ctx.lineWidth = 4;
+          ctx.strokeRect(
+            currVideoEventRectLeft,
+            currVideoEventRectTop,
+            currVideoEventRectWidth,
+            currVideoEventRectHeight,
+          );
+        }
       });
     }
   });
@@ -479,38 +466,6 @@ const VideoPlayer = () => {
     }
     const eventBlocks = eventBlocksHandler();
 
-    const filteredEventBlockType =
-      eventBlocks[0].eventBlockEventType.split(":")[0];
-
-    let eventColor = "";
-    if (filteredEventBlockType === "1") {
-      eventColor = "bg-red-200";
-    } else if (filteredEventBlockType === "2") {
-      eventColor = "bg-orange-200";
-    } else if (filteredEventBlockType === "3") {
-      eventColor = "bg-yellow-200";
-    } else if (filteredEventBlockType === "4") {
-      eventColor = "bg-amber-200";
-    } else if (filteredEventBlockType === "5") {
-      eventColor = "bg-emerald-200";
-    } else if (filteredEventBlockType === "6") {
-      eventColor = "bg-teal-200";
-    } else if (filteredEventBlockType === "7") {
-      eventColor = "bg-blue-200";
-    } else if (filteredEventBlockType === "8") {
-      eventColor = "bg-indigo-200";
-    } else if (filteredEventBlockType === "9") {
-      eventColor = "bg-violet-200";
-    } else if (filteredEventBlockType === "10") {
-      eventColor = "bg-purple-200";
-    } else if (filteredEventBlockType === "11") {
-      eventColor = "bg-pink-200";
-    } else if (filteredEventBlockType === "12") {
-      eventColor = "bg-rose-200";
-    } else {
-      eventColor = "bg-zinc-200";
-    }
-
     let totalDuration = 0;
 
     for (
@@ -529,8 +484,6 @@ const VideoPlayer = () => {
           className={`flex justify-between`}
           style={{ width: `${videoWidth}px` }}>
           {eventBlocks.map((eventBlock) => {
-            console.log(eventBlock.eventBlockEvents);
-
             let isCurrentEventHappening = eventBlock.eventBlockEvents.find(
               (eventBlock) => {
                 return (
@@ -542,95 +495,22 @@ const VideoPlayer = () => {
               },
             );
 
-            return (
-              <div
-                key={(Math.random() + 1) * 10000000}
-                style={{
-                  width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * videoWidth)}px`,
-                }}
-                onMouseEnter={() => {
-                  setHighlightGraph(true);
-                  setHighlightGraphBlock(eventBlock);
-                }}
-                onMouseLeave={() => {
-                  setHighlightGraph(false);
-                  setHighlightGraphBlock({});
-                }}
-                onClick={() =>
-                  handleTimelineFiveClick(eventBlock.eventBlockEvents[0])
-                }
-                className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[4px] flex ${isCurrentEventHappening ? "border border-y-4 border-white" : ""}`}>
-                <div className="absolute bottom-10 z-10 hidden w-fit flex-col rounded-md bg-white group-hover:flex">
-                  {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
-                    const filteredEventBlockType =
-                      eventBlockEvent.currentEventName.split(":")[0];
+            const filteredEventBlockTypeNumber = parseInt(
+              eventBlock.eventBlockEventType.split(":")[0],
+            );
 
-                    let eventColor = "";
-                    if (filteredEventBlockType === "1") {
-                      eventColor = "bg-red-200";
-                    } else if (filteredEventBlockType === "2") {
-                      eventColor = "bg-orange-200";
-                    } else if (filteredEventBlockType === "3") {
-                      eventColor = "bg-yellow-200";
-                    } else if (filteredEventBlockType === "4") {
-                      eventColor = "bg-amber-200";
-                    } else if (filteredEventBlockType === "5") {
-                      eventColor = "bg-emerald-200";
-                    } else if (filteredEventBlockType === "6") {
-                      eventColor = "bg-teal-200";
-                    } else if (filteredEventBlockType === "7") {
-                      eventColor = "bg-blue-200";
-                    } else if (filteredEventBlockType === "8") {
-                      eventColor = "bg-indigo-200";
-                    } else if (filteredEventBlockType === "9") {
-                      eventColor = "bg-violet-200";
-                    } else if (filteredEventBlockType === "10") {
-                      eventColor = "bg-purple-200";
-                    } else if (filteredEventBlockType === "11") {
-                      eventColor = "bg-pink-200";
-                    } else if (filteredEventBlockType === "12") {
-                      eventColor = "bg-rose-200";
-                    } else {
-                      eventColor = "bg-zinc-200";
-                    }
-                    return (
-                      <div
-                        key={(Math.random() + 1) * 10000000}
-                        className={`${eventColor} mx-0.5 my-0.5 text-nowrap rounded-md p-1 first:mt-1 last:mb-1`}>
-                        {convertSecondsToTime(
-                          eventBlockEvent.currentEventStartFrameSeconds,
-                        )}
-                        -
-                        {convertSecondsToTime(
-                          eventBlockEvent.currentEventEndFrameSeconds,
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-                {
-                  <PlotFigure
-                    options={{
-                      width:
-                        Math.trunc(
-                          (eventBlock.eventBlockDurationSeconds /
-                            totalDuration) *
-                            videoWidth,
-                        ) - 2,
-                      height: 56,
-                      grid: true,
-                      axis: null,
-                      y: { domain: [0, 10] },
-                      marks: [
-                        Plot.lineY(eventBlock.eventBlockDensityValues, {
-                          curve: "step-after",
-                        }),
-                        Plot.ruleY([0]),
-                      ],
-                    }}
-                  />
-                }
-              </div>
+            let eventColor = eventColorFinder(filteredEventBlockTypeNumber);
+
+            return (
+              <EventBlockList
+                eventBlock={eventBlock}
+                totalDuration={totalDuration}
+                videoWidth={videoWidth}
+                eventColor={eventColor}
+                isCurrentEventHappening={isCurrentEventHappening}
+                selectedVideo={selectedVideo}
+                handleTimelineFiveClick={handleTimelineFiveClick}
+              />
             );
           })}
         </div>
@@ -638,7 +518,6 @@ const VideoPlayer = () => {
           min={0}
           max={videoWidth}
           value={timelineThreeValue}
-          onChange={timelineThreeSeekHandler}
           onChangeCommitted={timelineThreeSeekMouseUpHandler}
           className={`!text-white`}
         />
@@ -689,59 +568,39 @@ const VideoPlayer = () => {
     );
 
     return (
-      <div className="flex h-[865px] w-[400px] flex-col gap-4 overflow-y-auto text-dark">
+      <div className="bg-green flex h-[870px] w-72 flex-col gap-y-4 overflow-y-auto text-dark">
         {filteredEvents.map((currentEvent) => {
-          const filteredEventType = currentEvent.currentEventName.split(":")[0];
-          let eventColor = "";
-          if (filteredEventType === "1") {
-            eventColor = "bg-red-200";
-          } else if (filteredEventType === "2") {
-            eventColor = "bg-orange-200";
-          } else if (filteredEventType === "3") {
-            eventColor = "bg-yellow-200";
-          } else if (filteredEventType === "4") {
-            eventColor = "bg-amber-200";
-          } else if (filteredEventType === "5") {
-            eventColor = "bg-emerald-200";
-          } else if (filteredEventType === "6") {
-            eventColor = "bg-teal-200";
-          } else if (filteredEventType === "7") {
-            eventColor = "bg-blue-200";
-          } else if (filteredEventType === "8") {
-            eventColor = "bg-indigo-200";
-          } else if (filteredEventType === "9") {
-            eventColor = "bg-violet-200";
-          } else if (filteredEventType === "10") {
-            eventColor = "bg-purple-200";
-          } else if (filteredEventType === "11") {
-            eventColor = "bg-pink-200";
-          } else if (filteredEventType === "12") {
-            eventColor = "bg-rose-200";
-          } else {
-            eventColor = "bg-zinc-200";
-          }
+          const filteredEventTypeNumber = parseInt(
+            currentEvent.currentEventName.split(":")[0],
+            10,
+          );
+          let eventColor = eventColorFinder(filteredEventTypeNumber);
+
           return (
-            <button
-              key={(Math.random() + 1) * 10000000}
-              onClick={() => handleTimelineFiveClick(currentEvent)}
-              className={` rounded-3xl p-4 ${eventColor}`}>
-              <Image
+            <div
+              key={currentEvent.currentEventID}
+              style={{ backgroundColor: `${eventColor}` }}
+              className={` flex w-fit flex-col rounded-3xl p-2`}>
+              <ImageZoom
                 src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
-                width={400}
-                height={350}
+                width={250}
+                height={220}
                 alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
-                className="rounded-xl"
+                className="rounded-2xl"
+                zoom={300}
               />
-              <div>{currentEvent.currentEventName}</div>
-              <div className="flex justify-center gap-1">
-                <div>Start Time:</div>
-                <div>
-                  {convertSecondsToTime(
-                    currentEvent.currentEventStartFrameSeconds,
-                  )}
+              <button onClick={() => handleTimelineFiveClick(currentEvent)}>
+                {currentEvent.currentEventName}
+                <div className="flex justify-center gap-1">
+                  <div>Start Time:</div>
+                  <div>
+                    {convertSecondsToTime(
+                      currentEvent.currentEventStartFrameSeconds,
+                    )}
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            </div>
           );
         })}
       </div>

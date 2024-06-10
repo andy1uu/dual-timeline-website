@@ -39,18 +39,47 @@ export const timelineEventFilterer = (selectedEventType, videoEvents) => {
       );
 };
 
- export const playPauseHandler = (videoState, setVideoState) => {
-   setVideoState({ ...videoState, playing: !videoState.playing });
- };
+export const playPauseHandler = (videoState, setVideoState) => {
+  setVideoState({ ...videoState, playing: !videoState.playing });
+};
 
-  export const rewindHandler = (videoPlayerRef) => {
-    //Rewinds the video player reducing 10
-    videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() - 10);
-  };
+export const rewindHandler = (videoPlayerRef) => {
+  //Rewinds the video player reducing 10
+  videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() - 10);
+};
 
-   export const fastFowardHandler = (videoPlayerRef) => {
-     //FastFowards the video player by adding 10
-     videoPlayerRef.current.seekTo(
-       videoPlayerRef.current.getCurrentTime() + 10,
-     );
-   };
+export const fastFowardHandler = (videoPlayerRef) => {
+  //FastFowards the video player by adding 10
+  videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() + 10);
+};
+
+export const eventColorFinder = (eventTypeNumber) => {
+  switch (eventTypeNumber) {
+    case 1:
+      return "red";
+    case 2:
+      return "orange";
+    case 3:
+      return "yellow";
+    case 4:
+      return "amber";
+    case 5:
+      return "emerald";
+    case 6:
+      return "teal";
+    case 7:
+      return "blue";
+    case 8:
+      return "indigo";
+    case 9:
+      return "violet";
+    case 10:
+      return "bpurple";
+    case 11:
+      return "pink";
+    case 12:
+      return "rose";
+    default:
+      return "zinc";
+  }
+};
