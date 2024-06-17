@@ -16,13 +16,13 @@ import {
   eventColorFinder,
 } from "@/utils/HelperFunctions";
 import { timelineTypes } from "@/utils/TimelineTypes";
+import { playbackRates } from "@/utils/PlaybackRates";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
 import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
 import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
 import { Slider } from "@mui/material";
 import * as Plot from "@observablehq/plot";
-import Image from "next/image";
 import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
 import ImageZoom from "react-image-zooom";
 
@@ -34,6 +34,11 @@ import EventBlockList from "./utils/EventBlockList";
 const VideoPlayer = () => {
   const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
+  const [playbackRate, setPlaybackRate] = useState({
+    key: 1,
+    label: 1,
+    value: 1,
+  });
   const [videoState, setVideoState] = useState({
     playing: true,
     muted: true,
@@ -42,6 +47,7 @@ const VideoPlayer = () => {
     seeking: false,
     Buffer: true,
     duration: videos[0].duration,
+    playbackRate: 1,
   });
   const [videoEvents, setVideoEvents] = useState(
     videos[0].events.sort(
@@ -54,9 +60,9 @@ const VideoPlayer = () => {
     label: "0: All Events",
   });
   const [timeline, setTimeline] = useState({
-    key: "timeline5",
-    label: "Timeline 5",
-    value: "timeline5",
+    key: "timeline1",
+    label: "Timeline 1",
+    value: "timeline1",
   });
 
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
@@ -118,6 +124,14 @@ const VideoPlayer = () => {
     });
   };
 
+  const playbackRateHandler = (newPlaybackRate) => {
+    setPlaybackRate(newPlaybackRate);
+    setVideoState({
+      ...videoState,
+      playbackRate: newPlaybackRate.value,
+    });
+  }
+
   const changeVideoHandler = (newVideo) => {
     setSelectedVideo(newVideo);
     setVideoState({
@@ -128,6 +142,7 @@ const VideoPlayer = () => {
       seeking: false,
       Buffer: true,
       duration: newVideo.duration,
+      playbackRate: 1,
     });
     setVideoEvents(
       newVideo.events.sort(
@@ -143,6 +158,11 @@ const VideoPlayer = () => {
     });
     setSelectedEventType({
       label: "0: All Events",
+    });
+    setPlaybackRate({
+      key: 1,
+      label: 1,
+      value: 1,
     });
     setHighlightGraph(false);
     setHighlightGraphBlock({});
@@ -568,50 +588,57 @@ const VideoPlayer = () => {
     );
 
     return (
-      <div className="bg-green flex h-[870px] w-72 flex-col gap-y-4 overflow-y-auto text-dark">
-        {filteredEvents.map((currentEvent) => {
-          const filteredEventTypeNumber = parseInt(
-            currentEvent.currentEventName.split(":")[0],
-            10,
-          );
-          let eventColor = eventColorFinder(filteredEventTypeNumber);
+      <div className="bg-green flex h-[870px] w-80 flex-col gap-y-4 overflow-y-auto text-dark">
+        {timeline.value === "timeline5" &&
+          filteredEvents.map((currentEvent) => {
+            const filteredEventTypeNumber = parseInt(
+              currentEvent.currentEventName.split(":")[0],
+              10,
+            );
+            let eventColor = eventColorFinder(filteredEventTypeNumber);
 
-          return (
-            <div
-              key={currentEvent.currentEventID}
-              style={{ backgroundColor: `${eventColor}` }}
-              className={` flex w-fit flex-col rounded-3xl p-2`}>
-              <ImageZoom
-                src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
-                width={250}
-                height={220}
-                alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
-                className="rounded-2xl"
-                zoom={300}
-              />
-              <button onClick={() => handleTimelineFiveClick(currentEvent)}>
-                {currentEvent.currentEventName}
-                <div className="flex justify-center gap-1">
-                  <div>Start Time:</div>
-                  <div>
-                    {convertSecondsToTime(
-                      currentEvent.currentEventStartFrameSeconds,
-                    )}
-                  </div>
-                </div>
-              </button>
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={currentEvent.currentEventID}
+                style={{ backgroundColor: `${eventColor}` }}
+                className="flex w-80 flex-col rounded-xl p-2">
+                <ImageZoom
+                  src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
+                  width={288}
+                  height={300}
+                  alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
+                  className="!mx-auto !my-2 rounded-xl"
+                  zoom={200}
+                />
+                <button
+                  onClick={() => handleTimelineFiveClick(currentEvent)}
+                  className="mx-auto flex w-72 flex-col">
+                  <p className="w-72 text-wrap">
+                    {currentEvent.currentEventName}
+                  </p>
+                  <p className="w-72 text-wrap">
+                    {"Time: " +
+                      convertSecondsToTime(
+                        currentEvent.currentEventStartFrameSeconds,
+                      ) +
+                      " - " +
+                      convertSecondsToTime(
+                        currentEvent.currentEventEndFrameSeconds,
+                      )}
+                  </p>
+                </button>
+              </div>
+            );
+          })}
       </div>
     );
   };
 
   return (
-    <div className="VideoPlayer-container mx-auto flex gap-1 py-8">
-      {timeline.value === "timeline5" && timelineFiveHandler()}
+    <div className="VideoPlayer-container flex w-full justify-center gap-2 p-4">
+      {/* <div className="w-72">NEW CONTROLLS DUMY THING</div> */}
       <div
-        className={`VideoPlayer flex flex-col`}
+        className="VideoPlayer flex flex-col"
         style={{ width: `${videoWidth}px` }}>
         <div className="relative">
           <canvas
@@ -629,6 +656,7 @@ const VideoPlayer = () => {
             width={videoWidth}
             height={videoHeight}
             onProgress={progressHandler}
+            playbackRate={videoState.playbackRate}
             className="VideoPlayer-video pointer-events-none z-0"
           />
         </div>
@@ -716,16 +744,22 @@ const VideoPlayer = () => {
               setChecked={setToggleRectangles}
             />
             <CustomListBox
+              value={timeline}
+              setFunction={setTimeline}
+              options={timelineTypes}
+              width={200}
+            />
+            <CustomListBox
               value={selectedVideo}
               setFunction={changeVideoHandler}
               options={videos}
               width={200}
             />
             <CustomListBox
-              value={timeline}
-              setFunction={setTimeline}
-              options={timelineTypes}
-              width={200}
+              value={playbackRate}
+              setFunction={playbackRateHandler}
+              options={playbackRates}
+              width={100}
             />
             {timeline.value !== "timeline1" && (
               <CustomListBox
@@ -738,6 +772,7 @@ const VideoPlayer = () => {
           </div>
         </div>
       </div>
+      {timelineFiveHandler()}
     </div>
   );
 };

@@ -56,15 +56,15 @@ export const fastFowardHandler = (videoPlayerRef) => {
 export const eventColorFinder = (eventTypeNumber) => {
   switch (eventTypeNumber) {
     case 1:
-      return "red";
+      return "lightcoral";
     case 2:
       return "orange";
     case 3:
       return "yellow";
     case 4:
-      return "amber";
+      return "orangered";
     case 5:
-      return "emerald";
+      return "mediumspringgreen";
     case 6:
       return "teal";
     case 7:
@@ -74,12 +74,12 @@ export const eventColorFinder = (eventTypeNumber) => {
     case 9:
       return "violet";
     case 10:
-      return "bpurple";
+      return "purple";
     case 11:
       return "pink";
     case 12:
-      return "rose";
+      return "mistyrose";
     default:
-      return "zinc";
+      return "gray";
   }
 };
