@@ -1,9 +1,8 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import clickOutside from "./clickOutside";
 import PlotFigure from "./PlotFigure";
 import * as Plot from "@observablehq/plot";
-import ImageZoom from "react-image-zooom";
-import { convertSecondsToTime } from "@/utils/HelperFunctions";
+import Event from "./Event";
 
 const EventBlockList = forwardRef(
   (
@@ -17,6 +16,7 @@ const EventBlockList = forwardRef(
       isCurrentEventHappening,
       selectedVideo,
       handleTimelineFiveClick,
+      zoomAmount,
     },
     ref,
   ) => {
@@ -32,42 +32,17 @@ const EventBlockList = forwardRef(
           style={{ backgroundColor: `${eventColor}` }}
           className={`relative mr-1 flex h-16 w-full rounded-lg ${isCurrentEventHappening ? "border border-y-4 border-white" : ""}`}>
           {open && (
-            <div className="absolute bottom-14 z-10 flex w-fit flex-col gap-1 rounded-md bg-white p-1 h-72 overflow-auto">
+            <div className="absolute bottom-14 z-10 flex h-72 w-fit flex-col gap-1 overflow-auto rounded-md bg-white p-1">
               {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
                 return (
-                  <div
-                    key={eventBlockEvent.currentEventID}
-                    style={{ backgroundColor: `${eventColor}` }}
-                    className="flex w-80 flex-col rounded-xl p-2">
-                    <ImageZoom
-                      src={`/images/${selectedVideo.label}/${eventBlockEvent.currentEventVideoName}_${eventBlockEvent.currentEventID}.png`}
-                      width={288}
-                      height={300}
-                      alt={`${eventBlockEvent.currentEventVideoName}_${eventBlockEvent.currentEventID}`}
-                      className="!mx-auto !my-2 rounded-xl"
-                      zoom={200}
-                    />
-                    <button
-                      onClick={() => {
-                        setOpen(false);
-                        handleTimelineFiveClick(eventBlockEvent);
-                      }}
-                      className="mx-auto flex w-72 flex-col">
-                      <p className="w-72 text-wrap">
-                        {eventBlockEvent.currentEventName}
-                      </p>
-                      <p className="w-72 text-wrap">
-                        {"Time: " +
-                          convertSecondsToTime(
-                            eventBlockEvent.currentEventStartFrameSeconds,
-                          ) +
-                          " - " +
-                          convertSecondsToTime(
-                            eventBlockEvent.currentEventEndFrameSeconds,
-                          )}
-                      </p>
-                    </button>
-                  </div>
+                  <Event
+                    eventBlockEvent={eventBlockEvent}
+                    zoomAmount={zoomAmount}
+                    eventColor={eventColor}
+                    selectedVideo={selectedVideo}
+                    handleTimelineFiveClick={handleTimelineFiveClick}
+                  setOpen={setOpen}
+                  />
                 );
               })}
             </div>

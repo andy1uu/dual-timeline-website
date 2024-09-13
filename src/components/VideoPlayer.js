@@ -7,16 +7,16 @@ import ReactPlayer from "react-player";
 
 import {
   convertSecondsToTime,
+  eventColorFinder,
   fastFowardHandler,
   heightConverter,
   playPauseHandler,
   rewindHandler,
   timelineEventFilterer,
   widthConverter,
-  eventColorFinder,
 } from "@/utils/HelperFunctions";
-import { timelineTypes } from "@/utils/TimelineTypes";
 import { playbackRates } from "@/utils/PlaybackRates";
+import { timelineTypes } from "@/utils/TimelineTypes";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
 import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
 import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
@@ -26,12 +26,14 @@ import * as Plot from "@observablehq/plot";
 import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
 import ImageZoom from "react-image-zooom";
 
+import { useSearchParams } from "next/navigation";
 import CustomListBox from "./utils/CustomListBox";
 import CustomSwitch from "./utils/CustomSwitch";
-import PlotFigure from "./utils/PlotFigure";
 import EventBlockList from "./utils/EventBlockList";
+import PlotFigure from "./utils/PlotFigure";
 
 const VideoPlayer = () => {
+  const searchParams = useSearchParams();
   const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [playbackRate, setPlaybackRate] = useState({
@@ -65,12 +67,67 @@ const VideoPlayer = () => {
     value: "timeline1",
   });
 
+  const timelineType = searchParams.get("timelinetype");
+
+  const videoType = searchParams.get("videotype");
+
+  useEffect(() => {
+
+if (videoType) {
+      const videoTypesKeys = videos.map((video) => {
+        return video.label;
+      });
+
+      if (videoTypesKeys.includes(videoType)) {
+        changeVideoHandler(
+          videos.find((video) => videoType == video.label),
+        );
+      }
+    }
+
+    if (timelineType) {
+      const timelineTypesKeys = timelineTypes.map((timelineType) => {
+        return timelineType.key;
+      });
+
+      if (timelineTypesKeys.includes(timelineType)) {
+        setTimeline(
+          timelineTypes.find((timeType) => timelineType == timeType.key),
+        );
+      }
+    }
+  }, []);
+
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
 
   const [highlightGraph, setHighlightGraph] = useState(false);
   const [highlightGraphBlock, setHighlightGraphBlock] = useState({});
 
   const [toggleRectangles, setToggleRectangles] = useState(true);
+
+  const [zoomAmount, setZoomAmount] = useState({
+    key: 200,
+    label: 200,
+    value: 200,
+  });
+
+  const zoomAmounts = [
+    {
+      key: 200,
+      label: 200,
+      value: 200,
+    },
+    {
+      key: 300,
+      label: 300,
+      value: 300,
+    },
+    {
+      key: 400,
+      label: 400,
+      value: 400,
+    },
+  ];
 
   const videoPlayerRef = useRef(null);
   const currentFrame = useRef(0);
@@ -130,7 +187,7 @@ const VideoPlayer = () => {
       ...videoState,
       playbackRate: newPlaybackRate.value,
     });
-  }
+  };
 
   const changeVideoHandler = (newVideo) => {
     setSelectedVideo(newVideo);
@@ -480,6 +537,28 @@ const VideoPlayer = () => {
     }
   }, [videoState]);
 
+  useEffect(() => {
+    const eventBlocks = eventBlocksHandler();
+
+    let currentEventBlocks = eventBlocks.filter((eventBlock) => {
+      return eventBlock.eventBlockEndSeconds <= videoState.played;
+    });
+
+    const totalDuration = timelineThreeTotalDurationHandler();
+    let currentDuration = 0;
+
+    for (
+      let filteredEventBlockIndex = 0;
+      filteredEventBlockIndex < currentEventBlocks.length;
+      filteredEventBlockIndex++
+    ) {
+      currentDuration +=
+        eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
+    }
+
+    setTimelineThreeValue(videoWidth * (currentDuration / totalDuration));
+  }, []);
+
   const timelineThreeHandler = () => {
     if (selectedEventType.label === "0: All Events") {
       return;
@@ -530,6 +609,7 @@ const VideoPlayer = () => {
                 isCurrentEventHappening={isCurrentEventHappening}
                 selectedVideo={selectedVideo}
                 handleTimelineFiveClick={handleTimelineFiveClick}
+                zoomAmount={zoomAmount}
               />
             );
           })}
@@ -595,23 +675,27 @@ const VideoPlayer = () => {
               currentEvent.currentEventName.split(":")[0],
               10,
             );
+            let clicked = false;
             let eventColor = eventColorFinder(filteredEventTypeNumber);
 
             return (
               <div
                 key={currentEvent.currentEventID}
                 style={{ backgroundColor: `${eventColor}` }}
-                className="flex w-80 flex-col rounded-xl p-2">
+                className={`flex w-80 flex-col rounded-xl p-2 ${clicked ? "opacity-50" : ""}`}>
                 <ImageZoom
                   src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
                   width={288}
                   height={300}
                   alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
                   className="!mx-auto !my-2 rounded-xl"
-                  zoom={200}
+                  zoom={zoomAmount.value}
                 />
                 <button
-                  onClick={() => handleTimelineFiveClick(currentEvent)}
+                  onClick={() => {
+                    clicked = true;
+                    handleTimelineFiveClick(currentEvent);
+                  }}
                   className="mx-auto flex w-72 flex-col">
                   <p className="w-72 text-wrap">
                     {currentEvent.currentEventName}
@@ -635,7 +719,7 @@ const VideoPlayer = () => {
   };
 
   return (
-    <div className="VideoPlayer-container flex w-full justify-center gap-2 p-4">
+    <div className="VideoPlayer-container flex w-full p-4 justify-center">
       {/* <div className="w-72">NEW CONTROLLS DUMY THING</div> */}
       <div
         className="VideoPlayer flex flex-col"
@@ -657,6 +741,7 @@ const VideoPlayer = () => {
             height={videoHeight}
             onProgress={progressHandler}
             playbackRate={videoState.playbackRate}
+            progressInterval={100}
             className="VideoPlayer-video pointer-events-none z-0"
           />
         </div>
@@ -743,22 +828,28 @@ const VideoPlayer = () => {
               checked={toggleRectangles}
               setChecked={setToggleRectangles}
             />
-            <CustomListBox
+            {!timelineType && <CustomListBox
               value={timeline}
               setFunction={setTimeline}
               options={timelineTypes}
               width={200}
-            />
-            <CustomListBox
+            />}
+            {!videoType && <CustomListBox
               value={selectedVideo}
               setFunction={changeVideoHandler}
               options={videos}
               width={200}
-            />
+            />}
             <CustomListBox
               value={playbackRate}
               setFunction={playbackRateHandler}
               options={playbackRates}
+              width={100}
+            />
+            <CustomListBox
+              value={zoomAmount}
+              setFunction={setZoomAmount}
+              options={zoomAmounts}
               width={100}
             />
             {timeline.value !== "timeline1" && (

@@ -9,6 +9,7 @@ const clickOutside = (WrappedComponent) => {
     isCurrentEventHappening,
     selectedVideo,
     handleTimelineFiveClick,
+    zoomAmount
   }) => {
     const [open, setOpen] = useState(false);
 
@@ -35,6 +36,7 @@ const clickOutside = (WrappedComponent) => {
         isCurrentEventHappening={isCurrentEventHappening}
         selectedVideo={selectedVideo}
         handleTimelineFiveClick={handleTimelineFiveClick}
+        zoomAmount={zoomAmount}
       />
     );
   };
