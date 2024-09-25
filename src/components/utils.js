@@ -21,30 +21,3 @@ export const timelineTypes = [
   { key: "timeline4", label: "Timeline 4", value: "timeline4" },
   { key: "timeline5", label: "Timeline 5", value: "timeline5" },
 ];
-
-export const videos = [
-  {
-    label: "VIRAT_S_0002",
-    link: "https://youtu.be/0MEooMqqF9g",
-    duration: 5116.244,
-    events: ,
-  },
-  {
-    label: "VIRAT_S_0100",
-    link: "https://youtu.be/Tdembuj0pfU",
-    duration: 3108.772,
-    events: ,
-  },
-  {
-    label: "VIRAT_S_0102",
-    link: "https://youtu.be/oNMJ_TZueAo",
-    duration: 3598.887,
-    events: ,
-  },
-  {
-    label: "VIRAT_S_0400",
-    link: "https://youtu.be/n67Ymgz3IUc",
-    duration: 4648.744,
-    events:,
-  },
-];

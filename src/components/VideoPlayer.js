@@ -1,36 +1,46 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import * as d3 from "d3";
 import ReactPlayer from "react-player";
 
-import Image from "next/image";
-import { Slider } from "@mui/material";
-import * as Plot from "@observablehq/plot";
+import {
+  convertSecondsToTime,
+  eventColorFinder,
+  fastFowardHandler,
+  heightConverter,
+  playPauseHandler,
+  rewindHandler,
+  timelineEventFilterer,
+  widthConverter,
+} from "@/utils/HelperFunctions";
+import { playbackRates } from "@/utils/PlaybackRates";
 import { timelineTypes } from "@/utils/TimelineTypes";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
 import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
 import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
-import { FaPlay, FaPause, FaForward, FaBackward } from "react-icons/fa";
-import {
-  rewindHandler,
-  widthConverter,
-  heightConverter,
-  playPauseHandler,
-  fastFowardHandler,
-  convertSecondsToTime,
-  timelineEventFilterer,
-} from "@/utils/HelperFunctions";
+import { Slider } from "@mui/material";
+import * as Plot from "@observablehq/plot";
+import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
+import ImageZoom from "react-image-zooom";
 
-import PlotFigure from "./utils/PlotFigure";
+import { useSearchParams } from "next/navigation";
 import CustomListBox from "./utils/CustomListBox";
 import CustomSwitch from "./utils/CustomSwitch";
+import EventBlockList from "./utils/EventBlockList";
+import PlotFigure from "./utils/PlotFigure";
 
 const VideoPlayer = () => {
+  const searchParams = useSearchParams();
   const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
+  const [playbackRate, setPlaybackRate] = useState({
+    key: 1,
+    label: 1,
+    value: 1,
+  });
   const [videoState, setVideoState] = useState({
     playing: true,
     muted: true,
@@ -39,6 +49,7 @@ const VideoPlayer = () => {
     seeking: false,
     Buffer: true,
     duration: videos[0].duration,
+    playbackRate: 1,
   });
   const [videoEvents, setVideoEvents] = useState(
     videos[0].events.sort(
@@ -56,6 +67,37 @@ const VideoPlayer = () => {
     value: "timeline1",
   });
 
+  const timelineType = searchParams.get("timelinetype");
+
+  const videoType = searchParams.get("videotype");
+
+  useEffect(() => {
+
+if (videoType) {
+      const videoTypesKeys = videos.map((video) => {
+        return video.label;
+      });
+
+      if (videoTypesKeys.includes(videoType)) {
+        changeVideoHandler(
+          videos.find((video) => videoType == video.label),
+        );
+      }
+    }
+
+    if (timelineType) {
+      const timelineTypesKeys = timelineTypes.map((timelineType) => {
+        return timelineType.key;
+      });
+
+      if (timelineTypesKeys.includes(timelineType)) {
+        setTimeline(
+          timelineTypes.find((timeType) => timelineType == timeType.key),
+        );
+      }
+    }
+  }, []);
+
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
 
   const [highlightGraph, setHighlightGraph] = useState(false);
@@ -63,8 +105,33 @@ const VideoPlayer = () => {
 
   const [toggleRectangles, setToggleRectangles] = useState(true);
 
+  const [zoomAmount, setZoomAmount] = useState({
+    key: 200,
+    label: 200,
+    value: 200,
+  });
+
+  const zoomAmounts = [
+    {
+      key: 200,
+      label: 200,
+      value: 200,
+    },
+    {
+      key: 300,
+      label: 300,
+      value: 300,
+    },
+    {
+      key: 400,
+      label: 400,
+      value: 400,
+    },
+  ];
+
   const videoPlayerRef = useRef(null);
   const currentFrame = useRef(0);
+  const canvasRef = useRef(null);
 
   const videoWidth = 1280;
   const videoHeight = 720;
@@ -114,6 +181,14 @@ const VideoPlayer = () => {
     });
   };
 
+  const playbackRateHandler = (newPlaybackRate) => {
+    setPlaybackRate(newPlaybackRate);
+    setVideoState({
+      ...videoState,
+      playbackRate: newPlaybackRate.value,
+    });
+  };
+
   const changeVideoHandler = (newVideo) => {
     setSelectedVideo(newVideo);
     setVideoState({
@@ -124,6 +199,7 @@ const VideoPlayer = () => {
       seeking: false,
       Buffer: true,
       duration: newVideo.duration,
+      playbackRate: 1,
     });
     setVideoEvents(
       newVideo.events.sort(
@@ -139,6 +215,11 @@ const VideoPlayer = () => {
     });
     setSelectedEventType({
       label: "0: All Events",
+    });
+    setPlaybackRate({
+      key: 1,
+      label: 1,
+      value: 1,
     });
     setHighlightGraph(false);
     setHighlightGraphBlock({});
@@ -309,30 +390,6 @@ const VideoPlayer = () => {
     return totalDuration;
   };
 
-  const timelineThreeSeekHandler = (e, value) => {
-    const eventBlocks = eventBlocksHandler();
-
-    const totalDuration = timelineThreeTotalDurationHandler();
-
-    let currentEventBlockStart = totalDuration;
-    let filteredEventBlockIndex = eventBlocks.length - 1;
-
-    while (filteredEventBlockIndex >= 0) {
-      currentEventBlockStart -=
-        eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
-      if (currentEventBlockStart < totalDuration * (value / videoWidth)) break;
-      filteredEventBlockIndex--;
-    }
-
-    seekHandler(
-      null,
-      eventBlocks[filteredEventBlockIndex].eventBlockStartSeconds +
-        (totalDuration * (value / videoWidth) - currentEventBlockStart),
-    );
-
-    setTimelineThreeValue(value);
-  };
-
   const timelineThreeSeekMouseUpHandler = (e, value) => {
     setTimelineThreeValue(value);
 
@@ -356,8 +413,6 @@ const VideoPlayer = () => {
         (totalDuration * (value / videoWidth) - currentEventBlockStart),
     );
   };
-
-  const canvasRef = useRef(null);
 
   useEffect(() => {
     currentFrame.current = Math.round(
@@ -383,34 +438,43 @@ const VideoPlayer = () => {
     if (toggleRectangles) {
       // Draw each rectangle
       currentEvents.map((currVideoEventRect) => {
-        let currVideoEventRectLeft =
-          widthConverter(
-            currVideoEventRect.currentEventRectWidthMin[currentFrame.current],
-            currVideoEventRect.currentEventVideoWidth,
-            videoWidth,
-          ) - 25;
-        let currVideoEventRectTop =
-          heightConverter(
-            currVideoEventRect.currentEventRectHeightMin[currentFrame.current],
-            currVideoEventRect.currentEventVideoHeight,
-            videoHeight,
-          ) - 25;
-        let currVideoEventRectWidth =
-          currVideoEventRect.currentEventRectWidthMax[currentFrame.current] -
-          currVideoEventRect.currentEventRectWidthMin[currentFrame.current] +
-          50;
-        let currVideoEventRectHeight =
-          currVideoEventRect.currentEventRectHeightMax[currentFrame.current] -
-          currVideoEventRect.currentEventRectHeightMin[currentFrame.current] +
-          50;
-        ctx.strokeStyle = "#E5751F";
-        ctx.lineWidth = 4;
-        ctx.strokeRect(
-          currVideoEventRectLeft,
-          currVideoEventRectTop,
-          currVideoEventRectWidth,
-          currVideoEventRectHeight,
-        );
+        let rectWidthMin =
+          currVideoEventRect.currentEventRectWidthMin[currentFrame.current];
+        let rectHeightMin =
+          currVideoEventRect.currentEventRectHeightMin[currentFrame.current];
+        let rectWidthMax =
+          currVideoEventRect.currentEventRectWidthMax[currentFrame.current];
+        let rectHeightMax =
+          currVideoEventRect.currentEventRectHeightMax[currentFrame.current];
+        if (
+          rectWidthMin != 0 &&
+          rectWidthMax != 0 &&
+          rectHeightMin != 0 &&
+          rectHeightMax != 0
+        ) {
+          let currVideoEventRectLeft =
+            widthConverter(
+              rectWidthMin,
+              currVideoEventRect.currentEventVideoWidth,
+              videoWidth,
+            ) - 25;
+          let currVideoEventRectTop =
+            heightConverter(
+              rectHeightMin,
+              currVideoEventRect.currentEventVideoHeight,
+              videoHeight,
+            ) - 25;
+          let currVideoEventRectWidth = rectWidthMax - rectWidthMin + 50;
+          let currVideoEventRectHeight = rectHeightMax - rectHeightMin + 50;
+          ctx.strokeStyle = "#E5751F";
+          ctx.lineWidth = 4;
+          ctx.strokeRect(
+            currVideoEventRectLeft,
+            currVideoEventRectTop,
+            currVideoEventRectWidth,
+            currVideoEventRectHeight,
+          );
+        }
       });
     }
   });
@@ -473,43 +537,33 @@ const VideoPlayer = () => {
     }
   }, [videoState]);
 
+  useEffect(() => {
+    const eventBlocks = eventBlocksHandler();
+
+    let currentEventBlocks = eventBlocks.filter((eventBlock) => {
+      return eventBlock.eventBlockEndSeconds <= videoState.played;
+    });
+
+    const totalDuration = timelineThreeTotalDurationHandler();
+    let currentDuration = 0;
+
+    for (
+      let filteredEventBlockIndex = 0;
+      filteredEventBlockIndex < currentEventBlocks.length;
+      filteredEventBlockIndex++
+    ) {
+      currentDuration +=
+        eventBlocks[filteredEventBlockIndex].eventBlockDurationSeconds;
+    }
+
+    setTimelineThreeValue(videoWidth * (currentDuration / totalDuration));
+  }, []);
+
   const timelineThreeHandler = () => {
     if (selectedEventType.label === "0: All Events") {
       return;
     }
     const eventBlocks = eventBlocksHandler();
-
-    const filteredEventBlockType =
-      eventBlocks[0].eventBlockEventType.split(":")[0];
-
-    let eventColor = "";
-    if (filteredEventBlockType === "1") {
-      eventColor = "bg-red-200";
-    } else if (filteredEventBlockType === "2") {
-      eventColor = "bg-orange-200";
-    } else if (filteredEventBlockType === "3") {
-      eventColor = "bg-yellow-200";
-    } else if (filteredEventBlockType === "4") {
-      eventColor = "bg-amber-200";
-    } else if (filteredEventBlockType === "5") {
-      eventColor = "bg-emerald-200";
-    } else if (filteredEventBlockType === "6") {
-      eventColor = "bg-teal-200";
-    } else if (filteredEventBlockType === "7") {
-      eventColor = "bg-blue-200";
-    } else if (filteredEventBlockType === "8") {
-      eventColor = "bg-indigo-200";
-    } else if (filteredEventBlockType === "9") {
-      eventColor = "bg-violet-200";
-    } else if (filteredEventBlockType === "10") {
-      eventColor = "bg-purple-200";
-    } else if (filteredEventBlockType === "11") {
-      eventColor = "bg-pink-200";
-    } else if (filteredEventBlockType === "12") {
-      eventColor = "bg-rose-200";
-    } else {
-      eventColor = "bg-zinc-200";
-    }
 
     let totalDuration = 0;
 
@@ -529,8 +583,6 @@ const VideoPlayer = () => {
           className={`flex justify-between`}
           style={{ width: `${videoWidth}px` }}>
           {eventBlocks.map((eventBlock) => {
-            console.log(eventBlock.eventBlockEvents);
-
             let isCurrentEventHappening = eventBlock.eventBlockEvents.find(
               (eventBlock) => {
                 return (
@@ -542,95 +594,23 @@ const VideoPlayer = () => {
               },
             );
 
-            return (
-              <div
-                key={(Math.random() + 1) * 10000000}
-                style={{
-                  width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * videoWidth)}px`,
-                }}
-                onMouseEnter={() => {
-                  setHighlightGraph(true);
-                  setHighlightGraphBlock(eventBlock);
-                }}
-                onMouseLeave={() => {
-                  setHighlightGraph(false);
-                  setHighlightGraphBlock({});
-                }}
-                onClick={() =>
-                  handleTimelineFiveClick(eventBlock.eventBlockEvents[0])
-                }
-                className={`h-16 rounded-lg opacity-75 ${eventColor} group relative mr-[4px] flex ${isCurrentEventHappening ? "border border-y-4 border-white" : ""}`}>
-                <div className="absolute bottom-10 z-10 hidden w-fit flex-col rounded-md bg-white group-hover:flex">
-                  {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
-                    const filteredEventBlockType =
-                      eventBlockEvent.currentEventName.split(":")[0];
+            const filteredEventBlockTypeNumber = parseInt(
+              eventBlock.eventBlockEventType.split(":")[0],
+            );
 
-                    let eventColor = "";
-                    if (filteredEventBlockType === "1") {
-                      eventColor = "bg-red-200";
-                    } else if (filteredEventBlockType === "2") {
-                      eventColor = "bg-orange-200";
-                    } else if (filteredEventBlockType === "3") {
-                      eventColor = "bg-yellow-200";
-                    } else if (filteredEventBlockType === "4") {
-                      eventColor = "bg-amber-200";
-                    } else if (filteredEventBlockType === "5") {
-                      eventColor = "bg-emerald-200";
-                    } else if (filteredEventBlockType === "6") {
-                      eventColor = "bg-teal-200";
-                    } else if (filteredEventBlockType === "7") {
-                      eventColor = "bg-blue-200";
-                    } else if (filteredEventBlockType === "8") {
-                      eventColor = "bg-indigo-200";
-                    } else if (filteredEventBlockType === "9") {
-                      eventColor = "bg-violet-200";
-                    } else if (filteredEventBlockType === "10") {
-                      eventColor = "bg-purple-200";
-                    } else if (filteredEventBlockType === "11") {
-                      eventColor = "bg-pink-200";
-                    } else if (filteredEventBlockType === "12") {
-                      eventColor = "bg-rose-200";
-                    } else {
-                      eventColor = "bg-zinc-200";
-                    }
-                    return (
-                      <div
-                        key={(Math.random() + 1) * 10000000}
-                        className={`${eventColor} mx-0.5 my-0.5 text-nowrap rounded-md p-1 first:mt-1 last:mb-1`}>
-                        {convertSecondsToTime(
-                          eventBlockEvent.currentEventStartFrameSeconds,
-                        )}
-                        -
-                        {convertSecondsToTime(
-                          eventBlockEvent.currentEventEndFrameSeconds,
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-                {
-                  <PlotFigure
-                    options={{
-                      width:
-                        Math.trunc(
-                          (eventBlock.eventBlockDurationSeconds /
-                            totalDuration) *
-                            videoWidth,
-                        ) - 2,
-                      height: 56,
-                      grid: true,
-                      axis: null,
-                      y: { domain: [0, 10] },
-                      marks: [
-                        Plot.lineY(eventBlock.eventBlockDensityValues, {
-                          curve: "step-after",
-                        }),
-                        Plot.ruleY([0]),
-                      ],
-                    }}
-                  />
-                }
-              </div>
+            let eventColor = eventColorFinder(filteredEventBlockTypeNumber);
+
+            return (
+              <EventBlockList
+                eventBlock={eventBlock}
+                totalDuration={totalDuration}
+                videoWidth={videoWidth}
+                eventColor={eventColor}
+                isCurrentEventHappening={isCurrentEventHappening}
+                selectedVideo={selectedVideo}
+                handleTimelineFiveClick={handleTimelineFiveClick}
+                zoomAmount={zoomAmount}
+              />
             );
           })}
         </div>
@@ -638,7 +618,6 @@ const VideoPlayer = () => {
           min={0}
           max={videoWidth}
           value={timelineThreeValue}
-          onChange={timelineThreeSeekHandler}
           onChangeCommitted={timelineThreeSeekMouseUpHandler}
           className={`!text-white`}
         />
@@ -689,70 +668,61 @@ const VideoPlayer = () => {
     );
 
     return (
-      <div className="flex h-[865px] w-[400px] flex-col gap-4 overflow-y-auto text-dark">
-        {filteredEvents.map((currentEvent) => {
-          const filteredEventType = currentEvent.currentEventName.split(":")[0];
-          let eventColor = "";
-          if (filteredEventType === "1") {
-            eventColor = "bg-red-200";
-          } else if (filteredEventType === "2") {
-            eventColor = "bg-orange-200";
-          } else if (filteredEventType === "3") {
-            eventColor = "bg-yellow-200";
-          } else if (filteredEventType === "4") {
-            eventColor = "bg-amber-200";
-          } else if (filteredEventType === "5") {
-            eventColor = "bg-emerald-200";
-          } else if (filteredEventType === "6") {
-            eventColor = "bg-teal-200";
-          } else if (filteredEventType === "7") {
-            eventColor = "bg-blue-200";
-          } else if (filteredEventType === "8") {
-            eventColor = "bg-indigo-200";
-          } else if (filteredEventType === "9") {
-            eventColor = "bg-violet-200";
-          } else if (filteredEventType === "10") {
-            eventColor = "bg-purple-200";
-          } else if (filteredEventType === "11") {
-            eventColor = "bg-pink-200";
-          } else if (filteredEventType === "12") {
-            eventColor = "bg-rose-200";
-          } else {
-            eventColor = "bg-zinc-200";
-          }
-          return (
-            <button
-              key={(Math.random() + 1) * 10000000}
-              onClick={() => handleTimelineFiveClick(currentEvent)}
-              className={` rounded-3xl p-4 ${eventColor}`}>
-              <Image
-                src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
-                width={400}
-                height={350}
-                alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
-                className="rounded-xl"
-              />
-              <div>{currentEvent.currentEventName}</div>
-              <div className="flex justify-center gap-1">
-                <div>Start Time:</div>
-                <div>
-                  {convertSecondsToTime(
-                    currentEvent.currentEventStartFrameSeconds,
-                  )}
-                </div>
+      <div className="bg-green flex h-[870px] w-80 flex-col gap-y-4 overflow-y-auto text-dark">
+        {timeline.value === "timeline5" &&
+          filteredEvents.map((currentEvent) => {
+            const filteredEventTypeNumber = parseInt(
+              currentEvent.currentEventName.split(":")[0],
+              10,
+            );
+            let clicked = false;
+            let eventColor = eventColorFinder(filteredEventTypeNumber);
+
+            return (
+              <div
+                key={currentEvent.currentEventID}
+                style={{ backgroundColor: `${eventColor}` }}
+                className={`flex w-80 flex-col rounded-xl p-2 ${clicked ? "opacity-50" : ""}`}>
+                <ImageZoom
+                  src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
+                  width={288}
+                  height={300}
+                  alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
+                  className="!mx-auto !my-2 rounded-xl"
+                  zoom={zoomAmount.value}
+                />
+                <button
+                  onClick={() => {
+                    clicked = true;
+                    handleTimelineFiveClick(currentEvent);
+                  }}
+                  className="mx-auto flex w-72 flex-col">
+                  <p className="w-72 text-wrap">
+                    {currentEvent.currentEventName}
+                  </p>
+                  <p className="w-72 text-wrap">
+                    {"Time: " +
+                      convertSecondsToTime(
+                        currentEvent.currentEventStartFrameSeconds,
+                      ) +
+                      " - " +
+                      convertSecondsToTime(
+                        currentEvent.currentEventEndFrameSeconds,
+                      )}
+                  </p>
+                </button>
               </div>
-            </button>
-          );
-        })}
+            );
+          })}
       </div>
     );
   };
 
   return (
-    <div className="VideoPlayer-container mx-auto flex gap-1 py-8">
-      {timeline.value === "timeline5" && timelineFiveHandler()}
+    <div className="VideoPlayer-container flex w-full p-4 justify-center">
+      {/* <div className="w-72">NEW CONTROLLS DUMY THING</div> */}
       <div
-        className={`VideoPlayer flex flex-col`}
+        className="VideoPlayer flex flex-col"
         style={{ width: `${videoWidth}px` }}>
         <div className="relative">
           <canvas
@@ -770,6 +740,8 @@ const VideoPlayer = () => {
             width={videoWidth}
             height={videoHeight}
             onProgress={progressHandler}
+            playbackRate={videoState.playbackRate}
+            progressInterval={100}
             className="VideoPlayer-video pointer-events-none z-0"
           />
         </div>
@@ -856,17 +828,29 @@ const VideoPlayer = () => {
               checked={toggleRectangles}
               setChecked={setToggleRectangles}
             />
-            <CustomListBox
-              value={selectedVideo}
-              setFunction={changeVideoHandler}
-              options={videos}
-              width={200}
-            />
-            <CustomListBox
+            {!timelineType && <CustomListBox
               value={timeline}
               setFunction={setTimeline}
               options={timelineTypes}
               width={200}
+            />}
+            {!videoType && <CustomListBox
+              value={selectedVideo}
+              setFunction={changeVideoHandler}
+              options={videos}
+              width={200}
+            />}
+            <CustomListBox
+              value={playbackRate}
+              setFunction={playbackRateHandler}
+              options={playbackRates}
+              width={100}
+            />
+            <CustomListBox
+              value={zoomAmount}
+              setFunction={setZoomAmount}
+              options={zoomAmounts}
+              width={100}
             />
             {timeline.value !== "timeline1" && (
               <CustomListBox
@@ -879,6 +863,7 @@ const VideoPlayer = () => {
           </div>
         </div>
       </div>
+      {timelineFiveHandler()}
     </div>
   );
 };
