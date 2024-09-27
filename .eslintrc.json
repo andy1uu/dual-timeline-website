@@ -7,7 +7,7 @@
     "sourceType": "module"
   },
   "plugins": ["tailwindcss"],
-  "extends": ["next/babel", "next/core-web-vitals",
+  "extends": ["next", "next/core-web-vitals",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:tailwindcss/recommended",

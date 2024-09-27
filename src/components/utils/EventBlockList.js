@@ -1,52 +1,41 @@
-import React, { forwardRef, useState } from "react";
-import clickOutside from "./clickOutside";
+import React from "react";
 import PlotFigure from "./PlotFigure";
 import * as Plot from "@observablehq/plot";
 import Event from "./Event";
 
-const EventBlockList = forwardRef(
+const EventBlockList = 
   (
     {
-      open,
-      setOpen,
       eventBlock,
       totalDuration,
       videoWidth,
       eventColor,
       isCurrentEventHappening,
-      selectedVideo,
       handleTimelineFiveClick,
-      zoomAmount,
-    },
-    ref,
+      highlightGraph,
+      setHighlightGraph, setHighlightGraphBlock
+    }
   ) => {
     return (
       <div
-        ref={ref}
         style={{
           width: `${Math.trunc((eventBlock.eventBlockDurationSeconds / totalDuration) * videoWidth)}px`,
-        }}>
+        }}
+        onMouseEnter={() => {
+          setHighlightGraph(true);
+          setHighlightGraphBlock(eventBlock);
+        }}
+        onMouseLeave={() => {
+          setHighlightGraph(false);
+          setHighlightGraphBlock({});
+        }}
+        onClick={() =>
+          handleTimelineFiveClick(eventBlock.eventBlockEvents[0])
+        }>
         <div
-          key={10000000}
-          onClick={() => setOpen(true)}
+          
           style={{ backgroundColor: `${eventColor}` }}
-          className={`relative mr-1 flex h-16 w-full rounded-lg ${isCurrentEventHappening ? "border border-y-4 border-white" : ""}`}>
-          {open && (
-            <div className="absolute bottom-14 z-10 flex h-72 w-fit flex-col gap-1 overflow-auto rounded-md bg-white p-1">
-              {eventBlock.eventBlockEvents.map((eventBlockEvent) => {
-                return (
-                  <Event
-                    eventBlockEvent={eventBlockEvent}
-                    zoomAmount={zoomAmount}
-                    eventColor={eventColor}
-                    selectedVideo={selectedVideo}
-                    handleTimelineFiveClick={handleTimelineFiveClick}
-                  setOpen={setOpen}
-                  />
-                );
-              })}
-            </div>
-          )}
+          className={`relative mr-1 flex h-16 w-full rounded-lg hover:border hover:border-y-4 hover:border-lime-600 ${isCurrentEventHappening ? "border border-y-4 border-white" : ""}`}>
           {
             <PlotFigure
               options={{
@@ -71,7 +60,6 @@ const EventBlockList = forwardRef(
         </div>
       </div>
     );
-  },
-);
+  };
 
-export default clickOutside(EventBlockList);
+export default EventBlockList;

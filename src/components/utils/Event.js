@@ -14,9 +14,14 @@ const Event = ({
 
   return (
     <div
-      key={eventBlockEvent.currentEventID}
+      key={"EventKey" + eventBlockEvent.currentEventVideoName + (eventBlockEvent.currentEventID.toString())}
       style={{ backgroundColor: `${eventColor}` }}
-      className={`flex w-80 flex-col rounded-xl p-2 ${clicked ? "opacity-50" : ""}`}>
+      className={`flex w-80 flex-col rounded-xl p-2 ${clicked ? "opacity-50" : ""}`} 
+      onClick={() => {
+        setOpen(false);
+        setClicked(true);
+        handleTimelineFiveClick(eventBlockEvent);
+      }}>
       <ImageZoom
         src={`/images/${selectedVideo.label}/${eventBlockEvent.currentEventVideoName}_${eventBlockEvent.currentEventID}.png`}
         width={288}
@@ -26,11 +31,6 @@ const Event = ({
         zoom={zoomAmount.value}
       />
       <button
-        onClick={() => {
-          setOpen(false);
-          setClicked(true);
-          handleTimelineFiveClick(eventBlockEvent);
-        }}
         className="mx-auto flex w-72 flex-col">
         <p className="w-72 text-wrap">{eventBlockEvent.currentEventName}</p>
         <p className="w-72 text-wrap">

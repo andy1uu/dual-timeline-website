@@ -26,10 +26,10 @@ export const widthConverter = (sizeToConvert, width, videoWidth) => {
 };
 
 export const timelineEventFilterer = (selectedEventType, videoEvents) => {
-  return selectedEventType.label.slice(0, 2) !== "0:"
+  return selectedEventType.slice(0, 2) !== "0:"
     ? videoEvents.filter(({ currentEventName }) => {
         return (
-          currentEventName.slice(0, 2) === selectedEventType.label.slice(0, 2)
+          currentEventName.slice(0, 2) === selectedEventType.slice(0, 2)
         );
       })
     : videoEvents.sort(

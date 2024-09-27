@@ -8,15 +8,15 @@ const CustomListBox = ({value, setFunction, options, width}) => {
   return (
     <Listbox value={value} onChange={setFunction}>
       <div
-        className={`VideoPlayer-selector mx-1`}
-        style={{ width: `${width}px` }}>
+        className={`VideoPlayer-selector`}
+        >
         <Listbox.Button
-          className={`relative cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm`}
+          className={`relative cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary`}
           style={{ width: `${width}px` }}>
           <span className="block truncate">{value.label}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <FaChevronDown
-              className="h-5 w-5 text-gray-400"
+              className="h-3 w-3"
               aria-hidden="true"
             />
           </span>
@@ -27,7 +27,7 @@ const CustomListBox = ({value, setFunction, options, width}) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0">
           <Listbox.Options
-            className={`absolute mt-1 max-h-60 overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm`}
+            className={`absolute mt-1 max-h-60 overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none`}
             style={{ width: `${width}px` }}>
             {options.map((option) => (
               <Listbox.Option
