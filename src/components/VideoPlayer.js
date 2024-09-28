@@ -638,8 +638,7 @@ const VideoPlayer = () => {
       videoEvents,
     );
 
-    return timeline.value === "timeline5" &&
-      filteredEvents.map((currentEvent) => {
+    return filteredEvents.map((currentEvent) => {
         const filteredEventTypeNumber = parseInt(
           currentEvent.currentEventName.split(":")[0],
           10,
@@ -686,9 +685,9 @@ const VideoPlayer = () => {
   return (
     <div className="Container mx-auto flex flex-col lg:!w-[1024px] lg:text-sm xl:!w-[1280px] xl:text-xl 2xl:!w-[1536px]">
       <div className="SideBarAndVideoPlayer-container flex h-fit text-primary">
-        <div className="SideBar flex flex-col gap-3 overflow-y-auto bg-dark p-2 lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[640px]">
+        <div className="SideBar flex flex-col gap-3 bg-dark p-2 h-full lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[640px]">
           {timeline.value !== "timeline1" && (<div className="EventTypes-container flex flex-col gap-2">
-            <p className="EventTypes-label mx-auto flex ">Event Types</p>
+            <p className="EventTypes-label mx-auto flex">Event Types</p>
             <CustomRadioGroup
               value={selectedEventType}
               setFunction={currentEventTypeHandler}
@@ -830,10 +829,11 @@ const VideoPlayer = () => {
               <div>{convertSecondsToTime(videoState.duration)}</div>
             </div>
           </div>
+          {timeline.value === "timeline5" && <div className="2xl:text-md flex gap-1 overflow-x-scroll bg-dark text-dark xl:text-sm">
+            {timelineFiveHandler()}
+          </div>}
         </div>
-      </div>
-      <div className="2xl:text-md flex gap-1 overflow-scroll bg-dark text-dark xl:text-sm">
-        {timelineFiveHandler()}
+        
       </div>
     </div>
   );
