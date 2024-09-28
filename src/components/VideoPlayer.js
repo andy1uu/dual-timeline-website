@@ -86,6 +86,8 @@ const VideoPlayer = () => {
   const videoPlayerRef = useRef(null);
   const currentFrame = useRef(0);
   const canvasRef = useRef(null);
+  const highlightGraphInEvent = useRef(false);
+  const highlightGraphBlockInEvent = useRef({});
 
   const timelineType = searchParams.get("timelinetype");
 
@@ -283,6 +285,27 @@ const VideoPlayer = () => {
     }
 
     return highlightedDensityFunctionValues;
+  };
+
+  const highlightDensityFunctionInEventHandler = () => {
+    const highlightedDensityFunctionInEventValues = new Array(
+      Math.ceil(selectedVideo.duration),
+    ).fill(0);
+
+    if (highlightGraphBlockInEvent.current) {
+      for (
+        let indexToHighlight = highlightGraphBlockInEvent.current.eventBlockStartSeconds;
+        indexToHighlight < highlightGraphBlockInEvent.current.eventBlockEndSeconds;
+        indexToHighlight++
+      ) {
+        highlightedDensityFunctionInEventValues[indexToHighlight] =
+          highlightGraphBlockInEvent.current.eventBlockDensityValues[
+          indexToHighlight - highlightGraphBlockInEvent.current.eventBlockStartSeconds
+          ];
+      }
+    }
+
+    return highlightedDensityFunctionInEventValues;
   };
 
   const eventBlocksHandler = useCallback(() => {
@@ -544,6 +567,30 @@ const VideoPlayer = () => {
     setTimelineThreeValue(videoWidth * (currentDuration / totalDuration));
   }, []);
 
+  useEffect(() => {
+    if (timeline.value === "timeline2" || timeline.value === "timeline4") {
+    const eventBlocks = eventBlocksHandler();
+
+      let currentEventBlock = eventBlocks.find(
+        (eventBlock) => (
+          eventBlock.eventBlockEndSeconds >=
+          videoPlayerRef.current.getCurrentTime() &&
+          eventBlock.eventBlockStartSeconds <=
+          videoPlayerRef.current.getCurrentTime()
+        ),
+      );
+
+      if(currentEventBlock) {
+        highlightGraphInEvent.current = true;
+        highlightGraphBlockInEvent.current = currentEventBlock;
+      }
+      else {
+        highlightGraphInEvent.current = false;
+        highlightGraphBlockInEvent.current = {};
+      }
+    }
+  });
+
   const timelineThreeHandler = () => {
     const eventBlocks = eventBlocksHandler();
 
@@ -755,6 +802,24 @@ const VideoPlayer = () => {
                     y: { domain: [0, Math.max(...densityFunctionHandler())] },
                     marks: [
                       Plot.lineY(highlightDensityFunctionHandler(), {
+                        curve: "step-after",
+                      }),
+                    ],
+                  }}
+                />
+              </div>
+            )}
+            {highlightGraphInEvent.current && (timeline.value === "timeline2" || timeline.value === "timeline4") && (
+              <div className="absolute top-4 text-white">
+                <PlotFigure
+                  options={{
+                    width: videoWidth,
+                    height: 64,
+                    grid: true,
+                    axis: null,
+                    y: { domain: [0, Math.max(...densityFunctionHandler())] },
+                    marks: [
+                      Plot.lineY(highlightDensityFunctionInEventHandler(), {
                         curve: "step-after",
                       }),
                     ],
