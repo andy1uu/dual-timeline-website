@@ -1,8 +1,8 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Field, Label, Radio, RadioGroup  } from "@headlessui/react";
 
-const CustomRadioGroup = ({ value, setFunction, options,label }) => {
-  return (
+const CustomRadioGroup = ({ value, setFunction, options,label }) => (
     <RadioGroup value={value} onChange={setFunction} aria-label={label} className={"flex flex-col gap-2"}>
       {options.map((option) => (
         <Field key={option} className="flex w-full justify-between">
@@ -17,6 +17,12 @@ const CustomRadioGroup = ({ value, setFunction, options,label }) => {
       ))}
     </RadioGroup>
   );
+
+CustomRadioGroup.propTypes = {
+  value: PropTypes.string.isRequired, 
+  setFunction: PropTypes.func.isRequired,                                      
+  options: PropTypes.array.isRequired,
+  label: PropTypes.string,                                                    // `label` is a string (optional)
 };
 
 export default CustomRadioGroup;

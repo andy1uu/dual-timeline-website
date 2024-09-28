@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
 
-import * as d3 from "d3";
 import ReactPlayer from "react-player";
 
 import {
@@ -43,11 +42,11 @@ const VideoPlayer = () => {
     value: 1,
   });
 
-  const [zoomAmount, setZoomAmount] = useState({
+  const zoomAmount = {
     key: 300,
     label: "300%",
     value: 300,
-  });
+  };
 
   const [videoState, setVideoState] = useState({
     playing: true,
@@ -83,7 +82,6 @@ const VideoPlayer = () => {
 
   const [videoWidth, setVideoWidth] = useState(854);
   const [videoHeight, setVideoHeight] = useState(480);
-  const [sideBarWidth, setSideBarWidth] = useState(170);
 
   const videoPlayerRef = useRef(null);
   const currentFrame = useRef(0);
@@ -93,23 +91,19 @@ const VideoPlayer = () => {
 
   const videoType = searchParams.get("videotype");
 
-  const handleWindowResize = useCallback(event => {
+  const handleWindowResize = useCallback(() => {
     console.log(window.innerWidth);
-    if (window.innerWidth >= 1920) {
-      console.log("The window width is greater than or equal to 1920.")
+    if (window.innerWidth >= 1536) {
       setVideoWidth(1280);
       setVideoHeight(720);
-      setSideBarWidth(320);
     }
     else if (window.innerWidth >= 1280) {
-      console.log("The window width is greater than or equal to 1280.")
-      setSideBarWidth(320);
-    }
-    else if (window.innerWidth >= 1024) {
-      console.log("The window width is greater than or equal to 1024.")
       setVideoWidth(854);
       setVideoHeight(480);
-      setSideBarWidth(170);
+    }
+    else if (window.innerWidth >= 1024) {
+      setVideoWidth(854);
+      setVideoHeight(480);
     }
   }, []);
 
@@ -123,9 +117,7 @@ const VideoPlayer = () => {
   useEffect(() => {
 
     if (videoType) {
-      const videoTypesKeys = videos.map((video) => {
-        return video.label;
-      });
+      const videoTypesKeys = videos.map((video) => video.label);
 
       if (videoTypesKeys.includes(videoType)) {
         changeVideoHandler(
@@ -135,9 +127,7 @@ const VideoPlayer = () => {
     }
 
     if (timelineType) {
-      const timelineTypesKeys = timelineTypes.map((timelineType) => {
-        return timelineType.key;
-      });
+      const timelineTypesKeys = timelineTypes.map((timelineType) => timelineType.key);
 
       if (timelineTypesKeys.includes(timelineType)) {
         setTimeline(
@@ -145,15 +135,13 @@ const VideoPlayer = () => {
         );
       }
     }
-  }, []);
+  }, [timelineType, videoType, videos]);
 
   const seekHandler = (e, value) => {
     if (timeline.value === "timeline3" || timeline.value === "timeline4") {
       const eventBlocks = eventBlocksHandler();
 
-      let currentEventBlocks = eventBlocks.filter((eventBlock) => {
-        return eventBlock.eventBlockEndSeconds <= value;
-      });
+      let currentEventBlocks = eventBlocks.filter((eventBlock) => eventBlock.eventBlockEndSeconds <= value);
 
       if (currentEventBlocks.length === eventBlocks.length) {
         setTimelineThreeValue(videoWidth);
@@ -234,7 +222,7 @@ const VideoPlayer = () => {
     setHighlightGraphBlock({});
   };
 
-  const densityFunctionHandler = () => {
+  const densityFunctionHandler = useCallback(() => {
     const eventsPerSecond = new Array(Math.ceil(selectedVideo.duration)).fill(
       0,
     );
@@ -274,7 +262,7 @@ const VideoPlayer = () => {
     }
 
     return eventsPerSecond;
-  };
+  }, [selectedEventType, selectedVideo.duration, videoEvents]);
 
   const highlightDensityFunctionHandler = () => {
     const highlightedDensityFunctionValues = new Array(
@@ -297,7 +285,7 @@ const VideoPlayer = () => {
     return highlightedDensityFunctionValues;
   };
 
-  const eventBlocksHandler = () => {
+  const eventBlocksHandler = useCallback(() => {
     const filteredEvents = timelineEventFilterer(
       selectedEventType,
       videoEvents,
@@ -330,14 +318,12 @@ const VideoPlayer = () => {
               secondIndex - 1,
             ),
             eventBlockEvents: filteredEvents
-              .filter((filteredEvent) => {
-                return (
-                  startSecondIndex - 1 <
-                  Math.ceil(filteredEvent.currentEventStartFrameSeconds) &&
-                  secondIndex >=
-                  Math.floor(filteredEvent.currentEventEndFrameSeconds)
-                );
-              })
+              .filter((filteredEvent) => (
+                startSecondIndex - 1 <
+                Math.ceil(filteredEvent.currentEventStartFrameSeconds) &&
+                secondIndex >=
+                Math.floor(filteredEvent.currentEventEndFrameSeconds)
+              ))
               .sort(
                 (a, b) =>
                   parseFloat(a.currentEventStartFrameSeconds) -
@@ -364,14 +350,12 @@ const VideoPlayer = () => {
           densityFunctionValues.length - 1,
         ),
         eventBlockEvents: filteredEvents
-          .filter((filteredEvent) => {
-            return (
-              startSecondIndex - 1 <
-              Math.ceil(filteredEvent.currentEventStartFrameSeconds) &&
-              densityFunctionValues.length >=
-              Math.floor(filteredEvent.currentEventEndFrameSeconds)
-            );
-          })
+          .filter((filteredEvent) => (
+            startSecondIndex - 1 <
+            Math.ceil(filteredEvent.currentEventStartFrameSeconds) &&
+            densityFunctionValues.length >=
+            Math.floor(filteredEvent.currentEventEndFrameSeconds)
+          ))
           .sort(
             (a, b) =>
               parseFloat(a.currentEventStartFrameSeconds) -
@@ -380,9 +364,9 @@ const VideoPlayer = () => {
       });
     }
     return eventBlocks;
-  };
+  }, [densityFunctionHandler, selectedEventType, videoEvents]);
 
-  const timelineThreeTotalDurationHandler = () => {
+  const timelineThreeTotalDurationHandler = useCallback(() => {
     const eventBlocks = eventBlocksHandler();
 
     let totalDuration = 0;
@@ -397,7 +381,7 @@ const VideoPlayer = () => {
     }
 
     return totalDuration;
-  };
+  }, [eventBlocksHandler]);
 
   const timelineThreeSeekMouseUpHandler = (e, value) => {
     setTimelineThreeValue(value);
@@ -432,12 +416,10 @@ const VideoPlayer = () => {
       videoEvents,
     );
 
-    let currentEvents = filteredEvents.filter((currentEvent) => {
-      return (
-        currentEvent.currentEventStartFrame <= currentFrame.current &&
-        currentEvent.currentEventEndFrame >= currentFrame.current
-      );
-    });
+    let currentEvents = filteredEvents.filter((currentEvent) => (
+      currentEvent.currentEventStartFrame <= currentFrame.current &&
+      currentEvent.currentEventEndFrame >= currentFrame.current
+    ));
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -496,12 +478,10 @@ const VideoPlayer = () => {
 
       // Check if current time is in a time block
 
-      let currentEventBlock = eventBlocks.find((eventBlock) => {
-        return (
-          eventBlock.eventBlockEndSeconds >= currentTime &&
-          eventBlock.eventBlockStartSeconds <= currentTime
-        );
-      });
+      let currentEventBlock = eventBlocks.find((eventBlock) => (
+        eventBlock.eventBlockEndSeconds >= currentTime &&
+        eventBlock.eventBlockStartSeconds <= currentTime
+      ));
       if (currentEventBlock) {
         const totalDuration = timelineThreeTotalDurationHandler();
         let currentDuration = 0;
@@ -521,9 +501,7 @@ const VideoPlayer = () => {
         setTimelineThreeValue(videoWidth * (currentDuration / totalDuration));
         return;
       } else {
-        let currentEventBlocks = eventBlocks.filter((eventBlock) => {
-          return eventBlock.eventBlockEndSeconds <= currentTime;
-        });
+        let currentEventBlocks = eventBlocks.filter((eventBlock) => eventBlock.eventBlockEndSeconds <= currentTime);
 
         if (currentEventBlocks.length === eventBlocks.length) {
           setTimelineThreeValue(videoWidth);
@@ -544,14 +522,12 @@ const VideoPlayer = () => {
         }
       }
     }
-  }, [videoState]);
+  }, [videoState, eventBlocksHandler, timeline.value, timelineThreeTotalDurationHandler, videoWidth]);
 
   useEffect(() => {
     const eventBlocks = eventBlocksHandler();
 
-    let currentEventBlocks = eventBlocks.filter((eventBlock) => {
-      return eventBlock.eventBlockEndSeconds <= videoState.played;
-    });
+    let currentEventBlocks = eventBlocks.filter((eventBlock) => eventBlock.eventBlockEndSeconds <= videoState.played);
 
     const totalDuration = timelineThreeTotalDurationHandler();
     let currentDuration = 0;
@@ -590,14 +566,12 @@ const VideoPlayer = () => {
           style={{ width: `${videoWidth}px` }}>
           {eventBlocks.map((eventBlock) => {
             let isCurrentEventHappening = eventBlock.eventBlockEvents.find(
-              (eventBlock) => {
-                return (
-                  eventBlock.currentEventEndFrameSeconds >=
-                  videoPlayerRef.current.getCurrentTime() &&
-                  eventBlock.currentEventStartFrameSeconds <=
-                  videoPlayerRef.current.getCurrentTime()
-                );
-              },
+              (eventBlock) => (
+                eventBlock.currentEventEndFrameSeconds >=
+                videoPlayerRef.current.getCurrentTime() &&
+                eventBlock.currentEventStartFrameSeconds <=
+                videoPlayerRef.current.getCurrentTime()
+              ),
             );
 
             const filteredEventBlockTypeNumber = parseInt(
@@ -608,6 +582,7 @@ const VideoPlayer = () => {
 
             return (
               <EventBlockList
+                key={"EventBlockList"}
                 eventBlock={eventBlock}
                 totalDuration={totalDuration}
                 videoWidth={videoWidth}
@@ -625,7 +600,7 @@ const VideoPlayer = () => {
           max={videoWidth}
           value={timelineThreeValue}
           onChangeCommitted={timelineThreeSeekMouseUpHandler}
-          className={`!text-white !p-0`}
+          className={`!p-0 !text-white`}
         />
       </div>
     );
@@ -663,70 +638,57 @@ const VideoPlayer = () => {
       videoEvents,
     );
 
-    return (
-      <div className="flex gap-x-1 mx-auto overflow-x-scroll text-dark bg-dark" style={{ width: `${videoWidth + sideBarWidth}px` }}>
-        {timeline.value === "timeline5" &&
-          filteredEvents.map((currentEvent) => {
-            const filteredEventTypeNumber = parseInt(
-              currentEvent.currentEventName.split(":")[0],
-              10,
-            );
-            let clicked = false;
-            let eventColor = eventColorFinder(filteredEventTypeNumber);
+    return timeline.value === "timeline5" &&
+      filteredEvents.map((currentEvent) => {
+        const filteredEventTypeNumber = parseInt(
+          currentEvent.currentEventName.split(":")[0],
+          10,
+        );
+        let eventColor = eventColorFinder(filteredEventTypeNumber);
 
-            return (
-              <div
-                key={"TimelineFiveKey" + currentEvent.currentEventVideoName + (currentEvent.currentEventID.toString())}
-                style={{ backgroundColor: `${eventColor}` }}
-                className={`flex flex-col w-48 h-40 rounded-lg lg:text-xs ${clicked ? "opacity-50" : ""}`}
-                onClick={() => {
-                  clicked = true;
-                  handleTimelineFiveClick(currentEvent);
-                }}>
-                <ImageZoom
-                  src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
-                  width={192}
-                  height={200}
-                  alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
-                  className="rounded-lg !w-48"
-                  zoom={zoomAmount.value}
-                />
-                {/* add underline to text when user hovers over it */}
-                <button
-                  className="flex w-full flex-col justify-center hover:underline cursor-pointer">
-                  <p className="w-full text-wrap">
-                    {currentEvent.currentEventName}
-                  </p>
-                  <p className=" w-full text-wrap">
-                    {"Time: " +
-                      convertSecondsToTime(
-                        currentEvent.currentEventStartFrameSeconds,
-                      ) +
-                      " - " +
-                      convertSecondsToTime(
-                        currentEvent.currentEventEndFrameSeconds,
-                      )}
-                  </p>
-                </button>
-              </div>
-            );
-          })}
-      </div>
-    );
+        return (
+          <div
+            key={"TimelineFiveKey" + currentEvent.currentEventVideoName + (currentEvent.currentEventID.toString())}
+            style={{ backgroundColor: `${eventColor}` }}
+            className="flex h-44 w-48 flex-col rounded-lg"
+            onClick={() => handleTimelineFiveClick(currentEvent)}>
+            <ImageZoom
+              src={`/images/${selectedVideo.label}/${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}.png`}
+              width={192}
+              height={200}
+              alt={`${currentEvent.currentEventVideoName}_${currentEvent.currentEventID}`}
+              className="!w-48 rounded-lg"
+              zoom={zoomAmount.value}
+            />
+            {/* add underline to text when user hovers over it */}
+            <button
+              className="flex w-full cursor-pointer flex-col justify-center hover:underline">
+              <p className="w-full text-wrap">
+                {currentEvent.currentEventName}
+              </p>
+              <p className=" w-full text-wrap">
+                {"Time: " +
+                  convertSecondsToTime(
+                    currentEvent.currentEventStartFrameSeconds,
+                  ) +
+                  " - " +
+                  convertSecondsToTime(
+                    currentEvent.currentEventEndFrameSeconds,
+                  )}
+              </p>
+            </button>
+          </div>
+        );
+      })
+
   };
 
   return (
-    <div className="Container w-full flex flex-col">
-      <div className="SideBarAndVideoPlayer-container mx-auto flex h-fit text-primary">
-        <div className="SideBar gap-3 flex flex-col p-2 bg-dark overflow-y-auto" style={{ width: `${sideBarWidth}px` }}>
-          <CustomCheckbox
-            label={"Toggle Boundary Boxes:"}
-            checked={toggleBoundaryBoxes}
-            setChecked={setToggleBoundaryBoxes}
-          />
-          <p className="PlayBackRate-label lg:text-xs">Playback Rate: {playbackRate.label}</p>
-          {timeline.value !== "timeline1" && (<div className="EventTypes-container gap-2 flex flex-col lg:text-xs">
-            <p className="EventTypes-label flex mx-auto ">Event Types</p>
+    <div className="Container mx-auto flex flex-col lg:!w-[1024px] lg:text-sm xl:!w-[1280px] xl:text-xl 2xl:!w-[1536px]">
+      <div className="SideBarAndVideoPlayer-container flex h-fit text-primary">
+        <div className="SideBar flex flex-col gap-3 overflow-y-auto bg-dark p-2 lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[640px]">
+          {timeline.value !== "timeline1" && (<div className="EventTypes-container flex flex-col gap-2">
+            <p className="EventTypes-label mx-auto flex ">Event Types</p>
             <CustomRadioGroup
               value={selectedEventType}
               setFunction={currentEventTypeHandler}
@@ -807,13 +769,18 @@ const VideoPlayer = () => {
               value={videoState.played * videoState.duration}
               onChange={seekHandler}
               onChangeCommitted={seekMouseUpHandler}
-              className="!text-primary !p-0"
+              className="!p-0 !text-primary"
             />
-            <div className="flex justify-between p-2 text-xl font-semibold">
+            <div className="flex justify-between p-2 font-semibold lg:text-xl xl:text-2xl">
               <div>
                 {convertSecondsToTime(videoState.played * videoState.duration)}
               </div>
-              <div className="VideoPlayer-controls mx-auto flex w-fit">
+              <CustomCheckbox
+                label={"Boundary Boxes:"}
+                checked={toggleBoundaryBoxes}
+                setChecked={setToggleBoundaryBoxes}
+              />
+              <div className="VideoPlayer-controls flex w-fit gap-2">
                 <div
                   className="VideoPlayer-slowDownButton my-auto"
                   onClick={() => {
@@ -825,13 +792,15 @@ const VideoPlayer = () => {
                   }}>
                   <FaBackward size="24px" />
                 </div>
+
+
                 <div
                   className="VideoPlayer-goBackTenSecondsButton my-auto "
                   onClick={() => rewindHandler(videoPlayerRef)}>
                   <TbRewindBackward10 size="24px" />
                 </div>
                 <div
-                  className="VideoPlayer-playPauseButtons mx-2 my-auto"
+                  className="VideoPlayer-playPauseButtons my-auto"
                   onClick={() => playPauseHandler(videoState, setVideoState)}>
                   {videoState.playing ? (
                     <FaPause size="24px" />
@@ -855,13 +824,17 @@ const VideoPlayer = () => {
                   }}>
                   <FaForward size="24px" />
                 </div>
+
               </div>
+              <p className="PlayBackRate-label my-auto">Playback Rate: {playbackRate.label}</p>
               <div>{convertSecondsToTime(videoState.duration)}</div>
             </div>
           </div>
         </div>
       </div>
-      {timelineFiveHandler()}
+      <div className="2xl:text-md flex gap-1 overflow-scroll bg-dark text-dark xl:text-sm">
+        {timelineFiveHandler()}
+      </div>
     </div>
   );
 };

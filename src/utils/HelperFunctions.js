@@ -25,19 +25,15 @@ export const widthConverter = (sizeToConvert, width, videoWidth) => {
   return sizeToConvert;
 };
 
-export const timelineEventFilterer = (selectedEventType, videoEvents) => {
-  return selectedEventType.slice(0, 2) !== "0:"
-    ? videoEvents.filter(({ currentEventName }) => {
-        return (
+export const timelineEventFilterer = (selectedEventType, videoEvents) => selectedEventType.slice(0, 2) !== "0:"
+    ? videoEvents.filter(({ currentEventName }) => (
           currentEventName.slice(0, 2) === selectedEventType.slice(0, 2)
-        );
-      })
+        ))
     : videoEvents.sort(
         (a, b) =>
           parseFloat(a.currentEventStartFrameSeconds) -
           parseFloat(b.currentEventStartFrameSeconds),
       );
-};
 
 export const playPauseHandler = (videoState, setVideoState) => {
   setVideoState({ ...videoState, playing: !videoState.playing });
