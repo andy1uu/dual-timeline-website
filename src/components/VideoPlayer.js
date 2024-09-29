@@ -1,19 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import ReactPlayer from "react-player";
+import ImageZoom from "react-image-zooom";
 
-import {
-  convertSecondsToTime,
-  eventColorFinder,
-  fastFowardHandler,
-  heightConverter,
-  playPauseHandler,
-  rewindHandler,
-  timelineEventFilterer,
-  widthConverter,
-} from "@/utils/HelperFunctions";
+import { Slider } from "@mui/material";
+import * as Plot from "@observablehq/plot";
+import { useSearchParams } from "next/navigation";
 import { playbackRates } from "@/utils/PlaybackRates";
 import { timelineTypes } from "@/utils/TimelineTypes";
 import { VIRAT_S_0000 } from "@/utils/VideoData/VIRAT_S_0000";
@@ -22,18 +16,15 @@ import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
 import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
 import { VIRAT_S_0500 } from "@/utils/VideoData/VIRAT_S_0500";
-import { Slider } from "@mui/material";
-import * as Plot from "@observablehq/plot";
-import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
 import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
-import ImageZoom from "react-image-zooom";
+import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
+import { convertSecondsToTime, eventColorFinder, fastFowardHandler, heightConverter, playPauseHandler, rewindHandler, timelineEventFilterer, widthConverter } from "@/utils/HelperFunctions";
 
-import { useSearchParams } from "next/navigation";
-import CustomCheckbox from "./utils/CustomCheckbox";
-import CustomListBox from "./utils/CustomListBox";
-import CustomRadioGroup from "./utils/CustomRadioGroup";
-import EventBlockList from "./utils/EventBlockList";
 import PlotFigure from "./utils/PlotFigure";
+import CustomListBox from "./utils/CustomListBox";
+import CustomCheckbox from "./utils/CustomCheckbox";
+import EventBlockList from "./utils/EventBlockList";
+import CustomRadioGroup from "./utils/CustomRadioGroup";
 
 const VideoPlayer = () => {
   const searchParams = useSearchParams();
@@ -100,10 +91,7 @@ const VideoPlayer = () => {
       setVideoWidth(1280);
       setVideoHeight(720);
     }
-    else if (window.innerWidth >= 1024) {
-      setVideoWidth(854);
-      setVideoHeight(480);
-    }
+    
   }, []);
 
   useEffect(() => {

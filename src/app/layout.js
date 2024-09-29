@@ -1,10 +1,14 @@
 import React from "react";
+
+import PropTypes from 'prop-types';
+
 import { Rubik } from "next/font/google";
-import "./globals.css";
+
 import Providers from "./providers";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
-import PropTypes from 'prop-types';
+
+import "./globals.css";
 
 const rubik = Rubik({ subsets: ["latin"], display: "swap" });
 

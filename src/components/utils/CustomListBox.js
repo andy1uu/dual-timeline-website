@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import {
-    FaChevronDown,
-} from "react-icons/fa";
 
-const CustomListBox = ({ value, setFunction, options }) => {
-    return (
+import PropTypes from 'prop-types';
+
+import { FaChevronDown } from "react-icons/fa";
+import { Listbox, Transition } from "@headlessui/react";
+
+const CustomListBox = ({ value, setFunction, options }) => (
         <Listbox value={value} onChange={setFunction}>
             <div
                 className={`VideoPlayer-selector`}
@@ -49,6 +49,11 @@ const CustomListBox = ({ value, setFunction, options }) => {
             </div>
         </Listbox>
     );
+
+CustomListBox.propTypes = {
+    value: PropTypes.string.isRequired,
+    setFunction: PropTypes.func.isRequired,
+    options: PropTypes.array.isRequired,
 };
 
 export default CustomListBox;

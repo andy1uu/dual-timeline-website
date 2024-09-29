@@ -1,7 +1,10 @@
 import React from "react";
-import PlotFigure from "./PlotFigure";
-import * as Plot from "@observablehq/plot";
+
 import PropTypes from 'prop-types';
+
+import * as Plot from "@observablehq/plot";
+
+import PlotFigure from "./PlotFigure";
 
 const EventBlockList = 
   (

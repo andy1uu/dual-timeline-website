@@ -1,7 +1,9 @@
 import React from "react";
+
 import PropTypes from 'prop-types';
-import { Checkbox, Field, Label } from "@headlessui/react";
+
 import { FaCircleCheck } from "react-icons/fa6";
+import { Checkbox, Field, Label } from "@headlessui/react";
 
 const CustomCheckbox = ({ checked, setChecked, label }) => (
   <Field className="flex justify-between gap-1 rounded text-primary">

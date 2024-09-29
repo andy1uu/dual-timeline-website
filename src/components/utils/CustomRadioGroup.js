@@ -1,6 +1,8 @@
 import React from "react";
+
 import PropTypes from 'prop-types';
-import { Field, Label, Radio, RadioGroup  } from "@headlessui/react";
+
+import { Field, Label, Radio, RadioGroup } from "@headlessui/react";
 
 const CustomRadioGroup = ({ value, setFunction, options,label }) => (
     <RadioGroup value={value} onChange={setFunction} aria-label={label} className={"flex flex-col gap-2"}>
