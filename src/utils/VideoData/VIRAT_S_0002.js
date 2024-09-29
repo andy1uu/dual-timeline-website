@@ -2,7 +2,7 @@ export const VIRAT_S_0002 = {
   label: "VIRAT_S_0002",
   link: "https://youtu.be/0MEooMqqF9g",
   duration: 5116.244,
-  frameRate: 30,
+  frameRate: 29.97,
   events: [
     {
       "currentEventVideoWidth": 1280,

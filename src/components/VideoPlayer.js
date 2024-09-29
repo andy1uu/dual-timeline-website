@@ -16,10 +16,12 @@ import {
 } from "@/utils/HelperFunctions";
 import { playbackRates } from "@/utils/PlaybackRates";
 import { timelineTypes } from "@/utils/TimelineTypes";
+import { VIRAT_S_0000 } from "@/utils/VideoData/VIRAT_S_0000";
 import { VIRAT_S_0002 } from "@/utils/VideoData/VIRAT_S_0002";
 import { VIRAT_S_0100 } from "@/utils/VideoData/VIRAT_S_0100";
 import { VIRAT_S_0102 } from "@/utils/VideoData/VIRAT_S_0102";
 import { VIRAT_S_0400 } from "@/utils/VideoData/VIRAT_S_0400";
+import { VIRAT_S_0500 } from "@/utils/VideoData/VIRAT_S_0500";
 import { Slider } from "@mui/material";
 import * as Plot from "@observablehq/plot";
 import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
@@ -28,13 +30,14 @@ import ImageZoom from "react-image-zooom";
 
 import { useSearchParams } from "next/navigation";
 import CustomCheckbox from "./utils/CustomCheckbox";
+import CustomListBox from "./utils/CustomListBox";
 import CustomRadioGroup from "./utils/CustomRadioGroup";
 import EventBlockList from "./utils/EventBlockList";
 import PlotFigure from "./utils/PlotFigure";
 
 const VideoPlayer = () => {
   const searchParams = useSearchParams();
-  const videos = [VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400];
+  const videos = [VIRAT_S_0000, VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400, VIRAT_S_0500];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [playbackRate, setPlaybackRate] = useState({
     key: 1,
@@ -55,11 +58,11 @@ const VideoPlayer = () => {
     played: 0,
     seeking: false,
     Buffer: true,
-    duration: videos[0].duration,
+    duration: selectedVideo.duration,
     playbackRate: 1,
   });
   const [videoEvents, setVideoEvents] = useState(
-    videos[0].events.sort(
+    selectedVideo.events.sort(
       (a, b) =>
         parseFloat(a.currentEventStartFrameSeconds) -
         parseFloat(b.currentEventStartFrameSeconds),
@@ -91,17 +94,11 @@ const VideoPlayer = () => {
 
   const timelineType = searchParams.get("timelinetype");
 
-  const videoType = searchParams.get("videotype");
-
   const handleWindowResize = useCallback(() => {
-    console.log(window.innerWidth);
+
     if (window.innerWidth >= 1536) {
       setVideoWidth(1280);
       setVideoHeight(720);
-    }
-    else if (window.innerWidth >= 1280) {
-      setVideoWidth(854);
-      setVideoHeight(480);
     }
     else if (window.innerWidth >= 1024) {
       setVideoWidth(854);
@@ -118,16 +115,6 @@ const VideoPlayer = () => {
 
   useEffect(() => {
 
-    if (videoType) {
-      const videoTypesKeys = videos.map((video) => video.label);
-
-      if (videoTypesKeys.includes(videoType)) {
-        changeVideoHandler(
-          videos.find((video) => videoType == video.label),
-        );
-      }
-    }
-
     if (timelineType) {
       const timelineTypesKeys = timelineTypes.map((timelineType) => timelineType.key);
 
@@ -137,7 +124,7 @@ const VideoPlayer = () => {
         );
       }
     }
-  }, [timelineType, videoType, videos]);
+  }, [timelineType]);
 
   const seekHandler = (e, value) => {
     if (timeline.value === "timeline3" || timeline.value === "timeline4") {
@@ -209,19 +196,7 @@ const VideoPlayer = () => {
           parseFloat(b.currentEventStartFrameSeconds),
       ),
     );
-    setTimeline({
-      key: "timeline1",
-      label: "Timeline 1",
-      value: "timeline1",
-    });
     setSelectedEventType("0: All Events");
-    setPlaybackRate({
-      key: 1,
-      label: 1,
-      value: 1,
-    });
-    setHighlightGraph(false);
-    setHighlightGraphBlock({});
   };
 
   const densityFunctionHandler = useCallback(() => {
@@ -732,7 +707,12 @@ const VideoPlayer = () => {
   return (
     <div className="Container mx-auto flex flex-col lg:!w-[1024px] lg:text-sm xl:!w-[1280px] xl:text-xl 2xl:!w-[1536px]">
       <div className="SideBarAndVideoPlayer-container flex h-fit text-primary">
-        <div className="SideBar flex h-full flex-col gap-3 bg-dark p-2 lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[640px]">
+        <div className="SideBar flex h-full flex-col gap-3 bg-dark p-2 lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[256px]">
+          <CustomListBox
+            value={selectedVideo}
+            setFunction={changeVideoHandler}
+            options={videos}
+          />
           {timeline.value !== "timeline1" && (<div className="EventTypes-container flex flex-col gap-2">
             <p className="EventTypes-label mx-auto flex">Event Types</p>
             <CustomRadioGroup
