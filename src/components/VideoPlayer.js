@@ -21,7 +21,6 @@ import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
 import { convertSecondsToTime, eventColorFinder, fastFowardHandler, heightConverter, playPauseHandler, rewindHandler, timelineEventFilterer, widthConverter } from "@/utils/HelperFunctions";
 
 import PlotFigure from "./utils/PlotFigure";
-import CustomListBox from "./utils/CustomListBox";
 import CustomCheckbox from "./utils/CustomCheckbox";
 import EventBlockList from "./utils/EventBlockList";
 import CustomRadioGroup from "./utils/CustomRadioGroup";
@@ -67,6 +66,8 @@ const VideoPlayer = () => {
     value: "timeline1",
   });
 
+  const [timelinesUsedPassword, setTimelinesUsedPassword] = useState(0);
+
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
 
   const [highlightGraph, setHighlightGraph] = useState(false);
@@ -83,7 +84,10 @@ const VideoPlayer = () => {
   const highlightGraphInEvent = useRef(false);
   const highlightGraphBlockInEvent = useRef({});
 
-  const timelineType = searchParams.get("timelinetype");
+  const timelinesUsed = searchParams.get("timelinesused");
+
+  const videoType = searchParams.get("videotype");
+
 
   const handleWindowResize = useCallback(() => {
 
@@ -103,16 +107,52 @@ const VideoPlayer = () => {
 
   useEffect(() => {
 
-    if (timelineType) {
-      const timelineTypesKeys = timelineTypes.map((timelineType) => timelineType.key);
+    if (videoType) {
+      const videoTypesKeys = videos.map((video) => video.label);
 
-      if (timelineTypesKeys.includes(timelineType)) {
-        setTimeline(
-          timelineTypes.find((timeType) => timelineType == timeType.key),
+      if (videoTypesKeys.includes(videoType)) {
+        changeVideoHandler(
+          videos.find((video) => videoType == video.label),
         );
       }
     }
-  }, [timelineType]);
+
+    if (timelinesUsed) {
+      let timelineTypesCopy = JSON.parse(JSON.stringify(timelineTypes));
+
+      for (let timelineKey of timelinesUsed) {
+        timelineTypesCopy = timelineTypesCopy.filter(timelineType => timelineType.key !== parseInt(timelineKey));
+      }
+
+      if (timelineTypesCopy) {
+        let randomTimelineIndex = Math.floor(Math.random() * timelineTypesCopy.length);
+
+        setTimeline(
+          timelineTypesCopy[randomTimelineIndex],
+        );
+        setTimelinesUsedPassword(timelinesUsed + timelineTypesCopy[randomTimelineIndex].key);
+      }
+      else {
+        // select a random number from 1-5 
+        let randomTimelineKey = Math.floor(Math.random() * timelineTypes.length) + 1;
+
+        setTimeline(
+          timelineTypes.find((timeType) => randomTimelineKey === timeType.key),
+        );
+        setTimelinesUsedPassword("" + randomTimelineKey);
+      }
+
+    }
+    else{
+      // select a random number from 1-5 
+      let randomTimelineKey = Math.floor(Math.random() * timelineTypes.length) + 1;
+
+      setTimeline(
+        timelineTypes.find((timeType) => randomTimelineKey === timeType.key),
+      );
+      setTimelinesUsedPassword(""+randomTimelineKey);
+    }
+  }, [videoType, timelinesUsed]);
 
   const seekHandler = (e, value) => {
     if (timeline.value === "timeline3" || timeline.value === "timeline4") {
@@ -696,12 +736,9 @@ const VideoPlayer = () => {
     <div className="Container mx-auto flex flex-col lg:!w-[1024px] lg:text-sm xl:!w-[1280px] xl:text-xl 2xl:!w-[1536px]">
       <div className="SideBarAndVideoPlayer-container flex h-fit text-primary">
         <div className="SideBar flex h-full flex-col gap-3 bg-dark p-2 lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[256px]">
-          <CustomListBox
-            value={selectedVideo}
-            setFunction={changeVideoHandler}
-            options={videos}
-          />
+          <p className="TimelinesUsedPassword-label mx-auto flex">Timelines Used Password: {timelinesUsedPassword}</p>
           {timeline.value !== "timeline1" && (<div className="EventTypes-container flex flex-col gap-2">
+            
             <p className="EventTypes-label mx-auto flex">Event Types</p>
             <CustomRadioGroup
               value={selectedEventType}
