@@ -740,7 +740,7 @@ const VideoPlayer = () => {
     <div className="Container mx-auto flex flex-col lg:!w-[1024px] lg:text-sm xl:!w-[1280px] xl:text-xl 2xl:!w-[1536px]">
       <div className="SideBarAndVideoPlayer-container flex h-fit text-primary">
         <div className="SideBar flex h-full flex-col gap-3 bg-dark p-2 lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[256px]">
-          <p className="TimelinesUsedPassword-label mx-auto flex">{timeline.value}</p>
+          <a className="TimelinesUsedPassword-label text-pretty underline" href={timeline.link}>Please watch this tutorial if {timeline.label} is confusing.</a>
           <p className="TimelinesUsedPassword-label mx-auto flex">Password: {timelinesUsedPassword}</p>
           {timeline.value !== "timeline1" && (<div className="EventTypes-container flex flex-col gap-2">
             
