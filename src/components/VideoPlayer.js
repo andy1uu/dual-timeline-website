@@ -117,10 +117,14 @@ const VideoPlayer = () => {
       }
     }
 
+    let randomNumber = 69368;
+
     if (timelinesUsed) {
       let timelineTypesCopy = JSON.parse(JSON.stringify(timelineTypes));
 
-      for (let timelineKey of timelinesUsed) {
+      let localTimelinesUsed = "" + (parseInt(timelinesUsed) - randomNumber);
+
+      for (let timelineKey of localTimelinesUsed) {
         timelineTypesCopy = timelineTypesCopy.filter(timelineType => timelineType.key !== parseInt(timelineKey));
       }
 
@@ -130,7 +134,7 @@ const VideoPlayer = () => {
         setTimeline(
           timelineTypesCopy[randomTimelineIndex],
         );
-        setTimelinesUsedPassword(timelinesUsed + timelineTypesCopy[randomTimelineIndex].key);
+        setTimelinesUsedPassword(randomNumber + parseInt(localTimelinesUsed + timelineTypesCopy[randomTimelineIndex].key));
       }
       else {
         // select a random number from 1-5 
@@ -139,7 +143,7 @@ const VideoPlayer = () => {
         setTimeline(
           timelineTypes.find((timeType) => randomTimelineKey === timeType.key),
         );
-        setTimelinesUsedPassword("" + randomTimelineKey);
+        setTimelinesUsedPassword(randomNumber + randomTimelineKey);
       }
 
     }
@@ -150,7 +154,7 @@ const VideoPlayer = () => {
       setTimeline(
         timelineTypes.find((timeType) => randomTimelineKey === timeType.key),
       );
-      setTimelinesUsedPassword(""+randomTimelineKey);
+      setTimelinesUsedPassword(randomNumber + randomTimelineKey);
     }
   }, [videoType, timelinesUsed]);
 
@@ -736,6 +740,7 @@ const VideoPlayer = () => {
     <div className="Container mx-auto flex flex-col lg:!w-[1024px] lg:text-sm xl:!w-[1280px] xl:text-xl 2xl:!w-[1536px]">
       <div className="SideBarAndVideoPlayer-container flex h-fit text-primary">
         <div className="SideBar flex h-full flex-col gap-3 bg-dark p-2 lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[256px]">
+          <p className="TimelinesUsedPassword-label mx-auto flex">{timeline.value}</p>
           <p className="TimelinesUsedPassword-label mx-auto flex">Password: {timelinesUsedPassword}</p>
           {timeline.value !== "timeline1" && (<div className="EventTypes-container flex flex-col gap-2">
             
