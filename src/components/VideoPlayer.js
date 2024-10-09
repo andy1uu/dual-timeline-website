@@ -124,7 +124,7 @@ const VideoPlayer = () => {
         timelineTypesCopy = timelineTypesCopy.filter(timelineType => timelineType.key !== parseInt(timelineKey));
       }
 
-      if (timelineTypesCopy) {
+      if (timelineTypesCopy.length > 0) {
         let randomTimelineIndex = Math.floor(Math.random() * timelineTypesCopy.length);
 
         setTimeline(
