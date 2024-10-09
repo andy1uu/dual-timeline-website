@@ -84,7 +84,7 @@ const VideoPlayer = () => {
   const highlightGraphInEvent = useRef(false);
   const highlightGraphBlockInEvent = useRef({});
 
-  const timelinesUsed = searchParams.get("timelinesused");
+  const timelinesUsed = searchParams.get("password");
 
   const videoType = searchParams.get("videotype");
 
