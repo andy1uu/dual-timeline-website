@@ -64,6 +64,7 @@ const VideoPlayer = () => {
     key: "timeline1",
     label: "Timeline 1",
     value: "timeline1",
+    link: "https://youtu.be/1zAtfRO5-Vo" 
   });
 
   const [timelinesUsedPassword, setTimelinesUsedPassword] = useState(0);
