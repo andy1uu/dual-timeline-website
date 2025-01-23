@@ -1,4 +1,5 @@
 export const VIRAT_S_0000 = {
+  key: "VIRAT_S_0000",
   label: "VIRAT_S_0000",
   link: "https://youtu.be/FR4bqhOTWOM",
   duration: 2873.371,

@@ -7,7 +7,7 @@ import ImageZoom from "react-image-zooom";
 
 import { Slider } from "@mui/material";
 import * as Plot from "@observablehq/plot";
-import { useSearchParams } from "next/navigation";
+//import { useSearchParams } from "next/navigation";
 import { playbackRates } from "@/utils/PlaybackRates";
 import { timelineTypes } from "@/utils/TimelineTypes";
 import { VIRAT_S_0000 } from "@/utils/VideoData/VIRAT_S_0000";
@@ -24,9 +24,10 @@ import PlotFigure from "./utils/PlotFigure";
 import CustomCheckbox from "./utils/CustomCheckbox";
 import EventBlockList from "./utils/EventBlockList";
 import CustomRadioGroup from "./utils/CustomRadioGroup";
+import CustomListBox from "./utils/CustomListBox";
 
 const VideoPlayer = () => {
-  const searchParams = useSearchParams();
+  //const searchParams = useSearchParams();
   const videos = [VIRAT_S_0000, VIRAT_S_0002, VIRAT_S_0100, VIRAT_S_0102, VIRAT_S_0400, VIRAT_S_0500];
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [playbackRate, setPlaybackRate] = useState({
@@ -60,14 +61,9 @@ const VideoPlayer = () => {
   );
   const [selectedEventType, setSelectedEventType] = useState("0: All Events"
   );
-  const [timeline, setTimeline] = useState({
-    key: "timeline1",
-    label: "Timeline 1",
-    value: "timeline1",
-    link: "https://youtu.be/1zAtfRO5-Vo" 
-  });
+  const [timeline, setTimeline] = useState(timelineTypes[0]);
 
-  const [timelinesUsedPassword, setTimelinesUsedPassword] = useState(0);
+  //const [timelinesUsedPassword, setTimelinesUsedPassword] = useState(0);
 
   const [timelineThreeValue, setTimelineThreeValue] = useState(0);
 
@@ -85,9 +81,9 @@ const VideoPlayer = () => {
   const highlightGraphInEvent = useRef(false);
   const highlightGraphBlockInEvent = useRef({});
 
-  const timelinesUsed = searchParams.get("password");
+  //const timelinesUsed = searchParams.get("password");
 
-  const videoType = searchParams.get("videotype");
+  //const videoType = searchParams.get("videotype");
 
 
   const handleWindowResize = useCallback(() => {
@@ -106,7 +102,7 @@ const VideoPlayer = () => {
     };
   }, [handleWindowResize]);
 
-  useEffect(() => {
+/*   useEffect(() => {
 
     if (videoType) {
       const videoTypesKeys = videos.map((video) => video.label);
@@ -157,7 +153,7 @@ const VideoPlayer = () => {
       );
       setTimelinesUsedPassword(randomNumber + randomTimelineKey);
     }
-  }, [videoType, timelinesUsed]);
+  }, [videoType, timelinesUsed]); */
 
   const seekHandler = (e, value) => {
     if (timeline.value === "timeline3" || timeline.value === "timeline4") {
@@ -230,6 +226,10 @@ const VideoPlayer = () => {
       ),
     );
     setSelectedEventType("0: All Events");
+  };
+
+  const changeTimelineHandler = (newTimeline) => {
+    setTimeline(newTimeline);
   };
 
   const densityFunctionHandler = useCallback(() => {
@@ -742,7 +742,17 @@ const VideoPlayer = () => {
       <div className="SideBarAndVideoPlayer-container flex h-fit text-primary">
         <div className="SideBar flex h-full flex-col gap-3 bg-dark p-2 lg:!w-[170px] xl:!w-[426px] xl:text-xl 2xl:!w-[256px]">
           <a className="TimelinesUsedPassword-label text-pretty underline" href={timeline.link}>Please watch this tutorial if {timeline.label} is confusing.</a>
-          <p className="TimelinesUsedPassword-label mx-auto flex">Password: {timelinesUsedPassword}</p>
+          {/* <p className="TimelinesUsedPassword-label mx-auto flex">Password: {timelinesUsedPassword}</p> */}
+          <CustomListBox
+            value={selectedVideo}
+            setFunction={changeVideoHandler}
+            options={videos}
+          />
+          <CustomListBox
+            value={timeline}
+            setFunction={changeTimelineHandler}
+            options={timelineTypes}
+          />
           {timeline.value !== "timeline1" && (<div className="EventTypes-container flex flex-col gap-2">
             
             <p className="EventTypes-label mx-auto flex">Event Types</p>
