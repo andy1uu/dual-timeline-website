@@ -16,7 +16,7 @@
     "@observablehq/plot": "^0.6.13",
     "axios": "^1.6.7",
     "d3": "^7.9.0",
-    "next": "14.1.0",
+    "next": "14.2.35",
     "next-themes": "^0.2.1",
     "prop-types": "^15.8.1",
     "react": "^18",
